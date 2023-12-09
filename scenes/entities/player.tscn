@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://brt0if6ta843r"]
+[gd_scene load_steps=13 format=3 uid="uid://brt0if6ta843r"]
 
 [ext_resource type="Script" path="res://scenes/entities/player.gd" id="1_bvtev"]
 [ext_resource type="Texture2D" uid="uid://dxbid84ryhcfj" path="res://art/JanitorSheet.png" id="3_6kbas"]
+[ext_resource type="Texture2D" uid="uid://bvqwr10ylqp7p" path="res://art/AttackSlashFX.png" id="4_3gyec"]
 [ext_resource type="Texture2D" uid="uid://dex04mau8lagj" path="res://art/janmop.png" id="5_o0fh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kvuq"]
@@ -122,7 +123,6 @@ libraries = {
 }
 
 [node name="Lantern" type="Node2D" parent="."]
-position = Vector2(3.39, 2.35)
 
 [node name="PointLight" type="PointLight2D" parent="Lantern"]
 light_mask = 8
@@ -137,3 +137,10 @@ texture_scale = 1.25
 zoom = Vector2(7, 7)
 
 [node name="AttackEffect" type="Node2D" parent="."]
+
+[node name="AttackSprite" type="Sprite2D" parent="AttackEffect"]
+texture_filter = 1
+position = Vector2(8, 0)
+rotation = 1.5708
+scale = Vector2(0.775, 0.385)
+texture = ExtResource("4_3gyec")

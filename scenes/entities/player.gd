@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var animator = $AnimationPlayer
 @onready var weaponNode = $WeaponPoint
 @onready var weaponSprite = $WeaponPoint/Weapon
+@onready var attackFXNode = $AttackEffect
 
 @export var moveSpeed = 300.0
 
@@ -21,6 +22,7 @@ var currentState = State.idle
 var weaponNodeOrigin = Vector2(-3.36, 1.3)
 var weaponNodeFlipped = Vector2(3.38, 1.3)
 var attackTimer = 0.0
+var mousePos = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -32,12 +34,16 @@ func _process(delta):
 	match currentState:
 		State.idle:
 			if animator.current_animation != "idle":
+				attackFXNode.visible = false
 				animator.play("idle")
 		State.attack:
 			if animator.current_animation != "attack":
+				Aim(mousePos)
+				attackFXNode.visible = true
 				attackTimer = 0.0
 				animator.play("attack")
 		State.walk:
+			attackFXNode.visible = false
 			velocity = Input.get_vector("left", "right", "up", "down") * moveSpeed
 			move_and_slide()
 			
@@ -46,7 +52,7 @@ func _process(delta):
 		State.hit:
 			pass
 	
-	var mousePos = get_global_mouse_position()
+	mousePos = get_global_mouse_position()
 	if mousePos.x >= position.x:
 		sprite.flip_h = false
 		weaponNode.position = weaponNodeOrigin
@@ -77,3 +83,8 @@ func _physics_process(delta):
 		velocity.y = move_toward(velocity.y, 0, moveSpeed)
 		if currentState != State.attack:
 			currentState = State.idle
+
+func Aim(mousePos : Vector2):
+	var direction = (global_position - mousePos).normalized()
+	var newAngle = PI + atan2(direction.y, direction.x)
+	attackFXNode.rotation = newAngle
