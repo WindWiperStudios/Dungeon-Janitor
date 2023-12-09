@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=6 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
+[ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
 [ext_resource type="PackedScene" uid="uid://brt0if6ta843r" path="res://scenes/entities/player.tscn" id="2_c3tc4"]
-[ext_resource type="PackedScene" uid="uid://ccrgqryybi3vy" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
+[ext_resource type="PackedScene" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
+[ext_resource type="PackedScene" path="res://scenes/entities/skeleton.tscn" id="5_3g1c1"]
 
 [node name="GameScreen" type="Node2D"]
+script = ExtResource("1_weuql")
 
 [node name="ScreenCanvas" type="CanvasLayer" parent="."]
 
@@ -30,5 +33,11 @@ follow_viewport_enabled = true
 
 [node name="World" parent="ScreenCanvas/ScreenMargin/WorldCanvas" instance=ExtResource("1_hbb3b")]
 
+[node name="EnemyParent" type="Node" parent="ScreenCanvas/ScreenMargin/WorldCanvas"]
+
+[node name="Skeleton" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent" instance=ExtResource("5_3g1c1")]
+position = Vector2(54, 24)
+
 [node name="Minimap" parent="ScreenCanvas/ScreenMargin" instance=ExtResource("3_3ynol")]
+visible = false
 layout_mode = 2

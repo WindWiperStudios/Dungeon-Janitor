@@ -7,7 +7,7 @@ extends Control
 var coors
 
 
-func _process(delta):
+func _process(_delta):
 	GetPlayerLocation()
 
 func GetPlayerLocation():
