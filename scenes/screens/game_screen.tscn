@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cro0rw40rl0mi"]
+
+[ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
+[ext_resource type="PackedScene" uid="uid://brt0if6ta843r" path="res://scenes/entities/player.tscn" id="2_c3tc4"]
+
+[node name="GameScreen" type="Node2D"]
+
+[node name="ScreenCanvas" type="CanvasLayer" parent="."]
+
+[node name="ScreenMargin" type="MarginContainer" parent="ScreenCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
+follow_viewport_enabled = true
+
+[node name="Player" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" instance=ExtResource("2_c3tc4")]
+position = Vector2(39, 9)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="WorldCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="World" parent="ScreenCanvas/ScreenMargin/WorldCanvas" instance=ExtResource("1_hbb3b")]
