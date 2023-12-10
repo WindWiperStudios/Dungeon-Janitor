@@ -19,6 +19,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Button" type="Button" parent="ScreenCanvas/ScreenMargin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
 [node name="PlayerCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
 follow_viewport_enabled = true
 
