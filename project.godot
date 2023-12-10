@@ -11,17 +11,17 @@ config_version=5
 [application]
 
 config/name="Dungeon Janitor"
-run/main_scene="res://scenes/screens/game_screen.tscn"
+run/main_scene="res://scenes/screens/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=240
 window/size/initial_position_type=2
 window/size/window_width_override=1280
 window/size/window_height_override=960
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 
@@ -64,4 +64,5 @@ attack={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
