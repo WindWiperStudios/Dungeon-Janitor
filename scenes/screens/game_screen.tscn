@@ -29,9 +29,8 @@ color = Color(0.482353, 0.482353, 0.482353, 1)
 
 [node name="DropParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
 
-[node name="EnemyParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" node_paths=PackedStringArray("SpawnPoints")]
+[node name="EnemyParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
 script = ExtResource("3_v64uy")
-SpawnPoints = [NodePath("SpawnPoint00"), NodePath("SpawnPoint01"), NodePath("SpawnPoint02"), NodePath("SpawnPoint03"), NodePath("SpawnPoint04"), NodePath("SpawnPoint05"), NodePath("SpawnPoint06"), NodePath("SpawnPoint07"), NodePath("SpawnPoint08"), NodePath("SpawnPoint09"), NodePath("SpawnPoint10"), NodePath("SpawnPoint11"), NodePath("SpawnPoint12")]
 
 [node name="SpawnPoint00" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas/EnemyParent"]
 position = Vector2(63, 178)
