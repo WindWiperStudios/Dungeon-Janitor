@@ -32,6 +32,7 @@ collision_mask = 25
 shape = SubResource("RectangleShape2D_mpdha")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+top_level = true
 offset_left = -6.0
 offset_top = -9.0
 offset_right = 41.93

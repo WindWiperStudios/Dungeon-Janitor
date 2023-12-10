@@ -5,11 +5,10 @@ class_name Entity
 
 @onready var hp = $HPComponent
 @onready var hpBar = $ProgressBar
-
-@onready var root = get_tree().get_root()
+@onready var dropParent = $"../../../../PlayerCanvas/DropParent"
 
 @export var itemDrops : Array[PackedScene]
-@export var dropParent : Node2D
+
 
 func _ready():
 	hp.DropItem.connect(DropWhenDead)
@@ -30,4 +29,5 @@ func DropWhenDead():
 		item.global_position = self.global_position
 
 func AddToRoot(itemDropped : Node):
-	dropParent.add_child(itemDropped)
+	if itemDropped:
+		dropParent.add_child(itemDropped)
