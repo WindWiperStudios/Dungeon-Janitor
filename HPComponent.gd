@@ -15,7 +15,6 @@ func _ready():
 	curHP = maxHP
 
 func takeDamage(damage : int):
-	print(curHP)
 	damageTime = 0.0
 	curHP -= damage
 	if curHP <= 0:
@@ -25,8 +24,4 @@ func takeDamage(damage : int):
 func Die():
 	if parent.name != "Player":
 		DropItem.emit()
-		parent.queue_free()
-	if parent.name == "Player":
-		print("PlayerDied")
-		
-		parent.queue_free()
+	parent.queue_free()

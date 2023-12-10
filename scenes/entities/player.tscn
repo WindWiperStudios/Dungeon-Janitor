@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://brt0if6ta843r"]
+[gd_scene load_steps=24 format=3 uid="uid://brt0if6ta843r"]
 
 [ext_resource type="Script" path="res://scenes/entities/player.gd" id="1_bvtev"]
 [ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="2_560ao"]
@@ -7,21 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://bvqwr10ylqp7p" path="res://art/AttackSlashFX.png" id="4_3gyec"]
 [ext_resource type="Texture2D" uid="uid://dex04mau8lagj" path="res://art/janmop.png" id="5_o0fh8"]
 [ext_resource type="Script" path="res://scenes/PlayerAttack.gd" id="6_axogr"]
-[ext_resource type="Script" path="res://scenes/entities/PlayerSoundFX.gd" id="8_kj11a"]
-[ext_resource type="AudioStream" uid="uid://b3cxukqi6jqbk" path="res://sounds/playerSwingUp.wav" id="9_sfkmt"]
-[ext_resource type="AudioStream" uid="uid://dq3q4e3p4wm7e" path="res://sounds/playerSwingDown.wav" id="10_yaf84"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kvuq"]
 size = Vector2(8, 9.60227)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4llv0"]
 size = Vector2(7.8874, 9.57401)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apfj2"]
-bg_color = Color(0.6, 0, 0.0117647, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksdq3"]
-bg_color = Color(0.109804, 0.6, 0, 1)
 
 [sub_resource type="Animation" id="Animation_7po3i"]
 length = 0.001
@@ -85,42 +76,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SoundFX:stream")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SoundFX:up")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SoundFX:down")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_eot6u"]
 resource_name = "attack"
@@ -173,42 +128,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SoundFX:stream")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [null, ExtResource("9_sfkmt"), ExtResource("10_yaf84")]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SoundFX:up")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SoundFX:down")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
 
 [sub_resource type="Animation" id="Animation_212yf"]
 resource_name = "attackLeft"
@@ -260,42 +179,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SoundFX:stream")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [null, ExtResource("9_sfkmt"), ExtResource("10_yaf84")]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SoundFX:up")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SoundFX:down")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_wx44q"]
@@ -666,7 +549,6 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-process_mode = 1
 collision_mask = 46
 motion_mode = 1
 script = ExtResource("1_bvtev")
@@ -685,15 +567,6 @@ shape = SubResource("RectangleShape2D_4llv0")
 
 [node name="HPComponent" parent="." instance=ExtResource("2_560ao")]
 maxHP = 15
-
-[node name="HPBar" type="ProgressBar" parent="."]
-offset_left = -4.41471
-offset_top = -8.51408
-offset_right = 5.58529
-offset_bottom = -7.51408
-theme_override_styles/background = SubResource("StyleBoxFlat_apfj2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ksdq3")
-show_percentage = false
 
 [node name="WeaponPoint" type="Node2D" parent="."]
 position = Vector2(-3.36, 1.3)
@@ -761,9 +634,5 @@ texture = ExtResource("4_3gyec")
 libraries = {
 "": SubResource("AnimationLibrary_2ql2g")
 }
-
-[node name="SoundFX" type="AudioStreamPlayer" parent="."]
-script = ExtResource("8_kj11a")
-sounds = Array[AudioStreamWAV]([ExtResource("9_sfkmt"), ExtResource("10_yaf84")])
 
 [connection signal="area_entered" from="AttackEffect/Attack" to="AttackEffect/Attack" method="_on_area_entered"]

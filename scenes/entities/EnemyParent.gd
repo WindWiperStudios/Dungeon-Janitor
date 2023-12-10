@@ -7,8 +7,8 @@ class_name EnemyParent
 
 
 func SpawnEnemy():
-	var s = randi_range(0, spawnPoints.size() - 1)
-	var e = randi_range(0, enemyList.size() - 1)
+	var s = randi_range(0, spawnPoints.size())
+	var e = randi_range(0, enemyList.size())
 	
 	#Pick a random spawn point
 	var parent = spawnPoints[s]
