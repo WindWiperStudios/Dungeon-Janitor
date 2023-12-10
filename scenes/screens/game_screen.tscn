@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=7 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
 [ext_resource type="PackedScene" uid="uid://brt0if6ta843r" path="res://scenes/entities/player.tscn" id="2_c3tc4"]
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
-[ext_resource type="Script" path="res://scenes/entities/EnemyParent.gd" id="3_v64uy"]
+[ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
+[ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="5_3g1c1"]
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_weuql")
@@ -29,8 +30,9 @@ color = Color(0.482353, 0.482353, 0.482353, 1)
 
 [node name="DropParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
 
-[node name="EnemyParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
-script = ExtResource("3_v64uy")
+[node name="EnemyParent" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" node_paths=PackedStringArray("spawnPoints") instance=ExtResource("3_dl5rm")]
+spawnPoints = [NodePath("SpawnPoint00"), NodePath("SpawnPoint01"), NodePath("SpawnPoint02"), NodePath("SpawnPoint03"), NodePath("SpawnPoint04"), NodePath("SpawnPoint05"), NodePath("SpawnPoint06"), NodePath("SpawnPoint07"), NodePath("SpawnPoint08"), NodePath("SpawnPoint09"), NodePath("SpawnPoint10"), NodePath("SpawnPoint11"), NodePath("SpawnPoint12")]
+enemyList = Array[PackedScene]([ExtResource("5_3g1c1")])
 
 [node name="SpawnPoint00" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas/EnemyParent"]
 position = Vector2(63, 178)
