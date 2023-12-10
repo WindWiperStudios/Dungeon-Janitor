@@ -1,42 +1,6 @@
-<<<<<<< Updated upstream
 [gd_scene load_steps=2 format=3 uid="uid://dp7wn71lnnkg0"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_3fw8a"]
-=======
-[gd_scene load_steps=15 format=3 uid="uid://dp7wn71lnnkg0"]
-
-[ext_resource type="Script" path="res://MainMenu.gd" id="1_3fw8a"]
-[ext_resource type="Texture2D" uid="uid://bo723q6ld0ck1" path="res://art/dungeonjanitorBackground.jpg" id="2_0ss2i"]
-[ext_resource type="Texture2D" uid="uid://fu1skulbqnho" path="res://art/menubutton0000.png" id="3_1lq40"]
-[ext_resource type="Script" path="res://scenes/screens/PointLight2D.gd" id="3_ssc5f"]
-[ext_resource type="Texture2D" uid="uid://bhk5f1bdh8uor" path="res://art/menubutton0001.png" id="4_ixvg6"]
-[ext_resource type="Texture2D" uid="uid://cu60wluiq4vts" path="res://art/menubutton0002.png" id="5_lxfae"]
-[ext_resource type="Texture2D" uid="uid://dsjkhlp0xw6ae" path="res://art/menubutton0003.png" id="6_dlde6"]
-[ext_resource type="Texture2D" uid="uid://dh0qgd8hxhdsv" path="res://art/menubutton0004.png" id="7_k6cl6"]
-[ext_resource type="Texture2D" uid="uid://ctu2xrarv884r" path="res://art/menubutton0005.png" id="8_da3ln"]
-[ext_resource type="Texture2D" uid="uid://jk5i60xx7br7" path="res://art/dungeonjanitorTorch.png" id="10_qrshf"]
-
-[sub_resource type="Gradient" id="Gradient_mgmto"]
-offsets = PackedFloat32Array(0, 0.722581, 1)
-colors = PackedColorArray(0.855634, 0.0640047, 0, 1, 0.0383972, 0.0383972, 0.0383972, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xcpjy"]
-gradient = SubResource("Gradient_mgmto")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
->>>>>>> Stashed changes
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6c66x"]
-gradient = SubResource("Gradient_mgmto")
-width = 100
-height = 100
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cwnau"]
-polygon = PackedVector2Array(-1.55555, -1.55555, -1.55555, -0.518517, -0.518517, -0.518517, -0.518517, -1.55555, 0.518524, -1.55555, 0.518524, -0.518517, 1.55556, -0.518517, 1.55556, -1.55555, 2.5926, -1.55555, 2.5926, 0.518517, 1.55556, 0.518517, 1.55556, 9.85185, 0.518524, 9.85185, 0.518524, 10.8889, -0.518517, 10.8889, -0.518517, 9.85185, -1.55555, 9.85185, -1.55555, 0.518517, -2.59259, 0.518517, -2.59259, -1.55555)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -75,47 +39,8 @@ text = "Play"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-<<<<<<< Updated upstream
 theme_override_font_sizes/font_size = 20
 text = "Quit"
-=======
-texture_normal = ExtResource("5_lxfae")
-texture_hover = ExtResource("6_dlde6")
-
-[node name="Quit" type="TextureButton" parent="VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-texture_normal = ExtResource("7_k6cl6")
-texture_hover = ExtResource("8_da3ln")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-64, -64)
-energy = 6.0
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_xcpjy")
-script = ExtResource("3_ssc5f")
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
->>>>>>> Stashed changes
-
-[node name="Torch" type="Sprite2D" parent="."]
-position = Vector2(153, 125)
-scale = Vector2(1.92857, 1.92857)
-texture = ExtResource("10_qrshf")
-hframes = 4
-
-[node name="PointLight2D2" type="PointLight2D" parent="Torch"]
-position = Vector2(0, -11.4074)
-color = Color(0.968627, 0.184314, 0, 1)
-energy = 4.0
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_6c66x")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Torch"]
-occluder = SubResource("OccluderPolygon2D_cwnau")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
