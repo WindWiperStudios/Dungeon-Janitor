@@ -11,4 +11,6 @@ func SpawnEnemy():
 	var e = randi_range(0, enemyList.size())
 	
 	#Pick a random spawn point
-	var parent = spawnPoints
+	var parent = spawnPoints[s]
+	var enemy = enemyList[e].instantiate()
+	parent.add_child(enemy)
