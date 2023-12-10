@@ -23,7 +23,8 @@ enum State {
 	attack,
 	walk,
 	hit,
-	options
+	paused,
+	unpaused
 }
 
 var currentState = State.idle
@@ -68,12 +69,18 @@ func _process(_delta):
 				animator.play("walkLeft")
 		State.hit:
 			pass
-		State.options:
+		State.paused:
 			get_tree().paused = true
 			self.visible = false
 			minimap.visible = false
 			devMenu.visible = false
 			optionsMenu.visible = true
+		State.unpaused:
+			optionsMenu.visible = false
+			self.visible = true
+			minimap.visible = true
+			devMenu.visible = true
+			currentState = State.idle
 	
 	mousePos = get_global_mouse_position()
 	if mousePos.x >= position.x:
@@ -84,7 +91,7 @@ func _process(_delta):
 	if Input.is_action_pressed("attack"):
 		currentState = State.attack
 	if Input.is_action_pressed("pause"):
-		currentState = State.options
+		currentState = State.paused
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -117,3 +124,6 @@ func Aim(mousePosAim : Vector2):
 	var direction = (global_position - mousePosAim).normalized()
 	var newAngle = PI + atan2(direction.y, direction.x)
 	attackFXNode.rotation = newAngle
+
+func Unpause():
+	currentState = State.unpaused
