@@ -16,7 +16,7 @@ func _process(delta):
 		TimerCheck()
 
 func _on_area_entered(area):
-	if area and !alreadyHit:
+	if area and area.name == "Hitbox" and !alreadyHit:
 		DoDamage(area, damage)
 		alreadyHit = true
 	

@@ -1,20 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=12 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
+[ext_resource type="PackedScene" uid="uid://de4delt53ki78" path="res://scenes/screens/options_menu.tscn" id="2_0pj6t"]
 [ext_resource type="PackedScene" uid="uid://brt0if6ta843r" path="res://scenes/entities/player.tscn" id="2_c3tc4"]
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
-[ext_resource type="PackedScene" uid="uid://b6pj3rgsbkb6v" path="res://scenes/entities/entity.tscn" id="4_ggnpn"]
 [ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="5_3g1c1"]
-[ext_resource type="FontFile" uid="uid://ccwxrys2h7aqc" path="res://art/BloodLust.ttf" id="7_pksoc"]
+[ext_resource type="PackedScene" uid="uid://c1815nmcmuy0f" path="res://scenes/component/music_player.tscn" id="8_010s1"]
+[ext_resource type="AudioStream" uid="uid://dh2oqitaw55qv" path="res://sounds/BGMLow.wav" id="9_n1pr5"]
+[ext_resource type="AudioStream" uid="uid://drgx3eq1hau5d" path="res://sounds/BGMMid.wav" id="10_qahi6"]
+[ext_resource type="AudioStream" uid="uid://baijnv2nwyosx" path="res://sounds/BGMHigh.wav" id="11_18k0n"]
 
 [node name="GameScreen" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_weuql")
 
 [node name="ScreenCanvas" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="OptionsMenu" parent="ScreenCanvas" instance=ExtResource("2_0pj6t")]
+process_mode = 2
+process_priority = 3
+visible = false
 
 [node name="ScreenMargin" type="MarginContainer" parent="ScreenCanvas"]
+process_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PlayerCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
+process_mode = 1
 follow_viewport_enabled = true
 
 [node name="Player" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" instance=ExtResource("2_c3tc4")]
@@ -33,6 +45,7 @@ color = Color(0.482353, 0.482353, 0.482353, 1)
 [node name="DropParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
 
 [node name="WorldCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
+process_mode = 1
 layer = 0
 follow_viewport_enabled = true
 
@@ -43,9 +56,7 @@ spawnPoints = [NodePath("SpawnPoint00"), NodePath("SpawnPoint01"), NodePath("Spa
 enemyList = Array[PackedScene]([ExtResource("5_3g1c1")])
 
 [node name="SpawnPoint00" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(63, 178)
-
-[node name="Entity" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent/SpawnPoint00" instance=ExtResource("4_ggnpn")]
+position = Vector2(60.3273, 24.32)
 
 [node name="SpawnPoint01" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
 position = Vector2(247, 217)
@@ -84,23 +95,70 @@ position = Vector2(348, 327)
 position = Vector2(356, 224)
 
 [node name="Minimap" parent="ScreenCanvas/ScreenMargin" instance=ExtResource("3_3ynol")]
+process_mode = 3
 visible = false
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ScreenCanvas"]
+[node name="DevMenuUI" type="VBoxContainer" parent="ScreenCanvas/ScreenMargin"]
+process_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Spawn Enemy Button" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI"]
 texture_filter = 1
-offset_left = 212.612
-offset_top = 5.98463
-offset_right = 376.612
-offset_bottom = 45.9846
-scale = Vector2(0.600001, 0.56)
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_pksoc")
-theme_override_font_sizes/font_size = 31
+theme_override_colors/font_outline_color = Color(0.439216, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 11
 text = "Spawn Enemy"
 
-[connection signal="button_up" from="ScreenCanvas/Button" to="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent" method="SpawnEnemy"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenCanvas/ScreenMargin/DevMenuUI"]
+layout_mode = 2
 
+[node name="LOW" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.439216, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 6
+text = "LOW"
+
+[node name="MID" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.439216, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 6
+text = "MID"
+
+[node name="HIGH" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.439216, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 6
+text = "HIGH"
+
+[node name="MusicPlayer" parent="ScreenCanvas" instance=ExtResource("8_010s1")]
+process_mode = 3
+songList = Array[AudioStreamWAV]([ExtResource("9_n1pr5"), ExtResource("10_qahi6"), ExtResource("11_18k0n"), null])
+
+[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/Spawn Enemy Button" to="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent" method="SpawnEnemy"]
+[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/LOW" to="ScreenCanvas/MusicPlayer" method="lowState"]
+[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/MID" to="ScreenCanvas/MusicPlayer" method="midState"]
+[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/HIGH" to="ScreenCanvas/MusicPlayer" method="highState"]
+
+[editable path="ScreenCanvas/ScreenMargin/PlayerCanvas/Player"]
 [editable path="ScreenCanvas/ScreenMargin/WorldCanvas/World"]

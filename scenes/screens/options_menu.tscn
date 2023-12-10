@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://de4delt53ki78"]
+
+[ext_resource type="Script" path="res://scenes/screens/options_menu.gd" id="1_po078"]
+[ext_resource type="FontFile" uid="uid://ccwxrys2h7aqc" path="res://art/BloodLust.ttf" id="2_nlwrd"]
+
+[node name="OptionsMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_po078")
+
+[node name="BGC" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.137255, 0.137255, 1)
+
+[node name="OptionsMainText" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 6.81855
+offset_right = 101.0
+offset_bottom = 81.8185
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.886275, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_nlwrd")
+theme_override_font_sizes/font_size = 71
+text = "OPTIONS"
+
+[node name="MusicVolumeText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 80.0
+offset_right = 289.0
+offset_bottom = 106.0
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -35.0
+offset_right = -150.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 75.0
+
+[node name="SoundFXVolText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 105.227
+offset_right = 289.0
+offset_bottom = 131.227
+text = "SFX Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -8.93222
+offset_right = -150.0
+offset_bottom = 7.06778
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -80.0
+max_value = 0.0
+
+[node name="ResumeButton" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 138.748
+offset_top = 196.77
+offset_right = 187.748
+offset_bottom = 221.77
+theme_override_fonts/font = ExtResource("2_nlwrd")
+theme_override_font_sizes/font_size = 16
+text = "Resume"
+text_overrun_behavior = 1
+clip_text = true
+
+[connection signal="drag_ended" from="SFXVolSlider" to="." method="_on_sfx_vol_slider_drag_ended"]
