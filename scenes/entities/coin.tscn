@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7fd4bqdovdvx"]
+
+[ext_resource type="Script" path="res://scenes/entities/coin.gd" id="2_hyftl"]
+[ext_resource type="Texture2D" uid="uid://dketftuhdl3o6" path="res://art/Circle.png" id="2_qx7tk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4nynx"]
+radius = 2.0
+
+[node name="Coin" type="Node2D"]
+script = ExtResource("2_hyftl")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_4nynx")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.882353, 0, 1)
+texture_filter = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_qx7tk")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

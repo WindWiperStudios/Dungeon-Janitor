@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://o0xi8ci6rtn8"]
+
+[ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_y2xnx"]
+[ext_resource type="PackedScene" uid="uid://bu2v1otsc4uqk" path="res://scenes/component/hp_component.tscn" id="2_pduc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpdha"]
+size = Vector2(11, 17)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0exv3"]
+bg_color = Color(0.788235, 0, 0.0117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqy6b"]
+bg_color = Color(0.0156863, 0.909804, 0, 1)
+
+[node name="Entity" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_y2xnx")
+
+[node name="EntityAnimator" type="AnimationPlayer" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+
+[node name="HPComponent" parent="." instance=ExtResource("2_pduc4")]
+maxHP = 3
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 25
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_mpdha")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -6.0
+offset_top = -9.0
+offset_right = 41.93
+offset_bottom = -5.0
+scale = Vector2(0.25, 0.25)
+theme_override_styles/background = SubResource("StyleBoxFlat_0exv3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_aqy6b")
+show_percentage = false
