@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
 [ext_resource type="PackedScene" uid="uid://brt0if6ta843r" path="res://scenes/entities/player.tscn" id="2_c3tc4"]
-[ext_resource type="PackedScene" uid="uid://ccrgqryybi3vy" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
+[ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="Script" path="res://scenes/entities/EnemyParent.gd" id="3_v64uy"]
 
 [node name="GameScreen" type="Node2D"]

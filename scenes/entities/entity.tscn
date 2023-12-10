@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvkseupbg8fjt"]
+[gd_scene load_steps=6 format=3 uid="uid://b6pj3rgsbkb6v"]
 
 [ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_ecxqc"]
-[ext_resource type="PackedScene" uid="uid://bu2v1otsc4uqk" path="res://scenes/component/hp_component.tscn" id="1_sdqbq"]
+[ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="1_sdqbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpdha"]
 size = Vector2(11, 17)
