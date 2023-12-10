@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvkseupbg8fjt"]
+[gd_scene load_steps=6 format=3 uid="uid://o0xi8ci6rtn8"]
 
-[ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_ecxqc"]
-[ext_resource type="PackedScene" uid="uid://bu2v1otsc4uqk" path="res://scenes/component/hp_component.tscn" id="1_sdqbq"]
+[ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_y2xnx"]
+[ext_resource type="PackedScene" uid="uid://bu2v1otsc4uqk" path="res://scenes/component/hp_component.tscn" id="2_pduc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpdha"]
 size = Vector2(11, 17)
@@ -14,14 +14,14 @@ bg_color = Color(0.0156863, 0.909804, 0, 1)
 
 [node name="Entity" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_ecxqc")
+script = ExtResource("1_y2xnx")
 
 [node name="EntityAnimator" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 
-[node name="HPComponent" parent="." instance=ExtResource("1_sdqbq")]
+[node name="HPComponent" parent="." instance=ExtResource("2_pduc4")]
 maxHP = 3
 
 [node name="Hitbox" type="Area2D" parent="."]

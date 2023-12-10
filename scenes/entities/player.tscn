@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://brt0if6ta843r"]
+[gd_scene load_steps=24 format=3 uid="uid://brt0if6ta843r"]
 
 [ext_resource type="Script" path="res://scenes/entities/player.gd" id="1_bvtev"]
 [ext_resource type="PackedScene" uid="uid://bu2v1otsc4uqk" path="res://scenes/component/hp_component.tscn" id="2_560ao"]
@@ -10,6 +10,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kvuq"]
 size = Vector2(8, 9.60227)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4llv0"]
+size = Vector2(7.8874, 9.57401)
 
 [sub_resource type="Animation" id="Animation_7po3i"]
 length = 0.001
@@ -462,6 +465,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_keskf"]
 resource_name = "slashFX"
@@ -473,7 +488,7 @@ tracks/0/path = NodePath("AttackSprite:position")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.47069e-05, 0.100015),
+"times": PackedFloat32Array(0, 0.100015),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(2, 0), Vector2(8, 0)]
@@ -497,7 +512,7 @@ tracks/2/path = NodePath("Attack/AttackBox:disabled")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.2),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -514,6 +529,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 0), Vector2(8, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ql2g"]
 _data = {
@@ -522,17 +549,24 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 14
+collision_mask = 46
 motion_mode = 1
 script = ExtResource("1_bvtev")
 moveSpeed = 25.0
 
-[node name="HPComponent" parent="." instance=ExtResource("2_560ao")]
-maxHP = 15
-
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="PhysicsShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.19886)
 shape = SubResource("RectangleShape2D_1kvuq")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_mask = 46
+
+[node name="Shape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.0114841, 1.17382)
+shape = SubResource("RectangleShape2D_4llv0")
+
+[node name="HPComponent" parent="." instance=ExtResource("2_560ao")]
+maxHP = 15
 
 [node name="WeaponPoint" type="Node2D" parent="."]
 position = Vector2(-3.36, 1.3)
@@ -572,7 +606,7 @@ texture = SubResource("GradientTexture2D_ewrij")
 texture_scale = 1.25
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(7, 7)
+zoom = Vector2(2, 2)
 
 [node name="AttackEffect" type="Node2D" parent="."]
 
@@ -580,6 +614,7 @@ zoom = Vector2(7, 7)
 position = Vector2(2, 0)
 rotation = 1.5708
 scale = Vector2(0.775, 0.385)
+collision_layer = 16
 collision_mask = 6
 script = ExtResource("6_axogr")
 
