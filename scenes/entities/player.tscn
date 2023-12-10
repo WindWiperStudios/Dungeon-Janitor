@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="2_560ao"]
 [ext_resource type="Script" path="res://scenes/Weapon.gd" id="3_0kc0c"]
 [ext_resource type="Texture2D" uid="uid://dxbid84ryhcfj" path="res://art/JanitorSheet.png" id="3_6kbas"]
-[ext_resource type="Texture2D" path="res://art/AttackSlashFX.png" id="4_3gyec"]
+[ext_resource type="Texture2D" uid="uid://bvqwr10ylqp7p" path="res://art/AttackSlashFX.png" id="4_3gyec"]
 [ext_resource type="Texture2D" uid="uid://dex04mau8lagj" path="res://art/janmop.png" id="5_o0fh8"]
 [ext_resource type="Script" path="res://scenes/PlayerAttack.gd" id="6_axogr"]
 

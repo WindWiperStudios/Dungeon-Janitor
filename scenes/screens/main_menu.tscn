@@ -20,31 +20,35 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -101.0
-offset_top = -245.0
-offset_right = 101.0
+offset_left = -43.0
+offset_top = -114.0
+offset_right = 43.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 3
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 20
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 20
 text = "Settings"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 20
 text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
