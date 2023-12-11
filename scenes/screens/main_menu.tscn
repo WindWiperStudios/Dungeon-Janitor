@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp7wn71lnnkg0"]
+[gd_scene load_steps=3 format=3 uid="uid://dp7wn71lnnkg0"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_3fw8a"]
+[ext_resource type="AudioStream" uid="uid://dnxro81a7mqhs" path="res://sounds/MainMenuBGMIntro.wav" id="2_jgqk0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -41,6 +42,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 20
 text = "Quit"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jgqk0")
+volume_db = -10.735
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

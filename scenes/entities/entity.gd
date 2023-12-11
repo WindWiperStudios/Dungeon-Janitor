@@ -9,10 +9,10 @@ class_name Entity
 @onready var player = $"../../../../PlayerCanvas/Player"
 @onready var musicPlayer = $"../../../../../MusicPlayer"
 @onready var monsterManager: MonsterManager = $"../../../../../../MonsterManager"
+@onready var attackRange = $AttackRadius/AttackShape
 
 @export var itemDrops : Array[PackedScene]
 @export var moveSpeed : float
-@export var attackRange : Vector2
 @export var hpBarOffset : Vector2
 @export var attackCD : float
 @export var attackDamage : int

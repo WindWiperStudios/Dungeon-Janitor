@@ -42,7 +42,6 @@ motion_mode = 1
 script = ExtResource("1_ecxqc")
 itemDrops = Array[PackedScene]([ExtResource("2_uod7i")])
 moveSpeed = 7.0
-attackRange = Vector2(5, 5)
 hpBarOffset = Vector2(-5.5, -10.1)
 attackCD = 0.5
 attackDamage = 1

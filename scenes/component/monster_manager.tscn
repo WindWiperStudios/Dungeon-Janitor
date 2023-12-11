@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://xq6m3pu17sk5"]
+[gd_scene load_steps=4 format=3 uid="uid://xq6m3pu17sk5"]
 
 [ext_resource type="Script" path="res://scenes/component/monster_manager.gd" id="1_aopgn"]
 [ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="2_vn0p4"]
+[ext_resource type="PackedScene" uid="uid://brnqgnbewfs0j" path="res://scenes/entities/spider.tscn" id="3_easpk"]
 
 [node name="MonsterManager" type="Node"]
 script = ExtResource("1_aopgn")
-monsters = Array[PackedScene]([ExtResource("2_vn0p4")])
+monsters = Array[PackedScene]([ExtResource("2_vn0p4"), ExtResource("3_easpk")])
 maxMobsAlive = 7
 spawnCD = 1.0

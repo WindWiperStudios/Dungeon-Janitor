@@ -1,0 +1,159 @@
+[gd_scene load_steps=17 format=3 uid="uid://brnqgnbewfs0j"]
+
+[ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_fufsg"]
+[ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="2_qb3ge"]
+[ext_resource type="Texture2D" uid="uid://cn57oxe6qdy0a" path="res://art/SpiderSheet.png" id="3_jtxdd"]
+[ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="4_1rrv0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17ffd"]
+radius = 4.5
+height = 11.0
+
+[sub_resource type="Animation" id="Animation_4n4nf"]
+resource_name = "idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_iwta8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_db735"]
+resource_name = "walking"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfhuj"]
+_data = {
+"RESET": SubResource("Animation_iwta8"),
+"idle": SubResource("Animation_4n4nf"),
+"walking": SubResource("Animation_db735")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpdha"]
+size = Vector2(14, 19)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0exv3"]
+bg_color = Color(0.788235, 0, 0.0117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqy6b"]
+bg_color = Color(0.0156863, 0.909804, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61i2a"]
+radius = 59.0762
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wa72j"]
+radius = 47.5602
+
+[sub_resource type="Gradient" id="Gradient_fs3p5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.481481, 0.699588)
+colors = PackedColorArray(0.368627, 0, 0.52549, 0.615686, 0.211765, 0, 0.254902, 0.705882, 0, 0, 0, 0.780392)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5dolu"]
+gradient = SubResource("Gradient_fs3p5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Entity" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 13
+motion_mode = 1
+script = ExtResource("1_fufsg")
+itemDrops = Array[PackedScene]([ExtResource("2_qb3ge")])
+moveSpeed = 5.0
+hpBarOffset = Vector2(-5.5, -10.1)
+attackCD = 0.5
+
+[node name="PhysicsShape" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2.5)
+shape = SubResource("CapsuleShape2D_17ffd")
+
+[node name="EntityAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bfhuj")
+}
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_jtxdd")
+hframes = 3
+
+[node name="HPComponent" parent="." instance=ExtResource("4_1rrv0")]
+maxHP = 3
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_mpdha")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+top_level = true
+offset_left = -6.0
+offset_top = -9.0
+offset_right = 41.93
+offset_bottom = -5.0
+scale = Vector2(0.25, 0.25)
+theme_override_styles/background = SubResource("StyleBoxFlat_0exv3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_aqy6b")
+show_percentage = false
+
+[node name="SearchRadius" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="SearchShape" type="CollisionShape2D" parent="SearchRadius"]
+shape = SubResource("CircleShape2D_61i2a")
+
+[node name="AttackRadius" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="AttackShape" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource("CircleShape2D_wa72j")
+
+[node name="Glow" type="PointLight2D" parent="."]
+energy = 8.0
+texture = SubResource("GradientTexture2D_5dolu")
+texture_scale = 0.85
+
+[connection signal="area_entered" from="SearchRadius" to="." method="_on_search_area_entered"]
+[connection signal="area_exited" from="SearchRadius" to="." method="_on_search_area_exited"]
+[connection signal="area_entered" from="AttackRadius" to="." method="_on_attack_area_entered"]
+[connection signal="area_exited" from="AttackRadius" to="." method="_on_attack_area_exited"]
