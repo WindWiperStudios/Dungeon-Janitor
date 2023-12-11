@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6pj3rgsbkb6v"]
+[gd_scene load_steps=13 format=3 uid="uid://b6pj3rgsbkb6v"]
 
 [ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_ecxqc"]
 [ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="1_sdqbq"]
+[ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="2_uod7i"]
+[ext_resource type="Texture2D" uid="uid://bwgxr6cwrg2yu" path="res://art/skeleSheet.png" id="3_47o23"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17ffd"]
+radius = 4.5
+height = 11.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpdha"]
-size = Vector2(11, 17)
+size = Vector2(14, 19)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0exv3"]
 bg_color = Color(0.788235, 0, 0.0117647, 1)
@@ -12,26 +18,59 @@ bg_color = Color(0.788235, 0, 0.0117647, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqy6b"]
 bg_color = Color(0.0156863, 0.909804, 0, 1)
 
-[node name="Entity" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_61i2a"]
+radius = 59.0762
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wa72j"]
+radius = 11.0
+
+[sub_resource type="Gradient" id="Gradient_fs3p5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.481481, 0.699588)
+colors = PackedColorArray(0.368627, 0, 0.52549, 0.615686, 0.211765, 0, 0.254902, 0.705882, 0, 0, 0, 0.780392)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5dolu"]
+gradient = SubResource("Gradient_fs3p5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Entity" type="CharacterBody2D"]
 texture_filter = 1
+collision_layer = 2
+collision_mask = 13
+motion_mode = 1
 script = ExtResource("1_ecxqc")
+itemDrops = Array[PackedScene]([ExtResource("2_uod7i")])
+moveSpeed = 7.0
+attackRange = Vector2(5, 5)
+hpBarOffset = Vector2(-5.5, -10.1)
+attackCD = 0.5
+attackDamage = 1
+
+[node name="PhysicsShape" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2.5)
+shape = SubResource("CapsuleShape2D_17ffd")
 
 [node name="EntityAnimator" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
+texture = ExtResource("3_47o23")
+hframes = 3
 
 [node name="HPComponent" parent="." instance=ExtResource("1_sdqbq")]
 maxHP = 3
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 25
+collision_mask = 16
 
-[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_mpdha")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+top_level = true
 offset_left = -6.0
 offset_top = -9.0
 offset_right = 41.93
@@ -40,3 +79,25 @@ scale = Vector2(0.25, 0.25)
 theme_override_styles/background = SubResource("StyleBoxFlat_0exv3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_aqy6b")
 show_percentage = false
+
+[node name="SearchRadius" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="RadiusShape" type="CollisionShape2D" parent="SearchRadius"]
+shape = SubResource("CircleShape2D_61i2a")
+
+[node name="AttackRadius" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="AttackShape" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource("CircleShape2D_wa72j")
+
+[node name="Glow" type="PointLight2D" parent="."]
+energy = 8.0
+texture = SubResource("GradientTexture2D_5dolu")
+texture_scale = 0.85
+
+[connection signal="area_entered" from="SearchRadius" to="." method="_on_search_area_entered"]
+[connection signal="area_exited" from="SearchRadius" to="." method="_on_search_area_exited"]
+[connection signal="area_entered" from="AttackRadius" to="." method="_on_attack_area_entered"]
+[connection signal="area_exited" from="AttackRadius" to="." method="_on_attack_area_exited"]
