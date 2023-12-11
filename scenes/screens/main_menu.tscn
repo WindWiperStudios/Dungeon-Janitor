@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp7wn71lnnkg0"]
+[gd_scene load_steps=4 format=3 uid="uid://dp7wn71lnnkg0"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_3fw8a"]
 [ext_resource type="AudioStream" uid="uid://dnxro81a7mqhs" path="res://sounds/MainMenuBGMIntro.wav" id="2_jgqk0"]
+[ext_resource type="AudioStream" uid="uid://bx6vl4qq2qah5" path="res://sounds/MainMenuBGMLoop.wav" id="3_iv6s3"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3fw8a")
+BGMWavs = Array[AudioStreamWAV]([ExtResource("2_jgqk0"), ExtResource("3_iv6s3")])
 
 [node name="background" type="Sprite2D" parent="."]
 

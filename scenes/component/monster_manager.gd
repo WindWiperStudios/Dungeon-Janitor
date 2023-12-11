@@ -2,6 +2,7 @@ extends Node
 class_name MonsterManager
 
 @onready var enemySpawnsParent = $"../ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"
+@onready var player = $"../ScreenCanvas/ScreenMargin/PlayerCanvas/Player"
 
 @export var monsters : Array[PackedScene]
 @export var maxMobsAlive : int
@@ -9,6 +10,7 @@ class_name MonsterManager
 @export var spawnCD : float
 @export var curSpawnTimer : float
 
+var distToSpawn : float = 50.0
 var currentState : State = State.waiting_to_spawn
 
 enum State {
@@ -22,7 +24,6 @@ func _process(delta):
 	match currentState:
 		State.waiting_to_spawn:
 			ProcessSpawnTimer(delta)
-			
 			#List of checks before spawning monsters
 			if curSpawnTimer >= spawnCD:
 				currentState = State.spawning
@@ -33,14 +34,16 @@ func _process(delta):
 			
 			var rng = RandomNumberGenerator.new()
 			
-			var spawnLocation = enemySpawnsParent.get_child(rng.randi_range(0, spawnLocationCount))
-			
-			#Then instantiate mob & add as child
-			var monster = monsters[rng.randi_range(0, monsters.size() -1)].instantiate()
-			spawnLocation.add_child(monster)
-			monster.global_position = spawnLocation.global_position
-			curMobsAlive += 1
-			currentState = State.reseting
+			var spawnLocation = enemySpawnsParent.get_child(rng.randi_range(0, spawnLocationCount-1))
+			var distToPlayer = player.global_position - spawnLocation.global_position
+			print(distToPlayer)
+			if distToPlayer.x <= distToSpawn and distToPlayer.y <= distToSpawn:
+				#Then instantiate mob & add as child
+				var monster = monsters[rng.randi_range(0, monsters.size() -1)].instantiate()
+				spawnLocation.add_child(monster)
+				monster.global_position = spawnLocation.global_position
+				curMobsAlive += 1
+				currentState = State.reseting
 			
 		State.reseting:
 			#Set state back to default
