@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://duw5yqxa0t0qp"]
+
+[ext_resource type="Script" path="res://scenes/screens/game_over.gd" id="1_66gq2"]
+[ext_resource type="Texture2D" uid="uid://cjltkua37gnh0" path="res://art/BGColor.png" id="1_pymsk"]
+[ext_resource type="FontFile" uid="uid://ccwxrys2h7aqc" path="res://art/BloodLust.ttf" id="2_5bmhy"]
+[ext_resource type="PackedScene" uid="uid://cro0rw40rl0mi" path="res://scenes/screens/game_screen.tscn" id="2_i3nic"]
+[ext_resource type="PackedScene" uid="uid://dp7wn71lnnkg0" path="res://scenes/screens/main_menu.tscn" id="3_elbtd"]
+
+[node name="GameOver" type="Node"]
+script = ExtResource("1_66gq2")
+levels = Array[PackedScene]([ExtResource("2_i3nic"), ExtResource("3_elbtd")])
+
+[node name="BG IMG" type="TextureRect" parent="."]
+modulate = Color(0.427451, 0, 0.0352941, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pymsk")
+stretch_mode = 4
+
+[node name="HBOX" type="HBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 3.56761
+offset_top = -111.352
+offset_right = 3.56763
+offset_bottom = -31.3524
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverText" type="Label" parent="HBOX"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_5bmhy")
+theme_override_font_sizes/font_size = 76
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBOX" type="VBoxContainer" parent="."]
+offset_left = 234.595
+offset_top = 171.737
+offset_right = 309.595
+offset_bottom = 237.737
+scale = Vector2(1, 0.839999)
+size_flags_vertical = 8
+
+[node name="RestartButton" type="Button" parent="VBOX"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.705882, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.635294, 0.635294, 0.635294, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_5bmhy")
+theme_override_font_sizes/font_size = 25
+keep_pressed_outside = true
+text = "RESTART"
+flat = true
+
+[node name="QuitButton" type="Button" parent="VBOX"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.705882, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.635294, 0.635294, 0.635294, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_5bmhy")
+theme_override_font_sizes/font_size = 25
+text = "QUIT"
+flat = true
+
+[connection signal="pressed" from="VBOX/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBOX/QuitButton" to="." method="_on_quit_button_pressed"]

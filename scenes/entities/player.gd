@@ -127,3 +127,7 @@ func Aim(mousePosAim : Vector2):
 
 func Unpause():
 	currentState = State.unpaused
+
+
+func _on_hurt_button_pressed():
+	hp.takeDamage(3)

@@ -146,6 +146,13 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 6
 text = "HIGH"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScreenCanvas/ScreenMargin/DevMenuUI"]
+layout_mode = 2
+
+[node name="HurtButton" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer2"]
+layout_mode = 2
+text = "Hurt Player"
+
 [node name="MusicPlayer" parent="ScreenCanvas" instance=ExtResource("8_010s1")]
 process_mode = 3
 songList = Array[AudioStreamWAV]([ExtResource("9_n1pr5"), ExtResource("10_qahi6"), ExtResource("11_18k0n"), null])
@@ -157,6 +164,7 @@ visible = false
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/LOW" to="ScreenCanvas/MusicPlayer" method="lowState"]
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/MID" to="ScreenCanvas/MusicPlayer" method="midState"]
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/HIGH" to="ScreenCanvas/MusicPlayer" method="highState"]
+[connection signal="pressed" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer2/HurtButton" to="ScreenCanvas/ScreenMargin/PlayerCanvas/Player" method="_on_hurt_button_pressed"]
 
 [editable path="ScreenCanvas/ScreenMargin/PlayerCanvas/Player"]
 [editable path="ScreenCanvas/ScreenMargin/WorldCanvas/World"]
