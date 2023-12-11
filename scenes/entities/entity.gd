@@ -8,6 +8,7 @@ class_name Entity
 @onready var dropParent = $"../../../../PlayerCanvas/DropParent"
 @onready var player = $"../../../../PlayerCanvas/Player"
 @onready var musicPlayer = $"../../../../../MusicPlayer"
+@onready var monsterManager: MonsterManager = $"../../../../../../MonsterManager"
 
 @export var itemDrops : Array[PackedScene]
 @export var moveSpeed : float
@@ -43,6 +44,7 @@ func _physics_process(delta):
 	
 	if currentState == State.chasing:
 		Chase()
+		
 	if currentState == State.attacking:
 		if attackTime >= attackCD:
 			print("AttackingPlayer")
@@ -62,6 +64,8 @@ func Chase():
 
 
 func DropWhenDead():
+	if monsterManager:
+		monsterManager.curMobsAlive -= 1
 	var root = get_tree().get_root()
 	for i in range(0, itemDrops.size()):
 		var item = itemDrops[i].instantiate()

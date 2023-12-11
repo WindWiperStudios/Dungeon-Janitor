@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=14 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
 [ext_resource type="PackedScene" uid="uid://de4delt53ki78" path="res://scenes/screens/options_menu.tscn" id="2_0pj6t"]
 [ext_resource type="PackedScene" uid="uid://brt0if6ta843r" path="res://scenes/entities/player.tscn" id="2_c3tc4"]
+[ext_resource type="PackedScene" uid="uid://xq6m3pu17sk5" path="res://scenes/component/monster_manager.tscn" id="2_c6gxn"]
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
 [ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="5_3g1c1"]
+[ext_resource type="PackedScene" uid="uid://b6pj3rgsbkb6v" path="res://scenes/entities/entity.tscn" id="7_dsal6"]
 [ext_resource type="PackedScene" uid="uid://c1815nmcmuy0f" path="res://scenes/component/music_player.tscn" id="8_010s1"]
 [ext_resource type="AudioStream" uid="uid://dh2oqitaw55qv" path="res://sounds/BGMLow.wav" id="9_n1pr5"]
 [ext_resource type="AudioStream" uid="uid://drgx3eq1hau5d" path="res://sounds/BGMMid.wav" id="10_qahi6"]
@@ -15,6 +17,8 @@
 [node name="GameScreen" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_weuql")
+
+[node name="MonsterManager" parent="." instance=ExtResource("2_c6gxn")]
 
 [node name="ScreenCanvas" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -52,6 +56,8 @@ enemyList = Array[PackedScene]([ExtResource("5_3g1c1")])
 
 [node name="SpawnPoint00" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
 position = Vector2(60.3273, 24.32)
+
+[node name="Entity" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent/SpawnPoint00" instance=ExtResource("7_dsal6")]
 
 [node name="SpawnPoint01" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
 position = Vector2(247, 217)
@@ -168,3 +174,4 @@ visible = false
 
 [editable path="ScreenCanvas/ScreenMargin/PlayerCanvas/Player"]
 [editable path="ScreenCanvas/ScreenMargin/WorldCanvas/World"]
+[editable path="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent/SpawnPoint00/Entity"]

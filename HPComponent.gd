@@ -4,6 +4,10 @@ class_name HPComponent
 @export var curHP : int
 @export var maxHP : int
 
+@onready var mobManager = get_tree().get_root().get_child(0).get_child(0)
+
+signal mobDied
+
 var gameOverScene
 
 @onready var parent = get_parent()
