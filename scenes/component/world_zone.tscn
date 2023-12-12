@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://x4yvf24iefix"]
+
+[ext_resource type="Script" path="res://scenes/component/WorldZone.gd" id="1_44mq7"]
+[ext_resource type="PackedScene" uid="uid://2mc6u1hw2ohk" path="res://scenes/component/menu_screen_base.tscn" id="2_3jyvg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcs7y"]
+size = Vector2(17, 16)
+
+[node name="WorldZone" type="Area2D"]
+script = ExtResource("1_44mq7")
+menuScene = ExtResource("2_3jyvg")
+
+[node name="WorldZoneShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kcs7y")
+
+[node name="ZoneColor" type="ColorRect" parent="."]
+texture_filter = 1
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(1, 0.513726, 0.556863, 0.670588)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

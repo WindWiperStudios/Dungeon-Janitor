@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b46sigqhupo7g"]
+
+[ext_resource type="Script" path="res://scenes/globals/global_variables.gd" id="1_xhyvc"]
+[ext_resource type="PackedScene" uid="uid://c1815nmcmuy0f" path="res://scenes/component/music_player.tscn" id="2_w13d3"]
+
+[node name="GlobalVariables" type="Node2D" node_paths=PackedStringArray("musicPlayer")]
+script = ExtResource("1_xhyvc")
+musicPlayer = NodePath("MusicPlayer")
+
+[node name="MusicPlayer" parent="." instance=ExtResource("2_w13d3")]

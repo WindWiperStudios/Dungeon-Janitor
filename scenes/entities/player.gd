@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var minimap = $"../../Minimap"
 @onready var devMenu = $"../../DevMenuUI"
 
+
 @export var moveSpeed = 300.0
 
 enum State {
@@ -41,13 +42,23 @@ var mousePos = Vector2.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func UpdateGlobalVars():
+	GlobalVariables.playerHP = hp.curHP
+	GlobalVariables.playerMaxHP = hp.maxHP
+	GlobalVariables.playerGlobalPosition = self.global_position
+	GlobalVariables.playerCurrentState = currentState
+	GlobalVariables.playerStunTimer = stunTimer
+	GlobalVariables.playerStunned = stunned
+	
 func _ready():
+	UpdateGlobalVars()
 	attackBox.disabled = true
 	hpBar.max_value = hp.maxHP
 	hpBar.min_value = 0
 	stunnedCD = 0.1
 
 func _process(delta):
+	UpdateGlobalVars()
 	if stunned:
 		stunTimer += delta
 		if stunTimer >= stunnedCD:

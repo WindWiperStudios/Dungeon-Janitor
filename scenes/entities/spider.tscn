@@ -1,7 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://brnqgnbewfs0j"]
+[gd_scene load_steps=20 format=3 uid="uid://brnqgnbewfs0j"]
 
 [ext_resource type="Script" path="res://scenes/entities/spider.gd" id="1_m54mp"]
+[ext_resource type="PackedScene" uid="uid://ushfevkbv11o" path="res://scenes/entities/eyeball.tscn" id="2_g5fj5"]
 [ext_resource type="PackedScene" uid="uid://cpfeibhy1kr3g" path="res://scenes/projectiles/projectile_spider_web.tscn" id="3_6ienv"]
+[ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="3_c0tqw"]
 [ext_resource type="Texture2D" uid="uid://cn57oxe6qdy0a" path="res://art/SpiderSheet.png" id="3_jtxdd"]
 [ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="4_1rrv0"]
 
@@ -11,6 +13,21 @@ height = 11.0
 
 [sub_resource type="Animation" id="Animation_iwta8"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nrtcq"]
+resource_name = "attacking"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,21 +74,6 @@ tracks/0/keys = {
 "values": [1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_nrtcq"]
-resource_name = "attacking"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bfhuj"]
 _data = {
 "RESET": SubResource("Animation_iwta8"),
@@ -111,6 +113,7 @@ collision_layer = 2
 collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_m54mp")
+itemDrops = Array[PackedScene]([ExtResource("2_g5fj5"), ExtResource("3_c0tqw")])
 moveSpeed = 5.0
 attackCD = 2.5
 rangedMob = true

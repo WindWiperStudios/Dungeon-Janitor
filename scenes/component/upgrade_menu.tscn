@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://mkp341llf6ck"]
+
+[ext_resource type="Script" path="res://scenes/component/MenuScreen.gd" id="1_heb4w"]
+[ext_resource type="LabelSettings" uid="uid://b2nh6bjr0fkry" path="res://scenes/component/ZoneSubTextLabel.tres" id="2_hgdrt"]
+[ext_resource type="FontFile" uid="uid://ciwqyh86cso1l" path="res://art/FFFFORWA.TTF" id="3_5n7bj"]
+
+[node name="UpgradeMenu" type="Node2D"]
+position = Vector2(103, 25)
+script = ExtResource("1_heb4w")
+
+[node name="MenuBG" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 107.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+color = Color(0.447059, 0.447059, 0.447059, 0.211765)
+
+[node name="ZoneText" type="Label" parent="."]
+texture_filter = 1
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 106.0
+offset_bottom = 31.0
+text = "Upgrades!"
+label_settings = ExtResource("2_hgdrt")
+horizontal_alignment = 1
+
+[node name="BoxBGC" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(55, 50)
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 80.0
+offset_bottom = 86.0
+color = Color(0.372549, 0.372549, 0.372549, 0.898039)
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 39.0
+offset_top = 42.0
+offset_right = 87.0
+offset_bottom = 67.0
+scale = Vector2(0.51, 0.51)
+text = "Text"
+label_settings = ExtResource("2_hgdrt")
+
+[node name="Yes" type="Button" parent="."]
+offset_left = 33.0
+offset_top = 66.0
+offset_right = 79.0
+offset_bottom = 97.0
+scale = Vector2(0.325, 0.325)
+theme_override_fonts/font = ExtResource("3_5n7bj")
+theme_override_font_sizes/font_size = 0
+text = "Yes"
+
+[node name="No" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 66.0
+offset_right = 102.0
+offset_bottom = 97.0
+scale = Vector2(0.32, 0.32)
+theme_override_fonts/font = ExtResource("3_5n7bj")
+text = "No"

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ushfevkbv11o"]
+
+[ext_resource type="Script" path="res://scenes/entities/eyeball.gd" id="1_7eylo"]
+[ext_resource type="Texture2D" uid="uid://v7vhlc2vwhq0" path="res://art/eyeball.png" id="2_igvf7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rdk4o"]
+radius = 5.0
+
+[node name="Eyeball" type="Node2D"]
+script = ExtResource("1_7eylo")
+itemValue = 14
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_igvf7")
+
+[node name="PickupBox" type="Area2D" parent="."]
+
+[node name="PickupShape" type="CollisionShape2D" parent="PickupBox"]
+shape = SubResource("CircleShape2D_rdk4o")

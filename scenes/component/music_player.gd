@@ -4,6 +4,7 @@ class_name MusicPlayer
 @export var songList : Array[AudioStreamWAV]
 
 enum State {
+	INTRO,
 	LOW,
 	MID,
 	HIGH
@@ -15,11 +16,14 @@ var beenQueued = false
 var currentSong
 
 func _ready():
-	currentState = State.LOW
+	currentState = State.INTRO
 	beenQueued = false
 
 func _process(delta):
 	currentSong = stream
+	if currentState == State.INTRO:
+		if beenQueued == false and stream != songList[3]:
+			QueueChange(songList[3])
 	if currentState == State.LOW:
 		if beenQueued == false and stream != songList[0]:
 			QueueChange(songList[0])

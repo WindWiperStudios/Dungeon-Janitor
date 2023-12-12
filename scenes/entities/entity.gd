@@ -7,7 +7,6 @@ class_name Entity
 @onready var hpBar = $ProgressBar
 @onready var dropParent = $"../../../../PlayerCanvas/DropParent"
 @onready var player = $"../../../../PlayerCanvas/Player"
-@onready var musicPlayer = $"../../../../../MusicPlayer"
 @onready var monsterManager: MonsterManager = $"../../../../../../MonsterManager"
 @onready var attackRange = $AttackRadius/AttackShape
 @onready var projectileParent = $"../../ProjectileParent"
@@ -29,7 +28,7 @@ var foundPlayer = false
 var chasingPlayer = false
 var attackingPlayer = false
 var attackTime : float
-var maxAliveRange = 300.0
+var maxAliveRange = 80.0
 
 enum State {
 	idle,
@@ -96,21 +95,20 @@ func _on_search_area_entered(area):
 	if area.get_parent().name == "Player":
 		foundPlayer = true
 		chasingPlayer = true
-		musicPlayer.midState()
+		GlobalVariables.monstersAggrod += 1
 		currentState = State.chasing
 
 func _on_search_area_exited(area):
 	if area.get_parent().name == "Player":
 		foundPlayer = false
 		chasingPlayer = false
-		musicPlayer.lowState()
+		GlobalVariables.monstersAggrod -= 1
 		currentState = State.idle
 
 func _on_attack_area_entered(area):
 	if area.get_parent().name == "Player":
 		attackingPlayer = true
 		chasingPlayer = false
-		musicPlayer.highState()
 		currentState = State.attacking
 
 
@@ -118,7 +116,6 @@ func _on_attack_area_exited(area):
 	if area.get_parent().name == "Player":
 		attackingPlayer = false
 		chasingPlayer = true
-		musicPlayer.midState()
 		currentState = State.chasing
 
 func Attack():

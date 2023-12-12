@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=11 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
@@ -8,10 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
 [ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="5_3g1c1"]
-[ext_resource type="PackedScene" uid="uid://c1815nmcmuy0f" path="res://scenes/component/music_player.tscn" id="8_010s1"]
-[ext_resource type="AudioStream" uid="uid://dh2oqitaw55qv" path="res://sounds/BGMLow.wav" id="9_n1pr5"]
-[ext_resource type="AudioStream" uid="uid://drgx3eq1hau5d" path="res://sounds/BGMMid.wav" id="10_qahi6"]
-[ext_resource type="AudioStream" uid="uid://baijnv2nwyosx" path="res://sounds/BGMHigh.wav" id="11_18k0n"]
+[ext_resource type="Script" path="res://scenes/screens/UIHolder.gd" id="7_3k644"]
+[ext_resource type="FontFile" uid="uid://ciwqyh86cso1l" path="res://art/FFFFORWA.TTF" id="7_pymwp"]
 
 [node name="GameScreen" type="Node2D"]
 process_mode = 3
@@ -29,20 +27,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="PlayerCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
-process_mode = 1
-follow_viewport_enabled = true
-
-[node name="Player" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" instance=ExtResource("2_c3tc4")]
-z_index = 1
-z_as_relative = false
-position = Vector2(39.5882, 406.73)
-
-[node name="CanvasModulate" type="CanvasModulate" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
-color = Color(0.482353, 0.482353, 0.482353, 1)
-
-[node name="DropParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
 
 [node name="EnemyCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
 layer = 2
@@ -95,12 +79,55 @@ position = Vector2(356, 224)
 
 [node name="ProjectileParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 
+[node name="PlayerCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
+process_mode = 1
+follow_viewport_enabled = true
+
+[node name="Player" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" instance=ExtResource("2_c3tc4")]
+z_index = 1
+z_as_relative = false
+position = Vector2(39.5882, 406.73)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="DropParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
+
 [node name="WorldCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
 process_mode = 1
 layer = 0
 follow_viewport_enabled = true
 
 [node name="World" parent="ScreenCanvas/ScreenMargin/WorldCanvas" instance=ExtResource("1_hbb3b")]
+
+[node name="UI Holder" type="Node2D" parent="ScreenCanvas/ScreenMargin"]
+script = ExtResource("7_3k644")
+
+[node name="JunkAmount" type="Label" parent="ScreenCanvas/ScreenMargin/UI Holder"]
+texture_filter = 1
+offset_left = 3.979
+offset_top = 199.415
+offset_right = 344.979
+offset_bottom = 272.415
+scale = Vector2(0.225137, 0.218829)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_pymwp")
+theme_override_font_sizes/font_size = 50
+text = "Junk: 0/15"
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="ScreenCanvas/ScreenMargin/UI Holder"]
+texture_filter = 1
+offset_left = 4.42445
+offset_top = 216.815
+offset_right = 345.424
+offset_bottom = 289.815
+scale = Vector2(0.214859, 0.273499)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_pymwp")
+theme_override_font_sizes/font_size = 50
+text = "Score: 0"
+vertical_alignment = 1
 
 [node name="Minimap" parent="ScreenCanvas/ScreenMargin" instance=ExtResource("3_3ynol")]
 process_mode = 3
@@ -167,17 +194,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Hurt Player"
 
-[node name="MusicPlayer" parent="ScreenCanvas" instance=ExtResource("8_010s1")]
-process_mode = 3
-songList = Array[AudioStreamWAV]([ExtResource("9_n1pr5"), ExtResource("10_qahi6"), ExtResource("11_18k0n"), null])
-
 [node name="OptionsMenu" parent="ScreenCanvas" instance=ExtResource("2_0pj6t")]
 visible = false
 
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/Spawn Enemy Button" to="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent" method="SpawnEnemy"]
-[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/LOW" to="ScreenCanvas/MusicPlayer" method="lowState"]
-[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/MID" to="ScreenCanvas/MusicPlayer" method="midState"]
-[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/HIGH" to="ScreenCanvas/MusicPlayer" method="highState"]
 [connection signal="pressed" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer2/HurtButton" to="ScreenCanvas/ScreenMargin/PlayerCanvas/Player" method="_on_hurt_button_pressed"]
 
 [editable path="ScreenCanvas/ScreenMargin/PlayerCanvas/Player"]
