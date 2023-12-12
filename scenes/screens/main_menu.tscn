@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp7wn71lnnkg0"]
+[gd_scene load_steps=11 format=3 uid="uid://dp7wn71lnnkg0"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_3fw8a"]
-[ext_resource type="AudioStream" uid="uid://dnxro81a7mqhs" path="res://sounds/MainMenuBGMIntro.wav" id="2_jgqk0"]
-[ext_resource type="AudioStream" uid="uid://bx6vl4qq2qah5" path="res://sounds/MainMenuBGMLoop.wav" id="3_iv6s3"]
+[ext_resource type="Texture2D" uid="uid://hvmivo2ysfgi" path="res://art/dungeonjanitorBackground.jpg" id="2_jlo1w"]
+[ext_resource type="Texture2D" uid="uid://di28bp52vfgqq" path="res://art/menubutton0000.png" id="3_cvuud"]
+[ext_resource type="Texture2D" uid="uid://c1hlv5odo0cvx" path="res://art/menubutton0001.png" id="4_362c0"]
+[ext_resource type="Texture2D" uid="uid://b5e3o2yedqqk1" path="res://art/menubutton0002.png" id="5_rxg2t"]
+[ext_resource type="Texture2D" uid="uid://fbb67uwgb5io" path="res://art/menubutton0003.png" id="6_aalx8"]
+[ext_resource type="Texture2D" uid="uid://dr3n0bwljtgby" path="res://art/menubutton0004.png" id="7_5a2i8"]
+[ext_resource type="Texture2D" uid="uid://c1klgwrtalg1t" path="res://art/menubutton0005.png" id="8_k5k1y"]
+
+[sub_resource type="Gradient" id="Gradient_2fc01"]
+offsets = PackedFloat32Array(0, 0.290323, 0.509677, 0.767742)
+colors = PackedColorArray(1, 1, 1, 1, 0.537548, 0.537548, 0.537548, 1, 0.277419, 0.277419, 0.277419, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kmocc"]
+gradient = SubResource("Gradient_2fc01")
+width = 80
+height = 80
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,43 +28,69 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3fw8a")
-BGMWavs = Array[AudioStreamWAV]([ExtResource("2_jgqk0"), ExtResource("3_iv6s3")])
 
 [node name="background" type="Sprite2D" parent="."]
+z_index = -50
+texture_filter = 1
+position = Vector2(161, 119.5)
+scale = Vector2(0.171875, 0.232407)
+texture = ExtResource("2_jlo1w")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = -10
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -114.0
-offset_right = 43.0
+offset_left = -150.0
+offset_top = -124.0
+offset_right = 350.0
+offset_bottom = 632.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.186579, 0.166166)
 theme_override_constants/separation = 3
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
+modulate = Color(0.105882, 0.105882, 0.105882, 1)
+z_index = -10
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 20
-text = "Play"
+texture_normal = ExtResource("3_cvuud")
+texture_hover = ExtResource("4_362c0")
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Options" type="TextureButton" parent="VBoxContainer"]
+modulate = Color(0.105882, 0.105882, 0.105882, 1)
+z_index = -10
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 20
-text = "Quit"
+texture_normal = ExtResource("5_rxg2t")
+texture_hover = ExtResource("6_aalx8")
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_jgqk0")
-volume_db = -10.735
-autoplay = true
+[node name="Quit" type="TextureButton" parent="VBoxContainer"]
+modulate = Color(0.105882, 0.105882, 0.105882, 1)
+z_index = -10
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("7_5a2i8")
+texture_hover = ExtResource("8_k5k1y")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture_filter = 1
+position = Vector2(-39, 37)
+energy = 8.0
+texture = SubResource("GradientTexture2D_kmocc")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
