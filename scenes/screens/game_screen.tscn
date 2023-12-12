@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=15 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://xq6m3pu17sk5" path="res://scenes/component/monster_manager.tscn" id="2_c6gxn"]
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
+[ext_resource type="PackedScene" uid="uid://bvglbktel1j2n" path="res://scenes/entities/projectile_base.tscn" id="4_r0jcn"]
 [ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="5_3g1c1"]
 [ext_resource type="PackedScene" uid="uid://b6pj3rgsbkb6v" path="res://scenes/entities/entity.tscn" id="7_dsal6"]
 [ext_resource type="PackedScene" uid="uid://c1815nmcmuy0f" path="res://scenes/component/music_player.tscn" id="8_010s1"]
@@ -19,8 +20,6 @@ process_mode = 3
 script = ExtResource("1_weuql")
 
 [node name="MonsterManager" parent="." instance=ExtResource("2_c6gxn")]
-curMobsAlive = 0
-curSpawnTimer = 0.0
 
 [node name="ScreenCanvas" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -38,12 +37,70 @@ process_mode = 1
 follow_viewport_enabled = true
 
 [node name="Player" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" instance=ExtResource("2_c3tc4")]
-position = Vector2(39, 9)
+z_index = 1
+z_as_relative = false
+position = Vector2(39.5882, 406.73)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
 color = Color(0.482353, 0.482353, 0.482353, 1)
 
 [node name="DropParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
+
+[node name="ProjectileBase" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" instance=ExtResource("4_r0jcn")]
+position = Vector2(54.7495, 406.08)
+
+[node name="EnemyCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="EnemyParent" parent="ScreenCanvas/ScreenMargin/EnemyCanvas" node_paths=PackedStringArray("spawnPoints") instance=ExtResource("3_dl5rm")]
+z_index = 2
+z_as_relative = false
+spawnPoints = [NodePath("SpawnPoint00"), NodePath("SpawnPoint01"), NodePath("SpawnPoint02"), NodePath("SpawnPoint03"), NodePath("SpawnPoint04"), NodePath("SpawnPoint05"), NodePath("SpawnPoint06"), NodePath("SpawnPoint07"), NodePath("SpawnPoint08"), NodePath("SpawnPoint09"), NodePath("SpawnPoint10"), NodePath("SpawnPoint11"), NodePath("SpawnPoint12")]
+enemyList = Array[PackedScene]([ExtResource("5_3g1c1")])
+
+[node name="SpawnPoint00" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(60.3273, 24.32)
+
+[node name="SpawnPoint01" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(247, 217)
+
+[node name="SpawnPoint02" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(377, 114)
+
+[node name="SpawnPoint03" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(249, 26)
+
+[node name="SpawnPoint04" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(182, 86)
+
+[node name="SpawnPoint05" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(130, 174)
+
+[node name="SpawnPoint06" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(55, 301)
+
+[node name="Entity" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent/SpawnPoint06" instance=ExtResource("7_dsal6")]
+
+[node name="SpawnPoint07" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(184, 344)
+
+[node name="SpawnPoint08" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(144.8, 382.637)
+
+[node name="SpawnPoint09" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(251, 365)
+
+[node name="SpawnPoint10" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(327, 378)
+
+[node name="SpawnPoint11" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(348, 327)
+
+[node name="SpawnPoint12" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(356, 224)
+
+[node name="ProjectileParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 
 [node name="WorldCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
 process_mode = 1
@@ -51,51 +108,10 @@ layer = 0
 follow_viewport_enabled = true
 
 [node name="World" parent="ScreenCanvas/ScreenMargin/WorldCanvas" instance=ExtResource("1_hbb3b")]
+z_as_relative = false
 
-[node name="EnemyParent" parent="ScreenCanvas/ScreenMargin/WorldCanvas" node_paths=PackedStringArray("spawnPoints") instance=ExtResource("3_dl5rm")]
-spawnPoints = [NodePath("SpawnPoint00"), NodePath("SpawnPoint01"), NodePath("SpawnPoint02"), NodePath("SpawnPoint03"), NodePath("SpawnPoint04"), NodePath("SpawnPoint05"), NodePath("SpawnPoint06"), NodePath("SpawnPoint07"), NodePath("SpawnPoint08"), NodePath("SpawnPoint09"), NodePath("SpawnPoint10"), NodePath("SpawnPoint11"), NodePath("SpawnPoint12")]
-enemyList = Array[PackedScene]([ExtResource("5_3g1c1")])
-
-[node name="SpawnPoint00" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(60.3273, 24.32)
-
-[node name="Entity" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent/SpawnPoint00" instance=ExtResource("7_dsal6")]
-
-[node name="SpawnPoint01" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(247, 217)
-
-[node name="SpawnPoint02" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(377, 114)
-
-[node name="SpawnPoint03" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(249, 26)
-
-[node name="SpawnPoint04" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(182, 86)
-
-[node name="SpawnPoint05" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(130, 174)
-
-[node name="SpawnPoint06" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(55, 301)
-
-[node name="SpawnPoint07" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(184, 344)
-
-[node name="SpawnPoint08" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(27, 409)
-
-[node name="SpawnPoint09" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(251, 365)
-
-[node name="SpawnPoint10" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(327, 378)
-
-[node name="SpawnPoint11" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(348, 327)
-
-[node name="SpawnPoint12" type="Node2D" parent="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"]
-position = Vector2(356, 224)
+[node name="CanvasModulate" parent="ScreenCanvas/ScreenMargin/WorldCanvas/World" index="0"]
+visible = true
 
 [node name="Minimap" parent="ScreenCanvas/ScreenMargin" instance=ExtResource("3_3ynol")]
 process_mode = 3
@@ -104,6 +120,7 @@ layout_mode = 2
 
 [node name="DevMenuUI" type="VBoxContainer" parent="ScreenCanvas/ScreenMargin"]
 process_mode = 1
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 
@@ -168,7 +185,7 @@ songList = Array[AudioStreamWAV]([ExtResource("9_n1pr5"), ExtResource("10_qahi6"
 [node name="OptionsMenu" parent="ScreenCanvas" instance=ExtResource("2_0pj6t")]
 visible = false
 
-[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/Spawn Enemy Button" to="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent" method="SpawnEnemy"]
+[connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/Spawn Enemy Button" to="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent" method="SpawnEnemy"]
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/LOW" to="ScreenCanvas/MusicPlayer" method="lowState"]
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/MID" to="ScreenCanvas/MusicPlayer" method="midState"]
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer/HIGH" to="ScreenCanvas/MusicPlayer" method="highState"]
@@ -176,4 +193,3 @@ visible = false
 
 [editable path="ScreenCanvas/ScreenMargin/PlayerCanvas/Player"]
 [editable path="ScreenCanvas/ScreenMargin/WorldCanvas/World"]
-[editable path="ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent/SpawnPoint00/Entity"]

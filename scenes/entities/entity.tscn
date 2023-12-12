@@ -19,10 +19,10 @@ bg_color = Color(0.788235, 0, 0.0117647, 1)
 bg_color = Color(0.0156863, 0.909804, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61i2a"]
-radius = 59.0762
+radius = 27.1662
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wa72j"]
-radius = 11.0
+radius = 19.105
 
 [sub_resource type="Gradient" id="Gradient_fs3p5"]
 interpolation_mode = 1
@@ -44,7 +44,6 @@ itemDrops = Array[PackedScene]([ExtResource("2_uod7i")])
 moveSpeed = 7.0
 hpBarOffset = Vector2(-5.5, -10.1)
 attackCD = 0.5
-attackDamage = 1
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)
@@ -95,6 +94,8 @@ shape = SubResource("CircleShape2D_wa72j")
 energy = 8.0
 texture = SubResource("GradientTexture2D_5dolu")
 texture_scale = 0.85
+
+[node name="RangeAttackSpawnPos" type="Node2D" parent="."]
 
 [connection signal="area_entered" from="SearchRadius" to="." method="_on_search_area_entered"]
 [connection signal="area_exited" from="SearchRadius" to="." method="_on_search_area_exited"]

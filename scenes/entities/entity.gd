@@ -10,12 +10,16 @@ class_name Entity
 @onready var musicPlayer = $"../../../../../MusicPlayer"
 @onready var monsterManager: MonsterManager = $"../../../../../../MonsterManager"
 @onready var attackRange = $AttackRadius/AttackShape
+@onready var projectileParent = $"../../ProjectileParent"
+@onready var range_attack_spawn_pos = $RangeAttackSpawnPos
 
 @export var itemDrops : Array[PackedScene]
 @export var moveSpeed : float
 @export var hpBarOffset : Vector2
 @export var attackCD : float
 @export var attackDamage : int
+@export var rangedMob = false
+@export var projectile : PackedScene
 
 var currentState : State = State.idle
 var foundPlayer = false
@@ -46,10 +50,7 @@ func _physics_process(delta):
 		Chase()
 		
 	if currentState == State.attacking:
-		if attackTime >= attackCD:
-			print("AttackingPlayer")
-			player.hp.takeDamage(attackDamage)
-			attackTime = 0.0
+		Attack()
 	
 	hpBar.value = hp.curHP
 	if hp.curHP < hp.maxHP:
@@ -102,3 +103,13 @@ func _on_attack_area_exited(area):
 	musicPlayer.midState()
 	currentState = State.chasing
 
+func Attack():
+	if !rangedMob:
+		if attackTime >= attackCD:
+				player.hp.takeDamage(attackDamage)
+				attackTime = 0.0
+	else:
+		if projectile:
+			var shot = projectile.instatiate()
+			projectileParent.add_child(shot)
+			shot.global_position = range_attack_spawn_pos.global_position

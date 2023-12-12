@@ -1,8 +1,8 @@
 extends Node
 class_name MonsterManager
 
-@onready var enemySpawnsParent = $"../ScreenCanvas/ScreenMargin/WorldCanvas/EnemyParent"
 @onready var player = $"../ScreenCanvas/ScreenMargin/PlayerCanvas/Player"
+@onready var enemySpawnsParent = $"../ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"
 
 @export var monsters : Array[PackedScene]
 @export var maxMobsAlive : int
@@ -36,8 +36,7 @@ func _process(delta):
 			
 			var spawnLocation = enemySpawnsParent.get_child(rng.randi_range(0, spawnLocationCount-1))
 			var distToPlayer = player.global_position - spawnLocation.global_position
-			print(distToPlayer)
-			if distToPlayer.x <= distToSpawn and distToPlayer.y <= distToSpawn:
+			if abs(distToPlayer.x) >= distToSpawn and abs(distToPlayer.y) <= distToSpawn:
 				#Then instantiate mob & add as child
 				var monster = monsters[rng.randi_range(0, monsters.size() -1)].instantiate()
 				spawnLocation.add_child(monster)

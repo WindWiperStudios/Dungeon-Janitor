@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvglbktel1j2n"]
+
+[ext_resource type="Texture2D" uid="uid://dketftuhdl3o6" path="res://art/Circle.png" id="1_7ouv7"]
+[ext_resource type="Script" path="res://scenes/entities/projectile.gd" id="1_q4isx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2sng"]
+radius = 2.0
+
+[node name="ProjectileBase" type="Node2D"]
+script = ExtResource("1_q4isx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("1_7ouv7")
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="HurtShape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_i2sng")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
