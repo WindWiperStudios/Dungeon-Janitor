@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpfeibhy1kr3g"]
+
+[ext_resource type="PackedScene" uid="uid://bvglbktel1j2n" path="res://scenes/entities/projectile_base.tscn" id="1_b56f6"]
+
+[node name="ProjectileSpiderWeb" instance=ExtResource("1_b56f6")]
+doesEffect = true
+effectSTUN = true
+stunLength = 1.5

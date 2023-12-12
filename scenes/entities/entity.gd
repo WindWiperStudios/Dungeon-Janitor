@@ -12,6 +12,8 @@ class_name Entity
 @onready var attackRange = $AttackRadius/AttackShape
 @onready var projectileParent = $"../../ProjectileParent"
 @onready var range_attack_spawn_pos = $RangeAttackSpawnPos
+@onready var entityAnimator : AnimationPlayer = $EntityAnimator
+@onready var glow : PointLight2D = $Glow
 
 @export var itemDrops : Array[PackedScene]
 @export var moveSpeed : float
@@ -19,6 +21,7 @@ class_name Entity
 @export var attackCD : float
 @export var attackDamage : int
 @export var rangedMob = false
+@export var projectileSpeed : float
 @export var projectile : PackedScene
 
 var currentState : State = State.idle
@@ -26,6 +29,7 @@ var foundPlayer = false
 var chasingPlayer = false
 var attackingPlayer = false
 var attackTime : float
+var maxAliveRange = 300.0
 
 enum State {
 	idle,
@@ -41,15 +45,25 @@ func _ready():
 	attackTime = attackCD
 
 func _physics_process(delta):
-	attackTime += delta
+	if attackTime < attackCD:
+		attackTime += delta
 	hpBar.global_position = self.global_position + hpBarOffset
 	if currentState == State.idle:
-		pass
+		glow.energy = 0
+		entityAnimator.current_animation = "idle"
+		var distance = player.global_position - self.global_position
+		if abs(distance.x) > maxAliveRange and abs(distance.y) > maxAliveRange:
+			monsterManager.curMobsAlive -= 1
+			queue_free()
 	
 	if currentState == State.chasing:
+		entityAnimator.current_animation = "walking"
+		glow.energy = 8
 		Chase()
 		
 	if currentState == State.attacking:
+		entityAnimator.current_animation = "attacking"
+		glow.energy = 8
 		Attack()
 	
 	hpBar.value = hp.curHP
@@ -79,37 +93,47 @@ func AddToRoot(itemDropped : Node):
 
 
 func _on_search_area_entered(area):
-	foundPlayer = true
-	chasingPlayer = true
-	musicPlayer.midState()
-	currentState = State.chasing
+	if area.get_parent().name == "Player":
+		foundPlayer = true
+		chasingPlayer = true
+		musicPlayer.midState()
+		currentState = State.chasing
 
 func _on_search_area_exited(area):
-	foundPlayer = false
-	chasingPlayer = false
-	musicPlayer.lowState()
-	currentState = State.idle
+	if area.get_parent().name == "Player":
+		foundPlayer = false
+		chasingPlayer = false
+		musicPlayer.lowState()
+		currentState = State.idle
 
 func _on_attack_area_entered(area):
-	attackingPlayer = true
-	chasingPlayer = false
-	musicPlayer.highState()
-	currentState = State.attacking
+	if area.get_parent().name == "Player":
+		attackingPlayer = true
+		chasingPlayer = false
+		musicPlayer.highState()
+		currentState = State.attacking
 
 
 func _on_attack_area_exited(area):
-	attackingPlayer = false
-	chasingPlayer = true
-	musicPlayer.midState()
-	currentState = State.chasing
+	if area.get_parent().name == "Player":
+		attackingPlayer = false
+		chasingPlayer = true
+		musicPlayer.midState()
+		currentState = State.chasing
 
 func Attack():
 	if !rangedMob:
 		if attackTime >= attackCD:
-				player.hp.takeDamage(attackDamage)
-				attackTime = 0.0
+			player.hp.takeDamage(attackDamage)
+			attackTime = 0.0
 	else:
-		if projectile:
-			var shot = projectile.instatiate()
-			projectileParent.add_child(shot)
-			shot.global_position = range_attack_spawn_pos.global_position
+		if attackTime >= attackCD:
+			if projectile:
+				var shot : Projectile = projectile.instantiate()
+				projectileParent.add_child(shot)
+				shot.target = player
+				shot.speed = projectileSpeed
+				shot.damage = attackDamage
+				shot.hasTarget = true
+				shot.global_position = range_attack_spawn_pos.global_position
+				attackTime = 0.0

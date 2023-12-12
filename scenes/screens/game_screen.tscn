@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=13 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
@@ -7,9 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://xq6m3pu17sk5" path="res://scenes/component/monster_manager.tscn" id="2_c6gxn"]
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
-[ext_resource type="PackedScene" uid="uid://bvglbktel1j2n" path="res://scenes/entities/projectile_base.tscn" id="4_r0jcn"]
 [ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="5_3g1c1"]
-[ext_resource type="PackedScene" uid="uid://b6pj3rgsbkb6v" path="res://scenes/entities/entity.tscn" id="7_dsal6"]
 [ext_resource type="PackedScene" uid="uid://c1815nmcmuy0f" path="res://scenes/component/music_player.tscn" id="8_010s1"]
 [ext_resource type="AudioStream" uid="uid://dh2oqitaw55qv" path="res://sounds/BGMLow.wav" id="9_n1pr5"]
 [ext_resource type="AudioStream" uid="uid://drgx3eq1hau5d" path="res://sounds/BGMMid.wav" id="10_qahi6"]
@@ -46,9 +44,6 @@ color = Color(0.482353, 0.482353, 0.482353, 1)
 
 [node name="DropParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
 
-[node name="ProjectileBase" parent="ScreenCanvas/ScreenMargin/PlayerCanvas" instance=ExtResource("4_r0jcn")]
-position = Vector2(54.7495, 406.08)
-
 [node name="EnemyCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
 layer = 2
 follow_viewport_enabled = true
@@ -80,8 +75,6 @@ position = Vector2(130, 174)
 [node name="SpawnPoint06" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 position = Vector2(55, 301)
 
-[node name="Entity" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent/SpawnPoint06" instance=ExtResource("7_dsal6")]
-
 [node name="SpawnPoint07" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 position = Vector2(184, 344)
 
@@ -108,10 +101,6 @@ layer = 0
 follow_viewport_enabled = true
 
 [node name="World" parent="ScreenCanvas/ScreenMargin/WorldCanvas" instance=ExtResource("1_hbb3b")]
-z_as_relative = false
-
-[node name="CanvasModulate" parent="ScreenCanvas/ScreenMargin/WorldCanvas/World" index="0"]
-visible = true
 
 [node name="Minimap" parent="ScreenCanvas/ScreenMargin" instance=ExtResource("3_3ynol")]
 process_mode = 3
@@ -192,4 +181,3 @@ visible = false
 [connection signal="pressed" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer2/HurtButton" to="ScreenCanvas/ScreenMargin/PlayerCanvas/Player" method="_on_hurt_button_pressed"]
 
 [editable path="ScreenCanvas/ScreenMargin/PlayerCanvas/Player"]
-[editable path="ScreenCanvas/ScreenMargin/WorldCanvas/World"]

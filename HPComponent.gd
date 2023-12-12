@@ -21,7 +21,6 @@ func _ready():
 	curHP = maxHP
 
 func takeDamage(damage : int):
-	print(curHP)
 	damageTime = 0.0
 	curHP -= damage
 	if curHP <= 0:

@@ -1,14 +1,18 @@
 extends Node2D
 class_name Projectile
 
-@export var speed : float
-@export var damage : int
+@export var doesEffect = false
+@export var effectSTUN = false
+@export var stunLength : float
+@export var effectETC = false
 
-var target : Node2D
+var speed : float
+var damage : int
+
+var target : CharacterBody2D
 var targetDir : Vector2
 var hasTarget = false
 var traveling = false
-var doesEffect = false
 
 func _physics_process(delta):
 	if !hasTarget:
@@ -17,7 +21,7 @@ func _physics_process(delta):
 		targetDir = (target.global_position - self.global_position).normalized()
 		traveling = true
 	if hasTarget and traveling:
-		self.position += targetDir * speed
+		self.position += targetDir * speed * delta
 
 
 func _on_hurt_box_area_entered(area):
@@ -28,6 +32,8 @@ func DoDamage(area):
 	if area.hp:
 		area.hp.takeDamage(damage)
 		if doesEffect:
-			#Do Effect
-			pass
+			if effectSTUN:
+				area.stunnedCD = stunLength
+				area.stunned = true
+				
 	queue_free()

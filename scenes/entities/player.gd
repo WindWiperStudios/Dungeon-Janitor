@@ -31,6 +31,9 @@ var currentState = State.idle
 
 var fxPlayed = false
 var flipLeft = false
+var stunned = false
+var stunnedCD : float
+var stunTimer : float
 
 var attackTimer = 0.0
 var mousePos = Vector2.ZERO
@@ -42,8 +45,14 @@ func _ready():
 	attackBox.disabled = true
 	hpBar.max_value = hp.maxHP
 	hpBar.min_value = 0
+	stunnedCD = 0.1
 
-func _process(_delta):
+func _process(delta):
+	if stunned:
+		stunTimer += delta
+		if stunTimer >= stunnedCD:
+			stunned = false
+			stunTimer = 0.0
 	if hp.curHP == hp.maxHP:
 		hpBar.visible = false
 	else: hpBar.visible = true
@@ -55,13 +64,16 @@ func _process(_delta):
 			if (animator.current_animation != "idleLeft" or animator.current_animation != "idle") and flipLeft:
 				animator.play("idleLeft")
 		State.attack:
-			if (animator.current_animation != "attack" or animator.current_animation != "attackLeft") and !flipLeft:
-				animator.play("attack")
-			if (animator.current_animation != "attack" or animator.current_animation != "attackLeft") and flipLeft:
-				animator.play("attackLeft")
+			if !stunned:
+				if (animator.current_animation != "attack" or animator.current_animation != "attackLeft") and !flipLeft:
+					animator.play("attack")
+				if (animator.current_animation != "attack" or animator.current_animation != "attackLeft") and flipLeft:
+					animator.play("attackLeft")
 		State.walk:
-			velocity = Input.get_vector("left", "right", "up", "down") * moveSpeed
-			move_and_slide()
+			if !stunned:
+				velocity = Input.get_vector("left", "right", "up", "down") * moveSpeed
+				move_and_slide()
+			else: pass
 			
 			if (animator.current_animation != "walk" or animator.current_animation != "walkLeft") and !flipLeft:
 				animator.play("walk")
@@ -102,7 +114,7 @@ func _physics_process(delta):
 	
 	if currentState == State.attack:
 		attackTimer += delta
-		if attackTimer >= 0.36 and !fxPlayed:
+		if attackTimer >= 0.36 and !fxPlayed and !stunned:
 			fxPlayed = true
 			Aim(mousePos)
 			fxAnimator.play("slashFX")
