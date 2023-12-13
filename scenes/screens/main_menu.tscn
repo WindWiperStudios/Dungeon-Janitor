@@ -1,13 +1,48 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp7wn71lnnkg0"]
+[gd_scene load_steps=12 format=3 uid="uid://dp7wn71lnnkg0"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_3fw8a"]
-[ext_resource type="Texture2D" uid="uid://hvmivo2ysfgi" path="res://art/dungeonjanitorBackground.jpg" id="2_jlo1w"]
-[ext_resource type="Texture2D" uid="uid://di28bp52vfgqq" path="res://art/menubutton0000.png" id="3_cvuud"]
-[ext_resource type="Texture2D" uid="uid://c1hlv5odo0cvx" path="res://art/menubutton0001.png" id="4_362c0"]
-[ext_resource type="Texture2D" uid="uid://b5e3o2yedqqk1" path="res://art/menubutton0002.png" id="5_rxg2t"]
-[ext_resource type="Texture2D" uid="uid://fbb67uwgb5io" path="res://art/menubutton0003.png" id="6_aalx8"]
-[ext_resource type="Texture2D" uid="uid://dr3n0bwljtgby" path="res://art/menubutton0004.png" id="7_5a2i8"]
-[ext_resource type="Texture2D" uid="uid://c1klgwrtalg1t" path="res://art/menubutton0005.png" id="8_k5k1y"]
+[ext_resource type="Texture2D" uid="uid://cywtkbbghjdn1" path="res://art/JanitorMainMenu.png" id="2_4e7xe"]
+[ext_resource type="FontFile" uid="uid://du4mohhw5rg0u" path="res://art/PixeloidSansBold-PKnYd.ttf" id="3_wa52a"]
+[ext_resource type="FontFile" uid="uid://cvip7iykooiej" path="res://art/PixeloidMono-d94EV.ttf" id="4_ei203"]
+[ext_resource type="Texture2D" uid="uid://bubj7yd0x5t2f" path="res://art/DownRightArrow.png" id="5_yhfpp"]
+[ext_resource type="FontFile" uid="uid://d1cyikp12hfpw" path="res://art/PixeloidSans-mLxMm.ttf" id="6_lbydp"]
+
+[sub_resource type="Animation" id="Animation_ae08r"]
+resource_name = "ArrowMovement"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartArrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(281, 144), Vector2(281, 135)]
+}
+
+[sub_resource type="Animation" id="Animation_tplic"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartArrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(281, 144)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aylwr"]
+_data = {
+"ArrowMovement": SubResource("Animation_ae08r"),
+"RESET": SubResource("Animation_tplic")
+}
 
 [sub_resource type="Gradient" id="Gradient_2fc01"]
 offsets = PackedFloat32Array(0, 0.290323, 0.509677, 0.767742)
@@ -29,68 +64,97 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3fw8a")
 
-[node name="background" type="Sprite2D" parent="."]
-z_index = -50
-texture_filter = 1
-position = Vector2(161, 119.5)
-scale = Vector2(0.171875, 0.232407)
-texture = ExtResource("2_jlo1w")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-z_index = -10
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -124.0
-offset_right = 350.0
-offset_bottom = 632.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.186579, 0.166166)
-theme_override_constants/separation = 3
-alignment = 1
-
-[node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
-modulate = Color(0.105882, 0.105882, 0.105882, 1)
-z_index = -10
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-texture_normal = ExtResource("3_cvuud")
-texture_hover = ExtResource("4_362c0")
-
-[node name="Options" type="TextureButton" parent="VBoxContainer"]
-modulate = Color(0.105882, 0.105882, 0.105882, 1)
-z_index = -10
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-texture_normal = ExtResource("5_rxg2t")
-texture_hover = ExtResource("6_aalx8")
-
-[node name="Quit" type="TextureButton" parent="VBoxContainer"]
-modulate = Color(0.105882, 0.105882, 0.105882, 1)
-z_index = -10
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-texture_normal = ExtResource("7_5a2i8")
-texture_hover = ExtResource("8_k5k1y")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aylwr")
+}
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 texture_filter = 1
-position = Vector2(-39, 37)
+position = Vector2(164, 121)
 energy = 8.0
 texture = SubResource("GradientTexture2D_kmocc")
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG IMG" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_4e7xe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 2.08165e-12)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_wa52a")
+theme_override_font_sizes/font_size = 0
+text = "DUNGEON JANITOR"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StartText" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 244.0
+offset_top = 105.0
+offset_right = 323.0
+offset_bottom = 180.0
+scale = Vector2(0.56, 0.56)
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_ei203")
+theme_override_font_sizes/font_size = 18
+text = "Press to Start"
+autowrap_mode = 2
+
+[node name="StartArrow" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 281.0
+offset_top = 144.0
+offset_right = 313.0
+offset_bottom = 176.0
+rotation = -1.5708
+scale = Vector2(0.89, 0.89)
+texture = ExtResource("5_yhfpp")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 53.0
+offset_right = 308.0
+offset_bottom = 102.0
+flat = true
+
+[node name="Quit" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = 142.0
+offset_right = 67.0
+offset_bottom = 180.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("6_lbydp")
+theme_override_font_sizes/font_size = 24
+text = "QUIT"
+flat = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

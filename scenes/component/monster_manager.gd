@@ -12,6 +12,7 @@ class_name MonsterManager
 
 var distToSpawn : float = 50.0
 var currentState : State = State.waiting_to_spawn
+var monsterRNG
 
 enum State {
 	waiting_to_spawn,
@@ -21,12 +22,14 @@ enum State {
 }
 
 func _process(delta):
+	print(currentState)
 	match currentState:
 		State.waiting_to_spawn:
 			ProcessSpawnTimer(delta)
 			#List of checks before spawning monsters
 			if curSpawnTimer >= spawnCD:
 				currentState = State.spawning
+				monsterRNG = RandomNumberGenerator.new()
 				
 		State.spawning:
 			#Find Spawn Location
@@ -38,11 +41,20 @@ func _process(delta):
 			var distToPlayer = player.global_position - spawnLocation.global_position
 			if abs(distToPlayer.x) >= distToSpawn and abs(distToPlayer.y) <= distToSpawn and spawnLocation.get_child_count() == 0:
 				#Then instantiate mob & add as child
-				var monster = monsters[rng.randi_range(0, monsters.size() -1)].instantiate()
-				spawnLocation.add_child(monster)
-				monster.global_position = spawnLocation.global_position
-				curMobsAlive += 1
-				currentState = State.reseting
+				var spawnChance = monsterRNG.randf_range(0, 1)
+				var monster
+				if spawnChance <= .33:
+					monster = monsters[0].instantiate()
+					spawnLocation.add_child(monster)
+					monster.global_position = spawnLocation.global_position
+					curMobsAlive += 1
+					currentState = State.reseting
+				if spawnChance > .33 and spawnChance <= .66:
+					monster = monsters[1].instantiate()
+					spawnLocation.add_child(monster)
+					monster.global_position = spawnLocation.global_position
+					curMobsAlive += 1
+					currentState = State.reseting
 			
 		State.reseting:
 			#Set state back to default
@@ -50,7 +62,7 @@ func _process(delta):
 			currentState = State.waiting
 			
 		State.waiting:
-			if curMobsAlive >= maxMobsAlive:
+			if curMobsAlive > maxMobsAlive:
 				return
 			else: currentState = State.waiting_to_spawn
 			

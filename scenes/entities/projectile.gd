@@ -43,3 +43,8 @@ func DoDamage(area):
 				area.stunned = true
 				
 	queue_free()
+
+
+func _on_hurt_box_area_exited(area):
+	if area.get_parent().name == "World":
+		queue_free()

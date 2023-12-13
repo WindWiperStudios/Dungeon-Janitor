@@ -90,18 +90,18 @@ bg_color = Color(0.788235, 0, 0.0117647, 1)
 bg_color = Color(0.0156863, 0.909804, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61i2a"]
-radius = 27.1662
+radius = 42.0119
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wa72j"]
-radius = 19.105
+radius = 16.0
 
-[sub_resource type="Gradient" id="Gradient_oy5yh"]
+[sub_resource type="Gradient" id="Gradient_3uysx"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.481481, 0.699588)
-colors = PackedColorArray(0.53, 0, 0.0088332, 0.615686, 0.25, 0, 0.0041666, 0.705882, 0, 0, 0, 0.780392)
+offsets = PackedFloat32Array(0, 0.368984, 0.699588)
+colors = PackedColorArray(0.379833, 0, 0.53, 0.615686, 0.116667, 0, 0.25, 0.705882, 0, 0, 0, 0.780392)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5dolu"]
-gradient = SubResource("Gradient_oy5yh")
+gradient = SubResource("Gradient_3uysx")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -113,8 +113,11 @@ motion_mode = 1
 script = ExtResource("1_1uaqm")
 itemDrops = Array[PackedScene]([ExtResource("2_560u6"), ExtResource("3_34jvl")])
 moveSpeed = 7.0
+hpBarOffset = Vector2(-6, -10)
 attackCD = 0.5
 attackDamage = 1
+glowStrength = 2.5
+spawnRarity = 0.7
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)
@@ -165,7 +168,8 @@ collision_layer = 2
 shape = SubResource("CircleShape2D_wa72j")
 
 [node name="Glow" type="PointLight2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(-1.43051e-06, -1.43051e-06)
+scale = Vector2(1.54412, 1.54412)
 energy = 0.0
 texture = SubResource("GradientTexture2D_5dolu")
 texture_scale = 0.85

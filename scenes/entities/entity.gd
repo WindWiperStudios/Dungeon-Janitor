@@ -22,6 +22,7 @@ class_name Entity
 @export var rangedMob = false
 @export var projectileSpeed : float
 @export var projectile : PackedScene
+@export var glowStrength : float
 
 var currentState : State = State.idle
 var foundPlayer = false
@@ -50,19 +51,20 @@ func _physics_process(delta):
 	if currentState == State.idle:
 		glow.energy = 0
 		entityAnimator.current_animation = "idle"
-		var distance = player.global_position - self.global_position
-		if abs(distance.x) > maxAliveRange and abs(distance.y) > maxAliveRange:
-			monsterManager.curMobsAlive -= 1
-			queue_free()
+		if player != null:
+			var distance = player.global_position - self.global_position
+			if abs(distance.x) > maxAliveRange and abs(distance.y) > maxAliveRange:
+				monsterManager.curMobsAlive -= 1
+				queue_free()
 	
 	if currentState == State.chasing:
 		entityAnimator.current_animation = "walking"
-		glow.energy = 8
+		glow.energy = glowStrength
 		Chase()
 		
 	if currentState == State.attacking:
 		entityAnimator.current_animation = "attacking"
-		glow.energy = 8
+		glow.energy = glowStrength
 		Attack()
 	
 	hpBar.value = hp.curHP
@@ -80,7 +82,6 @@ func Chase():
 func DropWhenDead():
 	if monsterManager:
 		monsterManager.curMobsAlive -= 1
-	var root = get_tree().get_root()
 	for i in range(0, itemDrops.size()):
 		var item = itemDrops[i].instantiate()
 		call_deferred("AddToRoot", item)

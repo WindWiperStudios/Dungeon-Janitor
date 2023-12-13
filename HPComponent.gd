@@ -32,6 +32,7 @@ func Die():
 		DropItem.emit()
 		parent.queue_free()
 	if parent.name == "Player":
+		GlobalVariables.restarting.emit()
 		var gamescreenScene = load("res://scenes/screens/game_over.tscn")
 		get_tree().change_scene_to_packed(gamescreenScene)
 		

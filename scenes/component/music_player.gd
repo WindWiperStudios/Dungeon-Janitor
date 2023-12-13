@@ -19,7 +19,7 @@ func _ready():
 	currentState = State.INTRO
 	beenQueued = false
 
-func _process(delta):
+func _process(_delta):
 	currentSong = stream
 	if currentState == State.INTRO:
 		if beenQueued == false and stream != songList[3]:

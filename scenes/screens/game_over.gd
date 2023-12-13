@@ -6,6 +6,7 @@ func _ready():
 	pass
 
 func _on_restart_button_pressed():
+	GlobalVariables.restarting.emit()
 	get_tree().change_scene_to_packed(levels[0])
 
 

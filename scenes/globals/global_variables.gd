@@ -3,10 +3,13 @@ extends Node2D
 @export var musicPlayer : MusicPlayer
 
 var junkAmount : int
-var maxJunk : int = 15
+var maxJunkDefault : int = 15
+var maxJunk = maxJunkDefault
 var junkingSpeed : float = 2.5
 var score : int
-var gold : int = 25
+var gold : int
+var maxGoldDefault : int = 100
+var maxGold = maxGoldDefault
 
 var pausedBool = false
 var pauseTimer : float = 0.0
@@ -39,10 +42,16 @@ signal goldPickedUp
 signal junkDropped
 signal paused
 signal unpaused
+signal restarting
+signal upgrading
+
+func _ready():
+	restarting.connect(ResetScore)
 
 func _process(delta):
 	
-	junkingSpeed = 2.5 - (junkingSpeedUpgradeLevel * .5)
+	
+	junkingSpeedUpgradePrice = 25 + (junkingSpeedUpgradeLevel * 5)
 	
 	if Input.is_action_just_pressed("pause") and pauseTimer == 0.0:
 		pausedBool = true
@@ -65,3 +74,16 @@ func _process(delta):
 		musicPlayer.midState()
 	if monstersAggrod > 1:
 		musicPlayer.highState()
+
+func ResetScore():
+	junkAmount = 0.0
+	maxJunk = maxJunkDefault
+	maxGold = maxGoldDefault
+	junkingSpeed = 2.5
+	score = 0
+	gold = 0
+	playerMaxHP = 15
+	playerHP = playerMaxHP
+	junkingSpeedUpgradePrice = 25
+	junkingSpeedUpgradeLevel = 0
+	monstersAggrod = 0

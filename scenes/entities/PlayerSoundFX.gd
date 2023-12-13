@@ -8,7 +8,7 @@ class_name PlayerSoundFX
 @export var down = false
 
 
-func _process(delta):
+func _process(_delta):
 	if up:
 		PlayUp()
 	if down:

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="3_c0tqw"]
 [ext_resource type="Texture2D" uid="uid://cn57oxe6qdy0a" path="res://art/SpiderSheet.png" id="3_jtxdd"]
 [ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="4_1rrv0"]
+[ext_resource type="Gradient" uid="uid://c2qfu8vy45bi" path="res://scenes/entities/EnemyGlowGradient.tres" id="7_bjhgt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17ffd"]
 radius = 4.5
@@ -92,18 +93,13 @@ bg_color = Color(0.788235, 0, 0.0117647, 1)
 bg_color = Color(0.0156863, 0.909804, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61i2a"]
-radius = 59.0762
+radius = 79.0253
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wa72j"]
 radius = 47.5602
 
-[sub_resource type="Gradient" id="Gradient_fs3p5"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.481481, 0.699588)
-colors = PackedColorArray(0.53, 0, 0.0088332, 0.615686, 0.25, 0, 0.0041666, 0.705882, 0, 0, 0, 0.780392)
-
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vmlv6"]
-gradient = SubResource("Gradient_fs3p5")
+gradient = ExtResource("7_bjhgt")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -115,10 +111,13 @@ motion_mode = 1
 script = ExtResource("1_m54mp")
 itemDrops = Array[PackedScene]([ExtResource("2_g5fj5"), ExtResource("3_c0tqw")])
 moveSpeed = 5.0
+hpBarOffset = Vector2(-6, -10)
 attackCD = 2.5
 rangedMob = true
 projectileSpeed = 25.0
 projectile = ExtResource("3_6ienv")
+glowStrength = 2.5
+spawnRarity = 0.3
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)
@@ -169,6 +168,8 @@ collision_layer = 2
 shape = SubResource("CircleShape2D_wa72j")
 
 [node name="Glow" type="PointLight2D" parent="."]
+position = Vector2(3.33786e-06, -2.86102e-06)
+scale = Vector2(2.94118, 2.90441)
 energy = 0.0
 texture = SubResource("GradientTexture2D_vmlv6")
 texture_scale = 0.85

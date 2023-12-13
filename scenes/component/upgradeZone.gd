@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var animationPlayer = $AnimationPlayer
+@onready var playerCanvas = $"../../../../PlayerCanvas"
 
 @export var menuScene : PackedScene
 @export var menuOffset : Vector2
@@ -16,11 +17,11 @@ func _ready():
 	
 	if hasMenuScene:
 		zoneScene = menuScene.instantiate()
-		self.add_child(zoneScene)
+		playerCanvas.add_child(zoneScene)
 		#zoneScene.global_position = self.global_position + menuOffset
 		zoneScene.visible = false
 		
-func _process(delta):
+func _process(_delta):
 	zoneScene.global_position = self.global_position + menuOffset
 
 func _on_zone_entered(area):

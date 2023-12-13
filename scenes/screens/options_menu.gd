@@ -7,10 +7,10 @@ class_name OptionsMenu
 
 
 
-func _on_sfx_vol_slider_drag_ended(value_changed):
+func _on_sfx_vol_slider_drag_ended(_value_changed):
 	player.soundFXPlayer.volume_db = sfxSlider.value
 
-func _on_music_volume_slider_drag_ended(value_changed):
+func _on_music_volume_slider_drag_ended(_value_changed):
 	GlobalVariables.musicPlayer.volume_db = musicSlider.value
 	if musicSlider.value == musicSlider.min_value:
 		GlobalVariables.musicPlayer.volume_db = -80

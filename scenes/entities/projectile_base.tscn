@@ -20,3 +20,4 @@ texture = ExtResource("1_7ouv7")
 shape = SubResource("CircleShape2D_i2sng")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]

@@ -65,6 +65,13 @@ func _process(delta):
 		if stunTimer >= stunnedCD:
 			stunned = false
 			stunTimer = 0.0
+	
+	if Input.is_action_pressed("map"):
+		minimap.visible = true
+	
+	if Input.is_action_pressed("map") == false:
+		minimap.visible = false
+	
 	if hp.curHP == hp.maxHP:
 		hpBar.visible = false
 	else: hpBar.visible = true

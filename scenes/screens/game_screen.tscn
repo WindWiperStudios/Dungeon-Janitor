@@ -161,9 +161,9 @@ text = "Score: 0"
 vertical_alignment = 1
 
 [node name="Gold" type="Label" parent="ScreenCanvas/ScreenMargin/UI Holder"]
-offset_left = 258.128
+offset_left = 251.0
 offset_top = 216.552
-offset_right = 365.333
+offset_right = 358.205
 offset_bottom = 289.552
 scale = Vector2(0.215, 0.215)
 theme_override_fonts/font = ExtResource("7_pymwp")
@@ -180,6 +180,7 @@ texture = ExtResource("8_qqg8c")
 
 [node name="Minimap" parent="ScreenCanvas/ScreenMargin" instance=ExtResource("3_3ynol")]
 process_mode = 3
+z_index = 2
 layout_mode = 2
 
 [node name="DevMenuUI" type="VBoxContainer" parent="ScreenCanvas/ScreenMargin"]
@@ -188,7 +189,12 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="AddGold" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI"]
+layout_mode = 2
+text = "Add Gold"
+
 [node name="Spawn Enemy Button" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
@@ -200,6 +206,7 @@ theme_override_font_sizes/font_size = 11
 text = "Spawn Enemy"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScreenCanvas/ScreenMargin/DevMenuUI"]
+visible = false
 layout_mode = 2
 
 [node name="LOW" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer"]
@@ -236,6 +243,7 @@ theme_override_font_sizes/font_size = 6
 text = "HIGH"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScreenCanvas/ScreenMargin/DevMenuUI"]
+visible = false
 layout_mode = 2
 
 [node name="HurtButton" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer2"]
@@ -245,7 +253,9 @@ text = "Hurt Player"
 [node name="OptionsMenu" parent="ScreenCanvas" instance=ExtResource("2_0pj6t")]
 visible = false
 
+[connection signal="button_down" from="ScreenCanvas/ScreenMargin/DevMenuUI/AddGold" to="ScreenCanvas/ScreenMargin/UI Holder" method="_on_add_gold_button_down"]
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/Spawn Enemy Button" to="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent" method="SpawnEnemy"]
 [connection signal="pressed" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer2/HurtButton" to="ScreenCanvas/ScreenMargin/PlayerCanvas/Player" method="_on_hurt_button_pressed"]
 
 [editable path="ScreenCanvas/ScreenMargin/PlayerCanvas/Player"]
+[editable path="ScreenCanvas/ScreenMargin/WorldCanvas/World"]

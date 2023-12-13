@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://mkp341llf6ck"]
+[gd_scene load_steps=4 format=3 uid="uid://mkp341llf6ck"]
 
 [ext_resource type="Script" path="res://scenes/component/MenuScreen.gd" id="1_heb4w"]
 [ext_resource type="LabelSettings" uid="uid://b2nh6bjr0fkry" path="res://scenes/component/ZoneSubTextLabel.tres" id="2_hgdrt"]
-[ext_resource type="FontFile" uid="uid://ciwqyh86cso1l" path="res://art/FFFFORWA.TTF" id="3_5n7bj"]
-[ext_resource type="Texture2D" uid="uid://dketftuhdl3o6" path="res://art/Circle.png" id="3_yxkvd"]
+[ext_resource type="Texture2D" uid="uid://cymplh3bnip8n" path="res://art/button.png" id="3_mrt2i"]
 
 [node name="UpgradeMenu" type="Node2D"]
 script = ExtResource("1_heb4w")
@@ -46,47 +45,29 @@ label_settings = ExtResource("2_hgdrt")
 [node name="SpeedUpgradeButton" type="TextureButton" parent="JunkingSpeedText"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 300.0
-offset_top = 87.5
-offset_right = 316.0
-offset_bottom = 103.5
+offset_left = 325.0
+offset_top = 83.0
+offset_right = 341.0
+offset_bottom = 99.0
 scale = Vector2(3.14, 3.14)
-texture_normal = ExtResource("3_yxkvd")
+texture_normal = ExtResource("3_mrt2i")
 
 [node name="JunkSpeedDetailText" type="Label" parent="JunkingSpeedText"]
 layout_mode = 0
-offset_top = 75.0
-offset_right = 133.0
-offset_bottom = 148.0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 333.0
+offset_bottom = 123.0
 text = "2.5s"
 label_settings = ExtResource("2_hgdrt")
 
 [node name="JunkingSpeedPrice" type="Label" parent="JunkingSpeedText"]
 layout_mode = 0
-offset_left = 187.5
-offset_top = 75.0
-offset_right = 286.5
-offset_bottom = 140.0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = 299.0
+offset_bottom = 165.0
 text = "$25"
 label_settings = ExtResource("2_hgdrt")
-
-[node name="Yes" type="Button" parent="."]
-offset_left = 33.0
-offset_top = 66.0
-offset_right = 79.0
-offset_bottom = 97.0
-scale = Vector2(0.325, 0.325)
-theme_override_fonts/font = ExtResource("3_5n7bj")
-theme_override_font_sizes/font_size = 0
-text = "Yes"
-
-[node name="No" type="Button" parent="."]
-offset_left = 56.0
-offset_top = 66.0
-offset_right = 102.0
-offset_bottom = 97.0
-scale = Vector2(0.32, 0.32)
-theme_override_fonts/font = ExtResource("3_5n7bj")
-text = "No"
 
 [connection signal="button_down" from="JunkingSpeedText/SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_button_down"]

@@ -39,6 +39,7 @@ func _process(delta):
 func _on_zone_entered(area):
 	#If player entered zone:
 	if area.get_parent().name == "Player":
+		lootCD = GlobalVariables.junkingSpeed
 		lootTime = 0.0
 		droppingLoot = true
 		junkProgress.visible = true
@@ -46,6 +47,7 @@ func _on_zone_entered(area):
 
 func _on_zone_exited(area):
 	if area.get_parent().name == "Player":
+		lootCD = GlobalVariables.junkingSpeed
 		droppingLoot = false
 		junkProgress.visible = false
 
