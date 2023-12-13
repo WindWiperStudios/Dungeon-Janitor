@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c1815nmcmuy0f" path="res://scenes/component/music_player.tscn" id="2_w13d3"]
 
 [node name="GlobalVariables" type="Node2D" node_paths=PackedStringArray("musicPlayer")]
+process_mode = 3
 script = ExtResource("1_xhyvc")
 musicPlayer = NodePath("MusicPlayer")
 

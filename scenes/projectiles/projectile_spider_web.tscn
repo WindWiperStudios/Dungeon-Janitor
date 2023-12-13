@@ -6,3 +6,4 @@
 doesEffect = true
 effectSTUN = true
 stunLength = 1.5
+maxTimeAlive = 3.5

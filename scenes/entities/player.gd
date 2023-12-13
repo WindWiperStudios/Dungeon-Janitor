@@ -24,8 +24,6 @@ enum State {
 	attack,
 	walk,
 	hit,
-	paused,
-	unpaused
 }
 
 var currentState = State.idle
@@ -35,6 +33,7 @@ var flipLeft = false
 var stunned = false
 var stunnedCD : float
 var stunTimer : float
+var pauseTimer : float = 0
 
 var attackTimer = 0.0
 var mousePos = Vector2.ZERO
@@ -51,6 +50,8 @@ func UpdateGlobalVars():
 	GlobalVariables.playerStunned = stunned
 	
 func _ready():
+	GlobalVariables.paused.connect(Pause)
+	GlobalVariables.unpaused.connect(Unpause)
 	UpdateGlobalVars()
 	attackBox.disabled = true
 	hpBar.max_value = hp.maxHP
@@ -92,18 +93,6 @@ func _process(delta):
 				animator.play("walkLeft")
 		State.hit:
 			pass
-		State.paused:
-			get_tree().paused = true
-			self.visible = false
-			minimap.visible = false
-			devMenu.visible = false
-			optionsMenu.visible = true
-		State.unpaused:
-			optionsMenu.visible = false
-			self.visible = true
-			minimap.visible = true
-			devMenu.visible = true
-			currentState = State.idle
 	
 	mousePos = get_global_mouse_position()
 	if mousePos.x >= position.x:
@@ -113,8 +102,6 @@ func _process(delta):
 	
 	if Input.is_action_pressed("attack"):
 		currentState = State.attack
-	if Input.is_action_pressed("pause"):
-		currentState = State.paused
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -148,8 +135,15 @@ func Aim(mousePosAim : Vector2):
 	var newAngle = PI + atan2(direction.y, direction.x)
 	attackFXNode.rotation = newAngle
 
+func Pause():
+	self.visible = false
+	minimap.visible = false
+	get_tree().paused = true
+
 func Unpause():
-	currentState = State.unpaused
+	get_tree().paused = false
+	self.visible = true
+	minimap.visible = true
 
 
 func _on_hurt_button_pressed():

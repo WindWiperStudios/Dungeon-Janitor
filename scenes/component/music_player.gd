@@ -37,7 +37,10 @@ func _process(delta):
 	
 	playbackPosition = get_playback_position()
 
-
+func introState():
+	if currentState != State.INTRO:
+		beenQueued = false
+		currentState = State.INTRO
 func lowState():
 	if currentState != State.LOW:
 		beenQueued = false
@@ -53,7 +56,11 @@ func highState():
 
 func QueueChange(music : AudioStreamWAV):
 	stream = music
-	var currentPos = playbackPosition
-	play()
-	self.seek(currentPos)
-	beenQueued = true
+	if music != songList[3]:
+		var currentPos = playbackPosition
+		play()
+		self.seek(currentPos)
+		beenQueued = true
+	else:
+		play()
+		beenQueued = true

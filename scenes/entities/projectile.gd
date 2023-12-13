@@ -5,8 +5,11 @@ class_name Projectile
 @export var effectSTUN = false
 @export var stunLength : float
 @export var effectETC = false
+@export var maxTimeAlive : float
 
 var speed : float
+
+var timeAlive = 0.0
 var damage : int
 
 var target : CharacterBody2D
@@ -15,6 +18,9 @@ var hasTarget = false
 var traveling = false
 
 func _physics_process(delta):
+	timeAlive += delta
+	if timeAlive >= maxTimeAlive:
+		queue_free()
 	if !hasTarget:
 		return
 	if hasTarget and !traveling:

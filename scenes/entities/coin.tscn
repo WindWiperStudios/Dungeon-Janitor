@@ -8,7 +8,8 @@ radius = 2.0
 
 [node name="Coin" type="Node2D"]
 script = ExtResource("2_hyftl")
-itemValue = 1
+itemValue = 5
+currency = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.882353, 0, 1)

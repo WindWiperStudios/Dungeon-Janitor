@@ -36,7 +36,7 @@ func _process(delta):
 			
 			var spawnLocation = enemySpawnsParent.get_child(rng.randi_range(0, spawnLocationCount-2))
 			var distToPlayer = player.global_position - spawnLocation.global_position
-			if abs(distToPlayer.x) >= distToSpawn and abs(distToPlayer.y) <= distToSpawn:
+			if abs(distToPlayer.x) >= distToSpawn and abs(distToPlayer.y) <= distToSpawn and spawnLocation.get_child_count() == 0:
 				#Then instantiate mob & add as child
 				var monster = monsters[rng.randi_range(0, monsters.size() -1)].instantiate()
 				spawnLocation.add_child(monster)

@@ -117,7 +117,7 @@ itemDrops = Array[PackedScene]([ExtResource("2_g5fj5"), ExtResource("3_c0tqw")])
 moveSpeed = 5.0
 attackCD = 2.5
 rangedMob = true
-projectileSpeed = 12.0
+projectileSpeed = 25.0
 projectile = ExtResource("3_6ienv")
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="."]

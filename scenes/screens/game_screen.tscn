@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=13 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://xq6m3pu17sk5" path="res://scenes/component/monster_manager.tscn" id="2_c6gxn"]
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
-[ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="5_3g1c1"]
 [ext_resource type="Script" path="res://scenes/screens/UIHolder.gd" id="7_3k644"]
 [ext_resource type="FontFile" uid="uid://ciwqyh86cso1l" path="res://art/FFFFORWA.TTF" id="7_pymwp"]
+[ext_resource type="Texture2D" uid="uid://b6dkp28i6mxds" path="res://art/halfBag.png" id="8_b8lla"]
+[ext_resource type="Texture2D" uid="uid://dbran11ljwjgr" path="res://art/emptyBag.png" id="8_qqg8c"]
+[ext_resource type="Texture2D" uid="uid://dl8coqob4cere" path="res://art/fullBag.png" id="9_uhajq"]
 
 [node name="GameScreen" type="Node2D"]
 process_mode = 3
@@ -32,11 +34,9 @@ grow_vertical = 2
 layer = 2
 follow_viewport_enabled = true
 
-[node name="EnemyParent" parent="ScreenCanvas/ScreenMargin/EnemyCanvas" node_paths=PackedStringArray("spawnPoints") instance=ExtResource("3_dl5rm")]
+[node name="EnemyParent" parent="ScreenCanvas/ScreenMargin/EnemyCanvas" instance=ExtResource("3_dl5rm")]
 z_index = 2
 z_as_relative = false
-spawnPoints = [NodePath("SpawnPoint00"), NodePath("SpawnPoint01"), NodePath("SpawnPoint02"), NodePath("SpawnPoint03"), NodePath("SpawnPoint04"), NodePath("SpawnPoint05"), NodePath("SpawnPoint06"), NodePath("SpawnPoint07"), NodePath("SpawnPoint08"), NodePath("SpawnPoint09"), NodePath("SpawnPoint10"), NodePath("SpawnPoint11"), NodePath("SpawnPoint12")]
-enemyList = Array[PackedScene]([ExtResource("5_3g1c1")])
 
 [node name="SpawnPoint00" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 position = Vector2(60.3273, 24.32)
@@ -77,6 +77,36 @@ position = Vector2(348, 327)
 [node name="SpawnPoint12" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 position = Vector2(356, 224)
 
+[node name="SpawnPoint13" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(122.915, 307.155)
+
+[node name="SpawnPoint14" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(63.0683, 174.863)
+
+[node name="SpawnPoint15" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(49.8392, 76.5892)
+
+[node name="SpawnPoint16" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(128.584, 92.9682)
+
+[node name="SpawnPoint17" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(312.533, 87.2986)
+
+[node name="SpawnPoint18" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(282.925, 282.586)
+
+[node name="SpawnPoint19" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(202.92, 432.517)
+
+[node name="SpawnPoint20" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(205.439, 284.476)
+
+[node name="SpawnPoint21" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(177.091, 218.33)
+
+[node name="SpawnPoint22" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(107.796, 239.749)
+
 [node name="ProjectileParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 
 [node name="PlayerCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
@@ -102,13 +132,14 @@ follow_viewport_enabled = true
 
 [node name="UI Holder" type="Node2D" parent="ScreenCanvas/ScreenMargin"]
 script = ExtResource("7_3k644")
+goldIcons = Array[CompressedTexture2D]([ExtResource("8_qqg8c"), ExtResource("8_b8lla"), ExtResource("9_uhajq")])
 
 [node name="JunkAmount" type="Label" parent="ScreenCanvas/ScreenMargin/UI Holder"]
 texture_filter = 1
-offset_left = 3.979
-offset_top = 199.415
-offset_right = 344.979
-offset_bottom = 272.415
+offset_left = 8.22644
+offset_top = 189.976
+offset_right = 349.226
+offset_bottom = 262.976
 scale = Vector2(0.225137, 0.218829)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_pymwp")
@@ -118,10 +149,10 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="ScreenCanvas/ScreenMargin/UI Holder"]
 texture_filter = 1
-offset_left = 4.42445
-offset_top = 216.815
-offset_right = 345.424
-offset_bottom = 289.815
+offset_left = 8.67189
+offset_top = 209.264
+offset_right = 349.671
+offset_bottom = 282.264
 scale = Vector2(0.214859, 0.273499)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_pymwp")
@@ -129,9 +160,26 @@ theme_override_font_sizes/font_size = 50
 text = "Score: 0"
 vertical_alignment = 1
 
+[node name="Gold" type="Label" parent="ScreenCanvas/ScreenMargin/UI Holder"]
+offset_left = 258.128
+offset_top = 216.552
+offset_right = 365.333
+offset_bottom = 289.552
+scale = Vector2(0.215, 0.215)
+theme_override_fonts/font = ExtResource("7_pymwp")
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="GoldIcon" type="TextureRect" parent="ScreenCanvas/ScreenMargin/UI Holder"]
+texture_filter = 1
+offset_left = 275.161
+offset_top = 213.505
+offset_right = 291.161
+offset_bottom = 229.505
+texture = ExtResource("8_qqg8c")
+
 [node name="Minimap" parent="ScreenCanvas/ScreenMargin" instance=ExtResource("3_3ynol")]
 process_mode = 3
-visible = false
 layout_mode = 2
 
 [node name="DevMenuUI" type="VBoxContainer" parent="ScreenCanvas/ScreenMargin"]

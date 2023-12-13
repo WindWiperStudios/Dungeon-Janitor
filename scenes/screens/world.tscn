@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8h8e0lfdoudk"]
+[gd_scene load_steps=16 format=3 uid="uid://b8h8e0lfdoudk"]
 
 [ext_resource type="Texture2D" uid="uid://cbnakbbgreeqt" path="res://art/TextureAtlas.png" id="1_anbx0"]
-[ext_resource type="PackedScene" uid="uid://d2oeg0677j84x" path="res://scenes/component/upgrade_zone.tscn" id="2_6dvoo"]
+[ext_resource type="PackedScene" uid="uid://b2j4arc2q250m" path="res://scenes/component/upgrade_zone.tscn" id="2_6dvoo"]
 [ext_resource type="Texture2D" uid="uid://n1wpag8li8ut" path="res://art/map.png" id="2_krd0a"]
 [ext_resource type="FontFile" uid="uid://ciwqyh86cso1l" path="res://art/FFFFORWA.TTF" id="3_c1yo3"]
 [ext_resource type="Texture2D" uid="uid://bubj7yd0x5t2f" path="res://art/DownRightArrow.png" id="4_xwb5r"]
 [ext_resource type="LabelSettings" uid="uid://dlntaqk8jsg58" path="res://scenes/component/ZoneTextLabels.tres" id="5_0ys2u"]
 [ext_resource type="Script" path="res://scenes/screens/InstructionsAnimator.gd" id="5_odfvn"]
+[ext_resource type="PackedScene" uid="uid://cpq44kkjqh24k" path="res://scenes/component/junk_zone.tscn" id="8_1gtg5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ojxqn"]
 texture = ExtResource("1_anbx0")
@@ -122,7 +123,10 @@ layer = 0
 follow_viewport_enabled = true
 
 [node name="UpgradeZone" parent="NotShaded" instance=ExtResource("2_6dvoo")]
-position = Vector2(56, 408)
+position = Vector2(56, 409)
+
+[node name="JunkZone" parent="NotShaded" instance=ExtResource("8_1gtg5")]
+position = Vector2(72, 440)
 
 [node name="Map" type="Sprite2D" parent="NotShaded"]
 visible = false
@@ -180,6 +184,7 @@ justification_flags = 0
 clip_text = true
 
 [node name="Upgrade" type="Label" parent="NotShaded/Instructions Box"]
+visible = false
 texture_filter = 1
 offset_left = 11.28
 offset_top = 2.08228
@@ -201,6 +206,7 @@ expand_mode = 1
 stretch_mode = 2
 
 [node name="UpgradeArrow" type="TextureRect" parent="NotShaded/Instructions Box"]
+visible = false
 texture_filter = 1
 offset_left = 16.92
 offset_top = 1.15686
