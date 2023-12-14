@@ -46,7 +46,7 @@ _data = {
 [node name="UpgradeZone" type="Area2D"]
 script = ExtResource("1_fpsyd")
 menuScene = ExtResource("2_nlql3")
-menuOffset = Vector2(7.95, -24.815)
+menuOffset = Vector2(-72.12, -65.76)
 
 [node name="UpgradeZoneShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kcs7y")

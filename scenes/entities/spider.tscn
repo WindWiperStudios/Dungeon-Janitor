@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://brnqgnbewfs0j"]
 
-[ext_resource type="Script" path="res://scenes/entities/spider.gd" id="1_m54mp"]
+[ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_8brvd"]
 [ext_resource type="PackedScene" uid="uid://ushfevkbv11o" path="res://scenes/entities/eyeball.tscn" id="2_g5fj5"]
 [ext_resource type="PackedScene" uid="uid://cpfeibhy1kr3g" path="res://scenes/projectiles/projectile_spider_web.tscn" id="3_6ienv"]
 [ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="3_c0tqw"]
@@ -108,7 +108,7 @@ texture_filter = 1
 collision_layer = 2
 collision_mask = 13
 motion_mode = 1
-script = ExtResource("1_m54mp")
+script = ExtResource("1_8brvd")
 itemDrops = Array[PackedScene]([ExtResource("2_g5fj5"), ExtResource("3_c0tqw")])
 moveSpeed = 5.0
 hpBarOffset = Vector2(-6, -10)
@@ -117,7 +117,7 @@ rangedMob = true
 projectileSpeed = 25.0
 projectile = ExtResource("3_6ienv")
 glowStrength = 2.5
-spawnRarity = 0.3
+enemy = true
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnb0skls8yl4i"]
+
+[ext_resource type="Script" path="res://scenes/component/WorldItem.gd" id="1_fmquh"]
+[ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="2_awgg7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntosi"]
+
+[node name="WorldItem" type="Area2D"]
+script = ExtResource("1_fmquh")
+
+[node name="WorldItemShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ntosi")
+
+[node name="WorldItemSprite" type="Sprite2D" parent="."]
+
+[node name="WorldItemAnimator" type="AnimationPlayer" parent="."]
+
+[node name="HPComponent" parent="." instance=ExtResource("2_awgg7")]

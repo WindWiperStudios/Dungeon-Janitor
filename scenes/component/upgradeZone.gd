@@ -22,7 +22,7 @@ func _ready():
 		zoneScene.visible = false
 		
 func _process(_delta):
-	zoneScene.global_position = self.global_position + menuOffset
+	zoneScene.global_position = self.global_position + Vector2(-72.12, -65.76)
 
 func _on_zone_entered(area):
 	#If player entered zone:

@@ -9,6 +9,7 @@ signal mobDied
 
 var gameOverScene
 
+@onready var monsterManager = $"../../../../../../../MonsterManager"
 @onready var parent = get_parent()
 
 signal DropItem
@@ -29,6 +30,8 @@ func takeDamage(damage : int):
 
 func Die():
 	if parent.name != "Player":
+		if monsterManager != null:
+			monsterManager.curMobsAlive -= 1
 		DropItem.emit()
 		parent.queue_free()
 	if parent.name == "Player":

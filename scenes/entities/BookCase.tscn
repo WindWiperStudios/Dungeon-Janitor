@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6pj3rgsbkb6v"]
+[gd_scene load_steps=18 format=3 uid="uid://s5e8snvywplf"]
 
-[ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_ecxqc"]
-[ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="1_sdqbq"]
-[ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="2_uod7i"]
-[ext_resource type="Texture2D" uid="uid://bwgxr6cwrg2yu" path="res://art/skeleSheet.png" id="3_47o23"]
+[ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_hovyu"]
+[ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="2_a4dll"]
+[ext_resource type="Texture2D" uid="uid://bggca6rx2dcii" path="res://art/bookcase.png" id="3_jgto4"]
+[ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="4_5nb1l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17ffd"]
 radius = 4.5
@@ -11,18 +11,50 @@ height = 11.0
 
 [sub_resource type="Animation" id="Animation_5exgm"]
 resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_xsmok"]
 resource_name = "walking"
 
+[sub_resource type="Animation" id="Animation_l4fxk"]
+resource_name = "hit"
+
+[sub_resource type="Animation" id="Animation_14j6k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_clp7m"]
 _data = {
+"RESET": SubResource("Animation_14j6k"),
+"hit": SubResource("Animation_l4fxk"),
 "idle": SubResource("Animation_5exgm"),
 "walking": SubResource("Animation_xsmok")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpdha"]
-size = Vector2(14, 19)
+size = Vector2(13.0312, 15.0129)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0exv3"]
 bg_color = Color(0.788235, 0, 0.0117647, 1)
@@ -46,17 +78,16 @@ gradient = SubResource("Gradient_oy5yh")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Entity" type="CharacterBody2D"]
+[node name="Bookcase" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
 collision_mask = 13
 motion_mode = 1
-script = ExtResource("1_ecxqc")
-itemDrops = Array[PackedScene]([ExtResource("2_uod7i")])
+script = ExtResource("1_hovyu")
+itemDrops = Array[PackedScene]([ExtResource("2_a4dll")])
 moveSpeed = 7.0
 hpBarOffset = Vector2(-5.5, -10.1)
 attackCD = 0.5
-enemy = true
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)
@@ -69,10 +100,9 @@ libraries = {
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("3_47o23")
-hframes = 4
+texture = ExtResource("3_jgto4")
 
-[node name="HPComponent" parent="." instance=ExtResource("1_sdqbq")]
+[node name="HPComponent" parent="." instance=ExtResource("4_5nb1l")]
 maxHP = 3
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -80,7 +110,7 @@ collision_layer = 2
 collision_mask = 16
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 0.5)
+position = Vector2(-0.484395, 0.475487)
 shape = SubResource("RectangleShape2D_mpdha")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -95,13 +125,19 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_aqy6b")
 show_percentage = false
 
 [node name="SearchRadius" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
+monitoring = false
+monitorable = false
 
 [node name="RadiusShape" type="CollisionShape2D" parent="SearchRadius"]
 shape = SubResource("CircleShape2D_61i2a")
 
 [node name="AttackRadius" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
+monitoring = false
+monitorable = false
 
 [node name="AttackShape" type="CollisionShape2D" parent="AttackRadius"]
 shape = SubResource("CircleShape2D_wa72j")

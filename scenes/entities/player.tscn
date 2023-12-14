@@ -734,6 +734,7 @@ texture_scale = 1.25
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 
 [node name="AttackEffect" type="Node2D" parent="."]
 

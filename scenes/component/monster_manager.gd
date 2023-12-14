@@ -5,12 +5,13 @@ class_name MonsterManager
 @onready var enemySpawnsParent = $"../ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"
 
 @export var monsters : Array[PackedScene]
+@export var monsterChances : Array[float]
 @export var maxMobsAlive : int
 @export var curMobsAlive : int
 @export var spawnCD : float
 @export var curSpawnTimer : float
 
-var distToSpawn : float = 50.0
+var distToSpawn : float = 25
 var currentState : State = State.waiting_to_spawn
 var monsterRNG
 
@@ -22,39 +23,39 @@ enum State {
 }
 
 func _process(delta):
-	print(currentState)
+	maxMobsAlive = 12 + (GlobalVariables.gameTimer / 5)
 	match currentState:
 		State.waiting_to_spawn:
 			ProcessSpawnTimer(delta)
 			#List of checks before spawning monsters
 			if curSpawnTimer >= spawnCD:
 				currentState = State.spawning
-				monsterRNG = RandomNumberGenerator.new()
 				
 		State.spawning:
 			#Find Spawn Location
 			var spawnLocationCount = enemySpawnsParent.get_child_count()
 			
+			
+			
+			monsterRNG = RandomNumberGenerator.new()
 			var rng = RandomNumberGenerator.new()
 			
 			var spawnLocation = enemySpawnsParent.get_child(rng.randi_range(0, spawnLocationCount-2))
 			var distToPlayer = player.global_position - spawnLocation.global_position
-			if abs(distToPlayer.x) >= distToSpawn and abs(distToPlayer.y) <= distToSpawn and spawnLocation.get_child_count() == 0:
+			if abs(distToPlayer.x) >= distToSpawn and abs(distToPlayer.y) >= distToSpawn:
 				#Then instantiate mob & add as child
 				var spawnChance = monsterRNG.randf_range(0, 1)
 				var monster
-				if spawnChance <= .33:
-					monster = monsters[0].instantiate()
-					spawnLocation.add_child(monster)
-					monster.global_position = spawnLocation.global_position
-					curMobsAlive += 1
+				var cumulative = 0.0
+				for spawn in range(monsters.size()):
+					cumulative += monsterChances[spawn-1]
+					if spawnChance <= cumulative:
+						monster = monsters[spawn].instantiate()
+						spawnLocation.add_child(monster)
+						monster.global_position = spawnLocation.global_position
+						curMobsAlive += 1
 					currentState = State.reseting
-				if spawnChance > .33 and spawnChance <= .66:
-					monster = monsters[1].instantiate()
-					spawnLocation.add_child(monster)
-					monster.global_position = spawnLocation.global_position
-					curMobsAlive += 1
-					currentState = State.reseting
+				
 			
 		State.reseting:
 			#Set state back to default

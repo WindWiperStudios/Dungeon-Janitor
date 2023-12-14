@@ -194,15 +194,15 @@ justification_flags = 0
 clip_text = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Attack" type="Label" parent="NotShaded/Instructions Box"]
+[node name="Map" type="Label" parent="NotShaded/Instructions Box"]
 texture_filter = 1
 offset_left = -4.02857
 offset_top = -13.4194
 offset_right = 76.9714
 offset_bottom = 8.58063
 scale = Vector2(0.261824, 0.109475)
-text = "CLICK 
-TO ATTACK"
+text = "Tab	
+for a Map"
 label_settings = SubResource("LabelSettings_10ven")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -211,10 +211,10 @@ clip_text = true
 script = ExtResource("8_3e33m")
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="NotShaded/Instructions Box/Attack"]
+[node name="Area2D" type="Area2D" parent="NotShaded/Instructions Box/Map"]
 position = Vector2(38.4664, 10.5679)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NotShaded/Instructions Box/Attack/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NotShaded/Instructions Box/Map/Area2D"]
 position = Vector2(3.07731, 0)
 shape = SubResource("RectangleShape2D_v8na1")
 
@@ -260,15 +260,15 @@ libraries = {
 }
 script = ExtResource("5_odfvn")
 
-[node name="TutorialMap" type="Label" parent="NotShaded/Instructions Box"]
+[node name="TutorialAttack" type="Label" parent="NotShaded/Instructions Box"]
 texture_filter = 1
 offset_left = 26.9914
 offset_top = -15.0389
 offset_right = 125.991
 offset_bottom = 34.9611
 scale = Vector2(0.21, 0.1)
-text = "Tab 
-for map"
+text = "Click to
+Attack!"
 label_settings = ExtResource("5_0ys2u")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -276,12 +276,11 @@ autowrap_mode = 3
 script = ExtResource("12_5qrrp")
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="NotShaded/Instructions Box/TutorialMap"]
+[node name="Area2D" type="Area2D" parent="NotShaded/Instructions Box/TutorialAttack"]
 position = Vector2(47.9592, 23.1368)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NotShaded/Instructions Box/TutorialMap/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NotShaded/Instructions Box/TutorialAttack/Area2D"]
 position = Vector2(-10.5509, -1.15692)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ks5h8")
 
 [node name="MapWalls" type="Area2D" parent="."]
@@ -294,7 +293,9 @@ position = Vector2(253, 215)
 scale = Vector2(35, 40)
 polygon = PackedVector2Array(-6.74286, -0.15, -6.8, -1.725, -5.88571, -1.725, -5.88571, -2.95, -6.28571, -2.975, -6.31429, -5.375, -5.82857, -5.375, -5.82857, -4.975, -4.05714, -4.95, -4.02857, -4.2, -1.28571, -4.2, -1.28571, 1, -1.71429, 1, -1.71429, 1.375, -0.8, 1.425, -0.8, 2.2, -1.71429, 2.225, -1.68571, 3.75, -2.14286, 3.8, -2.2, 1.475, -4.45714, 1.4, -4.45714, 1.025, -4.91429, 1.025, -4.88571, 3, -4.42857, 3, -4.45714, 1.85, -2.65714, 1.85, -2.65714, 4.6, -1.68571, 4.625, -1.68571, 4.975, -1.34286, 5, -1.28571, 3.45, -0.342857, 3.4, -0.314286, -0.175, 0.0857143, -0.175, 0.114286, 1.375, 0.571429, 1.375, 0.571429, -0.15, 1.4, -0.15, 1.45714, 0.65, 1, 0.6, 1, 1, 1.85714, 1, 1.88571, -0.525, -0.371428, -0.6, -0.371428, -4.55, -2.68571, -4.6, -2.68571, -4.975, 1.02857, -5, 1, -4.2, 0.0571427, -4.2, 0.114286, -3.875, 1.91429, -3.8, 1.91429, -4.6, 3.28571, -4.55, 3.31429, -3.8, 3.8, -3.75, 3.74286, -1.775, 3.31429, -1.775, 3.31429, -1.425, 3.77143, -1.375, 3.74286, -0.65, 2.8, -0.55, 2.77143, -4.175, 2.4, -4.175, 2.4, -0.225, 3.82857, -0.175, 3.74286, 1.45, 1.54286, 1.45, 1.48571, 2.15, 0.114286, 2.225, 0.114286, 2.925, 1.11429, 3.075, 1.05714, 4.2, 1.48571, 4.15, 1.48571, 3.775, 2.4, 3.825, 2.4, 4.625, 2.77143, 4.625, 2.82857, 3.075, 2.34286, 3.05, 2.34286, 3.4, 1.88571, 3.4, 1.91429, 2.25, 2.37143, 2.275, 2.34286, 2.625, 3.34286, 2.65, 3.34286, 5.85, 2.8, 5.825, 2.77143, 5.025, 1.02857, 5.05, 1, 5.825, 0.485714, 5.775, 0.542857, 4.275, 0.142857, 4.25, 0.142857, 5.825, -0.371428, 5.825, -0.371428, 4.25, -0.8, 4.25, -0.8, 5.825, -2.17143, 5.85, -2.2, 5.075, -4.45714, 5, -4.51429, 3.45, -4.94286, 3.45, -4.94286, 3.825, -5.88571, 3.85, -5.82857, 4.175, -5.4, 4.25, -5.37143, 5.375, -4.4, 5.375, -4.4, 5.875, -5.88571, 5.85, -5.88571, 5.3, -6.77143, 5.3, -6.8, 4.225, -6.37143, 4.225, -6.31429, 0.275, -4.51429, 0.175, -4.48571, -4.525, -5.82857, -4.525, -5.85714, -4.25, -5.42857, -4.15, -5.37143, -2.55, -4.97143, -2.575, -4.94286, -0.65, -5.91429, -0.625, -5.82857, -0.95, -6.28571, -0.975, -6.25714, -0.0749998)
 
+[node name="WorldItemsParent" type="Node2D" parent="."]
+
 [connection signal="area_exited" from="NotShaded/Instructions Box/MoveInstructions/ReadZone" to="NotShaded/Instructions Box/MoveInstructions" method="_on_read_zone_area_exited"]
-[connection signal="area_exited" from="NotShaded/Instructions Box/Attack/Area2D" to="NotShaded/Instructions Box/Attack" method="_on_area_exited"]
-[connection signal="area_exited" from="NotShaded/Instructions Box/TutorialMap/Area2D" to="NotShaded/Instructions Box/TutorialMap" method="_on_area_exited"]
+[connection signal="area_exited" from="NotShaded/Instructions Box/Map/Area2D" to="NotShaded/Instructions Box/Map" method="_on_area_exited"]
+[connection signal="area_exited" from="NotShaded/Instructions Box/TutorialAttack/Area2D" to="NotShaded/Instructions Box/TutorialAttack" method="_on_area_exited"]
 [connection signal="area_exited" from="MapWalls" to="." method="_on_map_walls_area_exited"]

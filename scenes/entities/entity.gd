@@ -23,13 +23,14 @@ class_name Entity
 @export var projectileSpeed : float
 @export var projectile : PackedScene
 @export var glowStrength : float
+@export var enemy = false
 
 var currentState : State = State.idle
 var foundPlayer = false
 var chasingPlayer = false
 var attackingPlayer = false
 var attackTime : float
-var maxAliveRange = 80.0
+var maxAliveRange = 225.0
 
 enum State {
 	idle,
@@ -45,27 +46,28 @@ func _ready():
 	attackTime = attackCD
 
 func _physics_process(delta):
-	if attackTime < attackCD:
-		attackTime += delta
-	hpBar.global_position = self.global_position + hpBarOffset
-	if currentState == State.idle:
-		glow.energy = 0
-		entityAnimator.current_animation = "idle"
-		if player != null:
-			var distance = player.global_position - self.global_position
-			if abs(distance.x) > maxAliveRange and abs(distance.y) > maxAliveRange:
+	if enemy == true:
+		if attackTime < attackCD:
+			attackTime += delta
+		hpBar.global_position = self.global_position + hpBarOffset
+		if currentState == State.idle:
+			glow.energy = 0
+			entityAnimator.current_animation = "idle"
+			if abs((player.global_position - self.global_position)) > Vector2(maxAliveRange,maxAliveRange):
 				monsterManager.curMobsAlive -= 1
 				queue_free()
-	
-	if currentState == State.chasing:
-		entityAnimator.current_animation = "walking"
-		glow.energy = glowStrength
-		Chase()
 		
-	if currentState == State.attacking:
-		entityAnimator.current_animation = "attacking"
-		glow.energy = glowStrength
-		Attack()
+		if currentState == State.chasing:
+			entityAnimator.current_animation = "walking"
+			glow.energy = glowStrength
+			Chase()
+			
+		if currentState == State.attacking:
+			entityAnimator.current_animation = "attacking"
+			glow.energy = glowStrength
+			Attack()
+	else:
+		glow.energy = 0
 	
 	hpBar.value = hp.curHP
 	if hp.curHP < hp.maxHP:
@@ -73,15 +75,14 @@ func _physics_process(delta):
 	else: hpBar.visible = false
 
 func Chase():
-	if player != null:
-		var direction = player.global_position - self.global_position
-		velocity = direction.normalized() * moveSpeed
-		move_and_slide()
+	if enemy == true:
+		if player != null:
+			var direction = player.global_position - self.global_position
+			velocity = direction.normalized() * moveSpeed
+			move_and_slide()
 
 
 func DropWhenDead():
-	if monsterManager:
-		monsterManager.curMobsAlive -= 1
 	for i in range(0, itemDrops.size()):
 		var item = itemDrops[i].instantiate()
 		call_deferred("AddToRoot", item)
@@ -93,31 +94,35 @@ func AddToRoot(itemDropped : Node):
 
 
 func _on_search_area_entered(area):
-	if area.get_parent().name == "Player":
-		foundPlayer = true
-		chasingPlayer = true
-		GlobalVariables.monstersAggrod += 1
-		currentState = State.chasing
+	if enemy == true:
+		if area.get_parent().name == "Player":
+			foundPlayer = true
+			chasingPlayer = true
+			GlobalVariables.monstersAggrod += 1
+			currentState = State.chasing
 
 func _on_search_area_exited(area):
-	if area.get_parent().name == "Player":
-		foundPlayer = false
-		chasingPlayer = false
-		GlobalVariables.monstersAggrod -= 1
-		currentState = State.idle
+	if enemy == true:
+		if area.get_parent().name == "Player":
+			foundPlayer = false
+			chasingPlayer = false
+			GlobalVariables.monstersAggrod -= 1
+			currentState = State.idle
 
 func _on_attack_area_entered(area):
-	if area.get_parent().name == "Player":
-		attackingPlayer = true
-		chasingPlayer = false
-		currentState = State.attacking
+	if enemy == true:
+		if area.get_parent().name == "Player":
+			attackingPlayer = true
+			chasingPlayer = false
+			currentState = State.attacking
 
 
 func _on_attack_area_exited(area):
-	if area.get_parent().name == "Player":
-		attackingPlayer = false
-		chasingPlayer = true
-		currentState = State.chasing
+	if enemy == true:
+		if area.get_parent().name == "Player":
+			attackingPlayer = false
+			chasingPlayer = true
+			currentState = State.chasing
 
 func Attack():
 	if !rangedMob:

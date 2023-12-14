@@ -8,7 +8,7 @@ radius = 5.0
 
 [node name="Eyeball" type="Node2D"]
 script = ExtResource("1_7eylo")
-itemValue = 3
+itemValue = 2
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1

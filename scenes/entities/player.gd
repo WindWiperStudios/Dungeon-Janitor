@@ -34,9 +34,13 @@ var stunned = false
 var stunnedCD : float
 var stunTimer : float
 var pauseTimer : float = 0
+var attackCD : float = 0.6
+var dashTimer : float = 0
+var dashCD : float = .7
 
 var attackTimer = 0.0
 var mousePos = Vector2.ZERO
+var dirLastTraveled = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -48,6 +52,7 @@ func UpdateGlobalVars():
 	GlobalVariables.playerCurrentState = currentState
 	GlobalVariables.playerStunTimer = stunTimer
 	GlobalVariables.playerStunned = stunned
+	attackCD = GlobalVariables.playerAttackCD
 	
 func _ready():
 	GlobalVariables.paused.connect(Pause)
@@ -60,6 +65,8 @@ func _ready():
 
 func _process(delta):
 	UpdateGlobalVars()
+	if dashTimer < dashCD:
+		dashTimer += delta
 	if stunned:
 		stunTimer += delta
 		if stunTimer >= stunnedCD:
@@ -71,6 +78,9 @@ func _process(delta):
 	
 	if Input.is_action_pressed("map") == false:
 		minimap.visible = false
+	
+	if Input.is_action_just_pressed("dash"):
+		Dash(delta)
 	
 	if hp.curHP == hp.maxHP:
 		hpBar.visible = false
@@ -119,17 +129,19 @@ func _physics_process(delta):
 	
 	if currentState == State.attack:
 		attackTimer += delta
-		if attackTimer >= 0.36 and !fxPlayed and !stunned:
+		if attackTimer >= (attackCD / 2) and !fxPlayed and !stunned:
 			fxPlayed = true
 			Aim(mousePos)
 			fxAnimator.play("slashFX")
-		if attackTimer >= 0.6:
+		if attackTimer >= attackCD:
 			fxPlayed = false
 			attackTimer = 0.0
 			currentState = State.idle
 	
 	if Input.get_vector("left", "right", "up", "down") != Vector2.ZERO and currentState != State.attack:
 		currentState = State.walk
+		dirLastTraveled = Input.get_vector("left", "right", "up", "down")
+		
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0, moveSpeed)
@@ -155,3 +167,9 @@ func Unpause():
 
 func _on_hurt_button_pressed():
 	hp.takeDamage(3)
+
+func Dash(delta):
+	if dirLastTraveled != Vector2.ZERO and currentState != State.attack and dashTimer >= dashCD:
+		print("Dashing")
+		global_position += dirLastTraveled * 500 * delta
+		dashTimer = 0.0

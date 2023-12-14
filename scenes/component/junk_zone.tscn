@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpq44kkjqh24k"]
+[gd_scene load_steps=13 format=3 uid="uid://cpq44kkjqh24k"]
 
 [ext_resource type="PackedScene" uid="uid://40jjdh6r75rs" path="res://scenes/component/world_zone.tscn" id="1_ywabk"]
 [ext_resource type="Script" path="res://scenes/component/junk_zone.gd" id="2_0v5ym"]
+[ext_resource type="LabelSettings" uid="uid://b2nh6bjr0fkry" path="res://scenes/component/ZoneSubTextLabel.tres" id="3_uyoyq"]
+[ext_resource type="Texture2D" uid="uid://doaybdpbmg87b" path="res://art/Arrow.png" id="4_ekbp6"]
 
 [sub_resource type="Animation" id="Animation_g8de4"]
 length = 0.001
@@ -47,6 +49,90 @@ corner_detail = 4
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyuc5"]
 bg_color = Color(0.705882, 0.592157, 0.0117647, 1)
 
+[sub_resource type="Animation" id="Animation_cahst"]
+resource_name = "intro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-4, -23), Vector2(-8, -50), Vector2(-10, -47)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.025, 0.025), Vector2(0.148, 0.148), Vector2(0.09, 0.09)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eeg88"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, -47)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.09, 0.09)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8x2t"]
+_data = {
+"RESET": SubResource("Animation_eeg88"),
+"intro": SubResource("Animation_cahst")
+}
+
 [node name="JunkZone" instance=ExtResource("1_ywabk")]
 script = ExtResource("2_0v5ym")
 menuScene = null
@@ -70,6 +156,36 @@ theme_override_styles/background = SubResource("StyleBoxFlat_scltd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jyuc5")
 max_value = 2.5
 show_percentage = false
+
+[node name="UpgradeText" type="Label" parent="." index="4"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+offset_left = -10.0
+offset_top = -47.0
+offset_right = 416.0
+offset_bottom = 148.0
+scale = Vector2(0.09, 0.09)
+text = "Junk rate slow?
+Try
+Upgrading"
+label_settings = ExtResource("3_uyoyq")
+horizontal_alignment = 1
+
+[node name="UpgradeAnimation" type="AnimationPlayer" parent="UpgradeText" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_a8x2t")
+}
+
+[node name="TextureRect" type="TextureRect" parent="UpgradeText" index="1"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 222.222
+offset_top = 211.111
+offset_right = 472.222
+offset_bottom = 335.111
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("4_ekbp6")
 
 [connection signal="area_entered" from="." to="." method="_on_zone_entered"]
 [connection signal="area_exited" from="." to="." method="_on_zone_exited"]

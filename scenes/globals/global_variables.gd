@@ -13,6 +13,7 @@ var maxGold = maxGoldDefault
 
 var pausedBool = false
 var pauseTimer : float = 0.0
+var gameTimer : float
 
 #Option Variables
 var musicVolume : float
@@ -26,13 +27,21 @@ var playerGlobalPosition
 var playerStunned
 var playerStunTimer
 var playerCurrentState
+var playerAttackCDDefault = .6
+var playerAttackCD = playerAttackCDDefault
 
 #UpgradePriceVariables
 var junkingSpeedUpgradePrice : int = 25
+var attackSpeedUpgradePrice : int = 35
+var walletSizeUpgradePrice : int = 75
 
 #UpgradeStageVariables
 var junkingSpeedUpgradeLevel = 0
 var junkingSpeedUpgradeMax = 4
+var attackSpeedUpgradeLevel = 0
+var attackSpeedUpgradeMax = 3
+var walletSizeUpgradeLevel = 0
+var walletSizeUpgradeMax = 4
 
 #Monster related variables
 var monstersAggrod = 0
@@ -49,9 +58,11 @@ func _ready():
 	restarting.connect(ResetScore)
 
 func _process(delta):
+	gameTimer += delta
 	
-	
+	attackSpeedUpgradePrice = 35 + (attackSpeedUpgradeLevel * 30)
 	junkingSpeedUpgradePrice = 25 + (junkingSpeedUpgradeLevel * 5)
+	walletSizeUpgradePrice = 75 + (walletSizeUpgradeLevel * 45)
 	
 	if Input.is_action_just_pressed("pause") and pauseTimer == 0.0:
 		pausedBool = true
@@ -86,4 +97,7 @@ func ResetScore():
 	playerHP = playerMaxHP
 	junkingSpeedUpgradePrice = 25
 	junkingSpeedUpgradeLevel = 0
+	attackSpeedUpgradePrice = 35
+	attackSpeedUpgradeLevel = 0
 	monstersAggrod = 0
+	playerAttackCD = playerAttackCDDefault

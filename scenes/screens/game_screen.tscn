@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=14 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://xq6m3pu17sk5" path="res://scenes/component/monster_manager.tscn" id="2_c6gxn"]
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
+[ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="4_ptnx8"]
 [ext_resource type="Script" path="res://scenes/screens/UIHolder.gd" id="7_3k644"]
 [ext_resource type="FontFile" uid="uid://ciwqyh86cso1l" path="res://art/FFFFORWA.TTF" id="7_pymwp"]
 [ext_resource type="Texture2D" uid="uid://b6dkp28i6mxds" path="res://art/halfBag.png" id="8_b8lla"]
@@ -40,6 +41,8 @@ z_as_relative = false
 
 [node name="SpawnPoint00" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 position = Vector2(60.3273, 24.32)
+
+[node name="Skeleton" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent/SpawnPoint00" instance=ExtResource("4_ptnx8")]
 
 [node name="SpawnPoint01" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 position = Vector2(247, 217)
@@ -106,6 +109,132 @@ position = Vector2(177.091, 218.33)
 
 [node name="SpawnPoint22" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 position = Vector2(107.796, 239.749)
+
+[node name="SpawnPoint23" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(53.0057, 240.64)
+
+[node name="SpawnPoint24" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(125.169, 200.995)
+
+[node name="SpawnPoint25" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(187.086, 174.268)
+
+[node name="SpawnPoint26" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(67.2601, 144.423)
+
+[node name="SpawnPoint27" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(34.7423, 158.232)
+
+[node name="SpawnPoint28" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(58.3511, 122.596)
+
+[node name="SpawnPoint29" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(46.324, 64.6874)
+
+[node name="SpawnPoint30" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(175.504, 56.6693)
+
+[node name="SpawnPoint31" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(199.559, 22.3697)
+
+[node name="SpawnPoint32" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(250.34, 85.6235)
+
+[node name="SpawnPoint33" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(273.058, 138.632)
+
+[node name="SpawnPoint34" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(304.239, 122.596)
+
+[node name="SpawnPoint35" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(257.912, 174.713)
+
+[node name="SpawnPoint36" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(308.248, 173.822)
+
+[node name="SpawnPoint37" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(360.811, 49.5421)
+
+[node name="SpawnPoint38" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(365.266, 175.159)
+
+[node name="SpawnPoint39" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(334.084, 252.667)
+
+[node name="SpawnPoint40" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(289.539, 226.386)
+
+[node name="SpawnPoint41" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(249.894, 224.158)
+
+[node name="SpawnPoint42" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(248.558, 292.758)
+
+[node name="SpawnPoint43" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(284.194, 218.813)
+
+[node name="SpawnPoint44" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(194.213, 200.549)
+
+[node name="SpawnPoint45" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(154.568, 226.831)
+
+[node name="SpawnPoint46" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(187.531, 294.094)
+
+[node name="SpawnPoint47" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(137.641, 301.667)
+
+[node name="SpawnPoint48" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(60.1328, 275.385)
+
+[node name="SpawnPoint49" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(228.958, 370.711)
+
+[node name="SpawnPoint50" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(184.859, 325.721)
+
+[node name="SpawnPoint51" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(142.095, 405.902)
+
+[node name="SpawnPoint52" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(181.74, 412.138)
+
+[node name="SpawnPoint53" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(154.568, 328.394)
+
+[node name="SpawnPoint54" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(275.285, 371.602)
+
+[node name="SpawnPoint55" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(277.512, 346.657)
+
+[node name="SpawnPoint56" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(211.586, 362.693)
+
+[node name="SpawnPoint57" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(296.666, 402.338)
+
+[node name="SpawnPoint58" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(354.129, 408.129)
+
+[node name="SpawnPoint59" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(360.811, 357.793)
+
+[node name="SpawnPoint60" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(249.003, 434.856)
+
+[node name="SpawnPoint61" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(247.667, 404.12)
+
+[node name="SpawnPoint62" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(281.076, 429.065)
+
+[node name="SpawnPoint63" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(216.486, 409.465)
+
+[node name="SpawnPoint64" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
+position = Vector2(368.829, 248.213)
 
 [node name="ProjectileParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"]
 
@@ -257,5 +386,6 @@ visible = false
 [connection signal="button_up" from="ScreenCanvas/ScreenMargin/DevMenuUI/Spawn Enemy Button" to="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent" method="SpawnEnemy"]
 [connection signal="pressed" from="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer2/HurtButton" to="ScreenCanvas/ScreenMargin/PlayerCanvas/Player" method="_on_hurt_button_pressed"]
 
+[editable path="ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent/SpawnPoint00/Skeleton"]
 [editable path="ScreenCanvas/ScreenMargin/PlayerCanvas/Player"]
 [editable path="ScreenCanvas/ScreenMargin/WorldCanvas/World"]

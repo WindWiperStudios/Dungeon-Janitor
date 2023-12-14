@@ -17,6 +17,7 @@ offset_right = 32.0
 offset_bottom = 48.2
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 size_flags_horizontal = 3
 size_flags_vertical = 4
 color = Color(0.447059, 0.447059, 0.447059, 0.211765)
@@ -27,7 +28,7 @@ offset_left = 1.0
 offset_top = 2.0
 offset_right = 323.0
 offset_bottom = 75.0
-scale = Vector2(0.09, 0.09)
+scale = Vector2(0.18, 0.18)
 text = "Upgrades!"
 label_settings = ExtResource("2_hgdrt")
 horizontal_alignment = 1
@@ -35,39 +36,123 @@ horizontal_alignment = 1
 [node name="JunkingSpeedText" type="Label" parent="."]
 texture_filter = 1
 offset_left = 1.0
-offset_top = 15.0
+offset_top = 17.0
 offset_right = 501.0
-offset_bottom = 115.0
-scale = Vector2(0.08, 0.08)
+offset_bottom = 117.0
+scale = Vector2(0.16, 0.16)
 text = "Junking Speed"
 label_settings = ExtResource("2_hgdrt")
 
 [node name="SpeedUpgradeButton" type="TextureButton" parent="JunkingSpeedText"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 325.0
-offset_top = 83.0
-offset_right = 341.0
-offset_bottom = 99.0
+offset_left = 331.25
+offset_top = 68.75
+offset_right = 347.25
+offset_bottom = 84.75
 scale = Vector2(3.14, 3.14)
 texture_normal = ExtResource("3_mrt2i")
 
 [node name="JunkSpeedDetailText" type="Label" parent="JunkingSpeedText"]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 50.0
-offset_right = 333.0
-offset_bottom = 123.0
+offset_left = 18.75
+offset_top = 63.0
+offset_right = 128.75
+offset_bottom = 128.0
+scale = Vector2(0.685, 0.685)
 text = "2.5s"
 label_settings = ExtResource("2_hgdrt")
 
 [node name="JunkingSpeedPrice" type="Label" parent="JunkingSpeedText"]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 100.0
-offset_right = 299.0
-offset_bottom = 165.0
+offset_left = 268.75
+offset_top = 75.0
+offset_right = 367.75
+offset_bottom = 140.0
+scale = Vector2(0.57, 0.57)
 text = "$25"
 label_settings = ExtResource("2_hgdrt")
 
+[node name="AttackSpeedText" type="Label" parent="."]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 183.0
+offset_bottom = 166.0
+scale = Vector2(0.16, 0.16)
+text = "Attack Speed"
+label_settings = ExtResource("2_hgdrt")
+
+[node name="AttackSpeedUpgradeButton" type="TextureButton" parent="AttackSpeedText"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 331.25
+offset_top = 62.5
+offset_right = 347.25
+offset_bottom = 78.5
+scale = Vector2(3.14, 3.14)
+texture_normal = ExtResource("3_mrt2i")
+
+[node name="AttkSpeedDetailText" type="Label" parent="AttackSpeedText"]
+layout_mode = 0
+offset_left = 31.25
+offset_top = 62.5
+offset_right = 75.25
+offset_bottom = 127.5
+scale = Vector2(0.77, 0.77)
+text = ".6"
+label_settings = ExtResource("2_hgdrt")
+
+[node name="AttkSpeedPrice" type="Label" parent="AttackSpeedText"]
+layout_mode = 0
+offset_left = 268.75
+offset_top = 68.75
+offset_right = 367.75
+offset_bottom = 133.75
+scale = Vector2(0.62, 0.62)
+text = "$35"
+label_settings = ExtResource("2_hgdrt")
+
+[node name="WalletSizeText" type="Label" parent="."]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 53.0
+offset_right = 282.0
+offset_bottom = 183.0
+scale = Vector2(0.16, 0.16)
+text = "Wallet Size"
+label_settings = ExtResource("2_hgdrt")
+
+[node name="WalletUpgradeButton" type="TextureButton" parent="WalletSizeText"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 331.25
+offset_top = 62.5
+offset_right = 347.25
+offset_bottom = 78.5
+scale = Vector2(3.14, 3.14)
+texture_normal = ExtResource("3_mrt2i")
+
+[node name="WalletDetailText" type="Label" parent="WalletSizeText"]
+layout_mode = 0
+offset_left = 31.25
+offset_top = 62.5
+offset_right = 75.25
+offset_bottom = 127.5
+scale = Vector2(0.77, 0.77)
+text = "100"
+label_settings = ExtResource("2_hgdrt")
+
+[node name="WalletPrice" type="Label" parent="WalletSizeText"]
+layout_mode = 0
+offset_left = 268.75
+offset_top = 68.75
+offset_right = 367.75
+offset_bottom = 133.75
+scale = Vector2(0.62, 0.62)
+text = "$75"
+label_settings = ExtResource("2_hgdrt")
+
 [connection signal="button_down" from="JunkingSpeedText/SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_button_down"]
+[connection signal="button_down" from="AttackSpeedText/AttackSpeedUpgradeButton" to="." method="_on_attack_speed_upgrade_button_button_down"]
+[connection signal="button_down" from="WalletSizeText/WalletUpgradeButton" to="." method="_on_wallet_upgrade_button_button_down"]

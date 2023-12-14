@@ -7,5 +7,6 @@
 [node name="MonsterManager" type="Node"]
 script = ExtResource("1_aopgn")
 monsters = Array[PackedScene]([ExtResource("3_easpk"), ExtResource("2_vn0p4")])
-maxMobsAlive = 5
+monsterChances = Array[float]([0.3, 0.7])
+maxMobsAlive = 12
 spawnCD = 0.5
