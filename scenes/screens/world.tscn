@@ -119,7 +119,6 @@ texture_filter = 1
 script = ExtResource("1_74rs1")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 0
 visibility_layer = 0
 color = Color(0.0509804, 0.0509804, 0.0509804, 1)
