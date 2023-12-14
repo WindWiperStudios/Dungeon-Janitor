@@ -4,6 +4,8 @@ extends Area2D
 @onready var weapon = $"../../WeaponPoint/Weapon"
 @onready var damage = weapon.attackDamage
 @onready var attackBox = $AttackBox
+@onready var fxAnimation = $"../FXAnimation"
+@onready var soundFX = $"../../SoundFX"
 
 @export var alreadyHit : bool = false
 
@@ -30,3 +32,4 @@ func TimerCheck() -> void:
 	if curTimer >= hitTimer:
 		alreadyHit = false
 	else: return
+

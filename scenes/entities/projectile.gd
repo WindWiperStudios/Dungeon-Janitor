@@ -33,6 +33,7 @@ func _physics_process(delta):
 func _on_hurt_box_area_entered(area):
 	if area.get_parent().name == "Player":
 		DoDamage(area.get_parent())
+	else: queue_free()
 
 func DoDamage(area):
 	if area.hp:
@@ -43,8 +44,3 @@ func DoDamage(area):
 				area.stunned = true
 				
 	queue_free()
-
-
-func _on_hurt_box_area_exited(area):
-	if area.get_parent().name == "World":
-		queue_free()

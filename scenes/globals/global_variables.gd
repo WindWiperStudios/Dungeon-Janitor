@@ -29,11 +29,15 @@ var playerStunTimer
 var playerCurrentState
 var playerAttackCDDefault = .6
 var playerAttackCD = playerAttackCDDefault
+var playerDashTimer = 0
+var playerDashCD = .7
+var playerHasDash = false
 
 #UpgradePriceVariables
 var junkingSpeedUpgradePrice : int = 25
 var attackSpeedUpgradePrice : int = 35
 var walletSizeUpgradePrice : int = 75
+var dashUpgradePrice : int = 125
 
 #UpgradeStageVariables
 var junkingSpeedUpgradeLevel = 0
@@ -59,10 +63,6 @@ func _ready():
 
 func _process(delta):
 	gameTimer += delta
-	
-	attackSpeedUpgradePrice = 35 + (attackSpeedUpgradeLevel * 30)
-	junkingSpeedUpgradePrice = 25 + (junkingSpeedUpgradeLevel * 5)
-	walletSizeUpgradePrice = 75 + (walletSizeUpgradeLevel * 45)
 	
 	if Input.is_action_just_pressed("pause") and pauseTimer == 0.0:
 		pausedBool = true
@@ -99,5 +99,7 @@ func ResetScore():
 	junkingSpeedUpgradeLevel = 0
 	attackSpeedUpgradePrice = 35
 	attackSpeedUpgradeLevel = 0
+	walletSizeUpgradePrice = 75
+	walletSizeUpgradeLevel = 0
 	monstersAggrod = 0
 	playerAttackCD = playerAttackCDDefault

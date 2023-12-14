@@ -314,7 +314,6 @@ layout_mode = 2
 
 [node name="DevMenuUI" type="VBoxContainer" parent="ScreenCanvas/ScreenMargin"]
 process_mode = 1
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 

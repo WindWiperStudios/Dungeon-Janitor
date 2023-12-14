@@ -9,15 +9,17 @@ signal mobDied
 
 var gameOverScene
 
-@onready var monsterManager = $"../../../../../../../MonsterManager"
 @onready var parent = get_parent()
 
 signal DropItem
 
+var monsterManager
 var timeToDamage = 1.0
 var damageTime = 1.0
 
 func _ready():
+	if get_parent().name != "Player":
+		monsterManager = $"../../../../../../../MonsterManager"
 	gameOverScene = load("res://scenes/screens/game_over.tscn")
 	curHP = maxHP
 

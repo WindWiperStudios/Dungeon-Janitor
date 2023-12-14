@@ -53,6 +53,8 @@ func UpdateGlobalVars():
 	GlobalVariables.playerStunTimer = stunTimer
 	GlobalVariables.playerStunned = stunned
 	attackCD = GlobalVariables.playerAttackCD
+	GlobalVariables.playerDashTimer = dashTimer
+	GlobalVariables.playerDashCD = dashCD
 	
 func _ready():
 	GlobalVariables.paused.connect(Pause)
@@ -79,7 +81,7 @@ func _process(delta):
 	if Input.is_action_pressed("map") == false:
 		minimap.visible = false
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and GlobalVariables.playerHasDash == true:
 		Dash(delta)
 	
 	if hp.curHP == hp.maxHP:
@@ -170,6 +172,8 @@ func _on_hurt_button_pressed():
 
 func Dash(delta):
 	if dirLastTraveled != Vector2.ZERO and currentState != State.attack and dashTimer >= dashCD:
-		print("Dashing")
 		global_position += dirLastTraveled * 500 * delta
+		fxAnimator.play("dash")
+		soundFXPlayer.stream = soundFXPlayer.sounds[2]
+		soundFXPlayer.play()
 		dashTimer = 0.0

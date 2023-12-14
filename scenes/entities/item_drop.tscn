@@ -12,5 +12,3 @@ collision_layer = 32
 collision_mask = 33
 
 [node name="PickupShape" type="CollisionShape2D" parent="PickupBox"]
-
-[connection signal="area_entered" from="PickupBox" to="." method="_on_pickupbox_area_entered"]

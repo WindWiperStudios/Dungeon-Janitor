@@ -13,8 +13,8 @@ var randX = RandomNumberGenerator.new()
 var randY = RandomNumberGenerator.new()
 
 func _ready():
-	pickupBox.connect("area_entered", _on_pickupbox_area_entered)
 	spawnCheckTimer = 0.0
+	pickupBox.area_entered.connect(_on_pickupbox_area_entered)
 	
 func _process(delta):
 	randX = RandomNumberGenerator.new()
@@ -28,7 +28,7 @@ func _process(delta):
 			checkedSpawnedItems = true
 
 func _on_pickupbox_area_entered(area):
-	if currency and area.get_parent().name == "Player":
+	if currency and area.get_parent().name == "Player" and GlobalVariables.gold < GlobalVariables.maxGold:
 		GlobalVariables.gold += itemValue
 		GlobalVariables.goldPickedUp.emit()
 		self.queue_free()
@@ -41,7 +41,7 @@ func _on_pickupbox_area_entered(area):
 		GlobalVariables.itemPickedUp.emit()
 		self.queue_free()
 	
-	if healthItem == true and area.get_parent().name == "Player":
+	if healthItem == true and area.get_parent().name == "Player" and GlobalVariables.playerHP < GlobalVariables.playerMaxHP:
 		area.get_parent().hp.curHP += itemValue
 		self.queue_free()
 

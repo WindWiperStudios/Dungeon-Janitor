@@ -1,10 +1,37 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7fd4bqdovdvx"]
 
+[ext_resource type="Script" path="res://scenes/entities/item_drop.gd" id="1_1xm5f"]
 [ext_resource type="Texture2D" uid="uid://cqbuylxclmyu7" path="res://art/coinSheet.png" id="2_6yeo0"]
-[ext_resource type="Script" path="res://scenes/entities/coin.gd" id="2_hyftl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4nynx"]
 radius = 4.0
+
+[sub_resource type="Animation" id="Animation_ybrve"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0.79)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_l84o5"]
 resource_name = "hover"
@@ -35,33 +62,6 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 2, 1]
 }
 
-[sub_resource type="Animation" id="Animation_ybrve"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0.79)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p07av"]
 _data = {
 "RESET": SubResource("Animation_ybrve"),
@@ -69,8 +69,8 @@ _data = {
 }
 
 [node name="Coin" type="Node2D"]
-script = ExtResource("2_hyftl")
-itemValue = 3
+script = ExtResource("1_1xm5f")
+itemValue = 5
 currency = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -92,6 +92,3 @@ shape = SubResource("CircleShape2D_4nynx")
 libraries = {
 "": SubResource("AnimationLibrary_p07av")
 }
-
-[connection signal="area_entered" from="PickupBox" to="." method="_on_pickupbox_area_entered"]
-[connection signal="area_entered" from="PickupBox" to="." method="_on_hitbox_area_entered"]

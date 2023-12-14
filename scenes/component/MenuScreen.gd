@@ -10,6 +10,9 @@ class_name MenuScene
 @onready var wallet_size_text = $WalletSizeText
 @onready var wallet_detail_text = $WalletSizeText/WalletDetailText
 @onready var wallet_price = $WalletSizeText/WalletPrice
+@onready var dash_text = $DashText
+@onready var dash_detail_text = $DashText/DashDetailText
+@onready var dash_price = $DashText/DashPrice
 
 func _process(_delta):
 	if GlobalVariables.junkingSpeedUpgradeLevel < GlobalVariables.junkingSpeedUpgradeMax:
@@ -29,13 +32,19 @@ func _process(_delta):
 		wallet_price.text = "$" + str(GlobalVariables.walletSizeUpgradePrice)
 	elif GlobalVariables.walletSizeUpgradeLevel >= GlobalVariables.walletSizeUpgradeMax:
 		wallet_size_text.visible = false
-
+	
+	if GlobalVariables.playerHasDash == false:
+		dash_detail_text.text = "Unlock"
+		dash_price.text = "$" + str(GlobalVariables.dashUpgradePrice)
+	elif GlobalVariables.playerHasDash == true:
+		dash_text.visible = false
 
 func _on_speed_upgrade_button_button_down():
 	if GlobalVariables.gold >= GlobalVariables.junkingSpeedUpgradePrice and GlobalVariables.junkingSpeedUpgradeLevel < GlobalVariables.junkingSpeedUpgradeMax:
 		GlobalVariables.gold -= GlobalVariables.junkingSpeedUpgradePrice
 		GlobalVariables.goldPickedUp.emit()
 		GlobalVariables.junkingSpeedUpgradeLevel += 1
+		GlobalVariables.junkingSpeedUpgradePrice = (25 + (GlobalVariables.junkingSpeedUpgradeLevel * 5))
 		GlobalVariables.junkingSpeed = 2.5 - (GlobalVariables.junkingSpeedUpgradeLevel * .5)
 
 
@@ -44,6 +53,7 @@ func _on_attack_speed_upgrade_button_button_down():
 		GlobalVariables.gold -= GlobalVariables.attackSpeedUpgradePrice
 		GlobalVariables.goldPickedUp.emit()
 		GlobalVariables.attackSpeedUpgradeLevel += 1
+		GlobalVariables.attackSpeedUpgradePrice = (35 + (GlobalVariables.attackSpeedUpgradeLevel * 30))
 		GlobalVariables.playerAttackCD = GlobalVariables.playerAttackCDDefault - (GlobalVariables.attackSpeedUpgradeLevel * .15)
 
 
@@ -52,4 +62,12 @@ func _on_wallet_upgrade_button_button_down():
 		GlobalVariables.gold -= GlobalVariables.walletSizeUpgradePrice
 		GlobalVariables.goldPickedUp.emit()
 		GlobalVariables.walletSizeUpgradeLevel += 1
+		GlobalVariables.walletSizeUpgradePrice = (75 + (GlobalVariables.walletSizeUpgradeLevel * 45))
 		GlobalVariables.maxGold = GlobalVariables.maxGoldDefault + (GlobalVariables.walletSizeUpgradeLevel * 100)
+
+
+func _on_dash_upgrade_button_button_down():
+	if GlobalVariables.gold >= GlobalVariables.dashUpgradePrice and GlobalVariables.playerHasDash == false:
+		GlobalVariables.gold -= GlobalVariables.dashUpgradePrice
+		GlobalVariables.goldPickedUp.emit()
+		GlobalVariables.playerHasDash = true

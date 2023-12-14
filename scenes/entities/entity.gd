@@ -23,6 +23,7 @@ class_name Entity
 @export var projectileSpeed : float
 @export var projectile : PackedScene
 @export var glowStrength : float
+@export var spawnRarity : float
 @export var enemy = false
 
 var currentState : State = State.idle

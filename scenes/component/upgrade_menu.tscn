@@ -65,9 +65,9 @@ label_settings = ExtResource("2_hgdrt")
 
 [node name="JunkingSpeedPrice" type="Label" parent="JunkingSpeedText"]
 layout_mode = 0
-offset_left = 268.75
+offset_left = 243.75
 offset_top = 75.0
-offset_right = 367.75
+offset_right = 342.75
 offset_bottom = 140.0
 scale = Vector2(0.57, 0.57)
 text = "$25"
@@ -105,9 +105,9 @@ label_settings = ExtResource("2_hgdrt")
 
 [node name="AttkSpeedPrice" type="Label" parent="AttackSpeedText"]
 layout_mode = 0
-offset_left = 268.75
+offset_left = 243.75
 offset_top = 68.75
-offset_right = 367.75
+offset_right = 342.75
 offset_bottom = 133.75
 scale = Vector2(0.62, 0.62)
 text = "$35"
@@ -145,14 +145,55 @@ label_settings = ExtResource("2_hgdrt")
 
 [node name="WalletPrice" type="Label" parent="WalletSizeText"]
 layout_mode = 0
-offset_left = 268.75
+offset_left = 243.75
 offset_top = 68.75
-offset_right = 367.75
+offset_right = 342.75
 offset_bottom = 133.75
 scale = Vector2(0.62, 0.62)
 text = "$75"
 label_settings = ExtResource("2_hgdrt")
 
+[node name="DashText" type="Label" parent="."]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 70.0
+offset_right = 282.0
+offset_bottom = 200.0
+scale = Vector2(0.16, 0.16)
+text = "DASH"
+label_settings = ExtResource("2_hgdrt")
+
+[node name="DashUpgradeButton" type="TextureButton" parent="DashText"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 331.25
+offset_top = 62.5
+offset_right = 347.25
+offset_bottom = 78.5
+scale = Vector2(3.14, 3.14)
+texture_normal = ExtResource("3_mrt2i")
+
+[node name="DashDetailText" type="Label" parent="DashText"]
+layout_mode = 0
+offset_left = 31.25
+offset_top = 62.5
+offset_right = 75.25
+offset_bottom = 127.5
+scale = Vector2(0.77, 0.77)
+text = "100"
+label_settings = ExtResource("2_hgdrt")
+
+[node name="DashPrice" type="Label" parent="DashText"]
+layout_mode = 0
+offset_left = 243.75
+offset_top = 68.75
+offset_right = 375.75
+offset_bottom = 133.75
+scale = Vector2(0.62, 0.62)
+text = "$125"
+label_settings = ExtResource("2_hgdrt")
+
 [connection signal="button_down" from="JunkingSpeedText/SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_button_down"]
 [connection signal="button_down" from="AttackSpeedText/AttackSpeedUpgradeButton" to="." method="_on_attack_speed_upgrade_button_button_down"]
 [connection signal="button_down" from="WalletSizeText/WalletUpgradeButton" to="." method="_on_wallet_upgrade_button_button_down"]
+[connection signal="button_down" from="DashText/DashUpgradeButton" to="." method="_on_dash_upgrade_button_button_down"]
