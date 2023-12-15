@@ -15,6 +15,9 @@ extends CharacterBody2D
 @onready var optionsMenu = $"../../../OptionsMenu"
 @onready var minimap = $"../../Minimap"
 @onready var devMenu = $"../../DevMenuUI"
+@onready var aimDot = $AimDot
+@onready var dash_sprite = $AttackEffect/DashSprite
+
 
 
 @export var moveSpeed = 300.0
@@ -40,6 +43,7 @@ var dashCD : float = .7
 
 var attackTimer = 0.0
 var mousePos = Vector2.ZERO
+var rightStickDir
 var dirLastTraveled = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -57,6 +61,7 @@ func UpdateGlobalVars():
 	GlobalVariables.playerDashCD = dashCD
 	
 func _ready():
+	rightStickDir = Vector2(0, 0)
 	GlobalVariables.paused.connect(Pause)
 	GlobalVariables.unpaused.connect(Unpause)
 	UpdateGlobalVars()
@@ -66,6 +71,12 @@ func _ready():
 	stunnedCD = 0.1
 
 func _process(delta):
+	if rightStickDir != Vector2(0, 0):
+		aimDot.visible = true
+		aimDot.position = (rightStickDir * 10) + Vector2(-2, -2)
+	else: 
+		aimDot.position = Vector2(-2, -2)
+		aimDot.visible = false
 	UpdateGlobalVars()
 	if dashTimer < dashCD:
 		dashTimer += delta
@@ -83,6 +94,8 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("dash") and GlobalVariables.playerHasDash == true:
 		Dash(delta)
+	
+	rightStickDir = Input.get_vector("contollerAimLeft", "contollerAimRight", "contollerAimUp", "contollerAimDown")
 	
 	if hp.curHP == hp.maxHP:
 		hpBar.visible = false
@@ -133,7 +146,9 @@ func _physics_process(delta):
 		attackTimer += delta
 		if attackTimer >= (attackCD / 2) and !fxPlayed and !stunned:
 			fxPlayed = true
-			Aim(mousePos)
+			if rightStickDir != null:
+				AimController(rightStickDir)
+			else: Aim(mousePos)
 			soundFXPlayer.volume_db = 0
 			fxAnimator.play("slashFX")
 		if attackTimer >= attackCD:
@@ -156,6 +171,13 @@ func Aim(mousePosAim : Vector2):
 	var direction = (global_position - mousePosAim).normalized()
 	var newAngle = PI + atan2(direction.y, direction.x)
 	attackFXNode.rotation = newAngle
+	
+func AimController(rightStickAngle):
+	if rightStickAngle:
+		var direction = -rightStickAngle.normalized()
+		var newAngle = PI + atan2(direction.y, direction.x)
+		attackFXNode.rotation = newAngle
+	
 
 func Pause():
 	self.visible = false
@@ -174,6 +196,9 @@ func _on_hurt_button_pressed():
 func Dash(delta):
 	if dirLastTraveled != Vector2.ZERO and currentState != State.attack and dashTimer >= dashCD:
 		global_position += dirLastTraveled * 500 * delta
+		var dashDirection = dirLastTraveled.normalized()
+		var newAngle = PI + atan2(dashDirection.y, dashDirection.x)
+		dash_sprite.rotation = newAngle
 		fxAnimator.play("dash")
 		soundFXPlayer.stream = soundFXPlayer.sounds[2]
 		soundFXPlayer.volume_db = -20

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dp7wn71lnnkg0"]
+[gd_scene load_steps=16 format=3 uid="uid://dp7wn71lnnkg0"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_3fw8a"]
 [ext_resource type="Texture2D" uid="uid://cywtkbbghjdn1" path="res://art/JanitorMainMenu.png" id="2_4e7xe"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cvip7iykooiej" path="res://art/PixeloidMono-d94EV.ttf" id="4_ei203"]
 [ext_resource type="Texture2D" uid="uid://bubj7yd0x5t2f" path="res://art/DownRightArrow.png" id="5_yhfpp"]
 [ext_resource type="FontFile" uid="uid://d1cyikp12hfpw" path="res://art/PixeloidSans-mLxMm.ttf" id="6_lbydp"]
+[ext_resource type="Texture2D" uid="uid://5a4feja5ftpw" path="res://art/buttonTilemap.png" id="6_ylkdh"]
 
 [sub_resource type="Animation" id="Animation_ae08r"]
 resource_name = "ArrowMovement"
@@ -160,6 +161,13 @@ offset_right = 308.0
 offset_bottom = 102.0
 flat = true
 
+[node name="Controller Button" type="Sprite2D" parent="MarginContainer/BG IMG/StartButton"]
+texture_filter = 1
+position = Vector2(28, 73)
+texture = ExtResource("6_ylkdh")
+region_enabled = true
+region_rect = Rect2(136, 0, 16, 16)
+
 [node name="Quit" type="Button" parent="MarginContainer/BG IMG"]
 texture_filter = 1
 layout_mode = 0
@@ -172,6 +180,12 @@ theme_override_fonts/font = ExtResource("6_lbydp")
 theme_override_font_sizes/font_size = 24
 text = "QUIT"
 flat = true
+
+[node name="QuitController" type="Sprite2D" parent="MarginContainer/BG IMG/Quit"]
+position = Vector2(30, 39)
+texture = ExtResource("6_ylkdh")
+region_enabled = true
+region_rect = Rect2(102, 0, 16, 16)
 
 [node name="VolumeText" type="Label" parent="."]
 layout_mode = 1

@@ -15,6 +15,15 @@ class_name MenuScene
 @onready var dash_price = $DashText/DashPrice
 
 func _process(_delta):
+	if Input.is_action_just_pressed("A"):
+		_on_speed_upgrade_button_button_down()
+	if Input.is_action_just_pressed("B"):
+		_on_attack_speed_upgrade_button_button_down()
+	if Input.is_action_just_pressed("X"):
+		_on_wallet_upgrade_button_button_down()
+	if Input.is_action_just_pressed("Y"):
+		_on_dash_upgrade_button_button_down()
+	
 	if GlobalVariables.junkingSpeedUpgradeLevel < GlobalVariables.junkingSpeedUpgradeMax:
 		junkSpeedDetailText.text = str(GlobalVariables.junkingSpeed) + "s"
 		junkingSpeedPrice.text = "$" + str(GlobalVariables.junkingSpeedUpgradePrice)
@@ -62,7 +71,7 @@ func _on_wallet_upgrade_button_button_down():
 		GlobalVariables.gold -= GlobalVariables.walletSizeUpgradePrice
 		GlobalVariables.goldPickedUp.emit()
 		GlobalVariables.walletSizeUpgradeLevel += 1
-		GlobalVariables.walletSizeUpgradePrice = (75 + (GlobalVariables.walletSizeUpgradeLevel * 45))
+		GlobalVariables.walletSizeUpgradePrice = (35 + (GlobalVariables.walletSizeUpgradeLevel * 45))
 		GlobalVariables.maxGold = GlobalVariables.maxGoldDefault + (GlobalVariables.walletSizeUpgradeLevel * 100)
 
 

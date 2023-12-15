@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://duw5yqxa0t0qp"]
+[gd_scene load_steps=7 format=3 uid="uid://duw5yqxa0t0qp"]
 
 [ext_resource type="Script" path="res://scenes/screens/game_over.gd" id="1_66gq2"]
 [ext_resource type="Texture2D" uid="uid://cjltkua37gnh0" path="res://art/BGColor.png" id="1_pymsk"]
 [ext_resource type="FontFile" uid="uid://ccwxrys2h7aqc" path="res://art/BloodLust.ttf" id="2_5bmhy"]
 [ext_resource type="PackedScene" uid="uid://cro0rw40rl0mi" path="res://scenes/screens/game_screen.tscn" id="2_i3nic"]
 [ext_resource type="PackedScene" uid="uid://dp7wn71lnnkg0" path="res://scenes/screens/main_menu.tscn" id="3_elbtd"]
+[ext_resource type="Texture2D" uid="uid://5a4feja5ftpw" path="res://art/buttonTilemap.png" id="6_4errj"]
 
 [node name="GameOver" type="Node"]
 script = ExtResource("1_66gq2")
@@ -79,6 +80,20 @@ theme_override_fonts/font = ExtResource("2_5bmhy")
 theme_override_font_sizes/font_size = 25
 text = "QUIT"
 flat = true
+
+[node name="ControllerButton" type="Sprite2D" parent="."]
+position = Vector2(220, 182)
+scale = Vector2(1.10222, 1.10055)
+texture = ExtResource("6_4errj")
+region_enabled = true
+region_rect = Rect2(68, 0, 16, 16)
+
+[node name="ControllerButton2" type="Sprite2D" parent="."]
+position = Vector2(220, 213)
+scale = Vector2(1.10222, 1.10055)
+texture = ExtResource("6_4errj")
+region_enabled = true
+region_rect = Rect2(102, 0, 16, 16)
 
 [connection signal="pressed" from="VBOX/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBOX/QuitButton" to="." method="_on_quit_button_pressed"]

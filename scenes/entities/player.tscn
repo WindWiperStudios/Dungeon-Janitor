@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://brt0if6ta843r"]
+[gd_scene load_steps=33 format=3 uid="uid://brt0if6ta843r"]
 
 [ext_resource type="Script" path="res://scenes/entities/player.gd" id="1_bvtev"]
 [ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="2_560ao"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://crqorhbj806i4" path="res://art/dash.png" id="10_g5jdv"]
 [ext_resource type="AudioStream" uid="uid://dq3q4e3p4wm7e" path="res://sounds/playerSwingDown.wav" id="10_yaf84"]
 [ext_resource type="AudioStream" uid="uid://bapkssqbjdhu1" path="res://sounds/jump.wav" id="12_utgcd"]
+[ext_resource type="Texture2D" uid="uid://dketftuhdl3o6" path="res://art/Circle.png" id="13_8uuyi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kvuq"]
 size = Vector2(8, 9.60227)
@@ -599,34 +600,22 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("DashSprite:position")
+tracks/5/path = NodePath("DashSprite:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 5)]
+"values": [Vector2(0.13, 0.13)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("DashSprite:scale")
+tracks/6/path = NodePath("DashSprite:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.13, 0.13)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("DashSprite:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -639,34 +628,22 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DashSprite:position")
-tracks/0/interp = 1
+tracks/0/path = NodePath("DashSprite:scale")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 5), Vector2(0, 8)]
+"values": [Vector2(0.13, 0.13), Vector2(0.465, 0.465)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DashSprite:scale")
-tracks/1/interp = 0
+tracks/1/path = NodePath("DashSprite:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0.13, 0.13), Vector2(0.465, 0.465)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DashSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -840,7 +817,7 @@ texture = ExtResource("4_3gyec")
 [node name="DashSprite" type="Sprite2D" parent="AttackEffect"]
 visible = false
 z_index = -1
-position = Vector2(0, 5)
+position = Vector2(2.08165e-12, 5)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("10_g5jdv")
 
@@ -852,5 +829,14 @@ libraries = {
 [node name="SoundFX" type="AudioStreamPlayer" parent="."]
 script = ExtResource("8_kj11a")
 sounds = Array[AudioStreamWAV]([ExtResource("9_sfkmt"), ExtResource("10_yaf84"), ExtResource("12_utgcd")])
+
+[node name="AimDot" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 14.0
+offset_bottom = 14.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_8uuyi")
 
 [connection signal="area_entered" from="AttackEffect/Attack" to="AttackEffect/Attack" method="_on_area_entered"]

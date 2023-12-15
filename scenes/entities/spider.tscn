@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://brnqgnbewfs0j"]
+[gd_scene load_steps=20 format=3 uid="uid://brnqgnbewfs0j"]
 
 [ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_8brvd"]
 [ext_resource type="PackedScene" uid="uid://tb8ru714lidr" path="res://scenes/entities/dropBlood.tscn" id="2_m8u88"]
 [ext_resource type="PackedScene" uid="uid://cpfeibhy1kr3g" path="res://scenes/projectiles/projectile_spider_web.tscn" id="3_6ienv"]
+[ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="3_f8nei"]
 [ext_resource type="Texture2D" uid="uid://cn57oxe6qdy0a" path="res://art/SpiderSheet.png" id="3_jtxdd"]
 [ext_resource type="PackedScene" uid="uid://b0i1pd73mrrch" path="res://scenes/component/hp_component.tscn" id="4_1rrv0"]
 [ext_resource type="Gradient" uid="uid://c2qfu8vy45bi" path="res://scenes/entities/EnemyGlowGradient.tres" id="7_bjhgt"]
@@ -108,7 +109,7 @@ collision_layer = 2
 collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_8brvd")
-itemDrops = Array[PackedScene]([ExtResource("2_m8u88")])
+itemDrops = Array[PackedScene]([ExtResource("2_m8u88"), ExtResource("3_f8nei")])
 moveSpeed = 5.0
 hpBarOffset = Vector2(-6, -10)
 attackCD = 2.5

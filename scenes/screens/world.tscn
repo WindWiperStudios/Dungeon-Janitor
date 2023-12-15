@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b8h8e0lfdoudk"]
+[gd_scene load_steps=25 format=3 uid="uid://b8h8e0lfdoudk"]
 
 [ext_resource type="Script" path="res://scenes/screens/world.gd" id="1_74rs1"]
 [ext_resource type="Texture2D" uid="uid://cbnakbbgreeqt" path="res://art/TextureAtlas.png" id="1_anbx0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/screens/TutorialTexts.gd" id="7_vkr08"]
 [ext_resource type="PackedScene" uid="uid://cpq44kkjqh24k" path="res://scenes/component/junk_zone.tscn" id="8_1gtg5"]
 [ext_resource type="Script" path="res://scenes/screens/tutorialAttack.gd" id="8_3e33m"]
+[ext_resource type="Texture2D" uid="uid://5a4feja5ftpw" path="res://art/buttonTilemap.png" id="8_apxry"]
 [ext_resource type="Script" path="res://scenes/screens/TutorialMap.gd" id="12_5qrrp"]
 [ext_resource type="PackedScene" uid="uid://brisjdtk1dcfs" path="res://scenes/entities/bookcase.tscn" id="13_bdu2j"]
 
@@ -159,14 +160,13 @@ scale = Vector2(2.48227, 4.32213)
 [node name="MoveInstructions" type="Label" parent="NotShaded/Instructions Box"]
 texture_filter = 1
 offset_left = -8.05714
-offset_top = -4.62732
+offset_top = -5.78418
 offset_right = 72.9429
-offset_bottom = 6.37268
+offset_bottom = 20.1208
 scale = Vector2(0.201457, 0.114643)
 text = "WASD TO MOVE"
 label_settings = SubResource("LabelSettings_10ven")
 horizontal_alignment = 1
-vertical_alignment = 1
 justification_flags = 0
 clip_text = true
 script = ExtResource("7_vkr08")
@@ -179,6 +179,12 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NotShaded/Instructions Box/MoveInstructions/ReadZone"]
 position = Vector2(-0.999886, -3.07269)
 shape = SubResource("RectangleShape2D_ptpxy")
+
+[node name="ControllerButton" type="Sprite2D" parent="NotShaded/Instructions Box/MoveInstructions"]
+position = Vector2(39.9943, 18.1633)
+texture = ExtResource("8_apxry")
+region_enabled = true
+region_rect = Rect2(136, 119, 16, 16)
 
 [node name="Junk" type="Label" parent="NotShaded/Instructions Box"]
 texture_filter = 1
@@ -219,6 +225,12 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NotShaded/Instructions Box/Map/Area2D"]
 position = Vector2(3.07731, 0)
 shape = SubResource("RectangleShape2D_v8na1")
+
+[node name="ControllerButton" type="Sprite2D" parent="NotShaded/Instructions Box/Map"]
+position = Vector2(66.1622, 6.34113)
+texture = ExtResource("8_apxry")
+region_enabled = true
+region_rect = Rect2(170, 289, 16, 17)
 
 [node name="Upgrade" type="Label" parent="NotShaded/Instructions Box"]
 visible = false
@@ -285,6 +297,18 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NotShaded/Instructions Box/TutorialAttack/Area2D"]
 position = Vector2(-10.5509, -1.15692)
 shape = SubResource("RectangleShape2D_ks5h8")
+
+[node name="Controller Button" type="Sprite2D" parent="NotShaded/Instructions Box/TutorialAttack"]
+position = Vector2(97.8368, 27.7643)
+texture = ExtResource("8_apxry")
+region_enabled = true
+region_rect = Rect2(238, 289, 16, 16)
+
+[node name="Controller Button2" type="Sprite2D" parent="NotShaded/Instructions Box/TutorialAttack"]
+position = Vector2(97.8368, 48.5873)
+texture = ExtResource("8_apxry")
+region_enabled = true
+region_rect = Rect2(136, 153, 16, 16)
 
 [node name="MapWalls" type="Area2D" parent="."]
 collision_layer = 8

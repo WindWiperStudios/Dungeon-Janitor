@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://mkp341llf6ck"]
+[gd_scene load_steps=5 format=3 uid="uid://mkp341llf6ck"]
 
 [ext_resource type="Script" path="res://scenes/component/MenuScreen.gd" id="1_heb4w"]
 [ext_resource type="LabelSettings" uid="uid://b2nh6bjr0fkry" path="res://scenes/component/ZoneSubTextLabel.tres" id="2_hgdrt"]
 [ext_resource type="Texture2D" uid="uid://cymplh3bnip8n" path="res://art/button.png" id="3_mrt2i"]
+[ext_resource type="Texture2D" uid="uid://5a4feja5ftpw" path="res://art/buttonTilemap.png" id="3_tal7c"]
 
 [node name="UpgradeMenu" type="Node2D"]
 script = ExtResource("1_heb4w")
@@ -42,6 +43,13 @@ offset_bottom = 117.0
 scale = Vector2(0.16, 0.16)
 text = "Junking Speed"
 label_settings = ExtResource("2_hgdrt")
+
+[node name="ControllerButton3" type="Sprite2D" parent="JunkingSpeedText"]
+position = Vector2(181.25, 93.75)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("3_tal7c")
+region_enabled = true
+region_rect = Rect2(68, 0, 16, 16)
 
 [node name="SpeedUpgradeButton" type="TextureButton" parent="JunkingSpeedText"]
 texture_filter = 1
@@ -113,6 +121,13 @@ scale = Vector2(0.62, 0.62)
 text = "$35"
 label_settings = ExtResource("2_hgdrt")
 
+[node name="ControllerButton3" type="Sprite2D" parent="AttackSpeedText"]
+position = Vector2(181.25, 87.5)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("3_tal7c")
+region_enabled = true
+region_rect = Rect2(85, 0, 16, 16)
+
 [node name="WalletSizeText" type="Label" parent="."]
 texture_filter = 1
 offset_left = 1.0
@@ -153,6 +168,13 @@ scale = Vector2(0.62, 0.62)
 text = "$75"
 label_settings = ExtResource("2_hgdrt")
 
+[node name="ControllerButton3" type="Sprite2D" parent="WalletSizeText"]
+position = Vector2(181.25, 87.5)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("3_tal7c")
+region_enabled = true
+region_rect = Rect2(102, 0, 16, 16)
+
 [node name="DashText" type="Label" parent="."]
 texture_filter = 1
 offset_left = 1.0
@@ -192,6 +214,22 @@ offset_bottom = 133.75
 scale = Vector2(0.62, 0.62)
 text = "$125"
 label_settings = ExtResource("2_hgdrt")
+
+[node name="Label" type="Label" parent="DashText"]
+layout_mode = 0
+offset_left = 137.5
+offset_top = 12.5
+offset_right = 235.5
+offset_bottom = 38.5
+scale = Vector2(2, 2)
+text = "(LB OR Space)"
+
+[node name="ControllerButton3" type="Sprite2D" parent="DashText"]
+position = Vector2(181.25, 87.5)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("3_tal7c")
+region_enabled = true
+region_rect = Rect2(119, 0, 16, 16)
 
 [connection signal="button_down" from="JunkingSpeedText/SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_button_down"]
 [connection signal="button_down" from="AttackSpeedText/AttackSpeedUpgradeButton" to="." method="_on_attack_speed_upgrade_button_button_down"]

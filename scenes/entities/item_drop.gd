@@ -44,6 +44,7 @@ func _process(delta):
 
 func _on_pickupbox_area_entered(area):
 	if currency and area.get_parent().name == "Player" and GlobalVariables.gold < GlobalVariables.maxGold:
+		itemValue = randi_range(5, 15)
 		dropFX.stream = goldSound
 		dropFX.play()
 		print("Picked up Gold")
@@ -53,7 +54,7 @@ func _on_pickupbox_area_entered(area):
 		
 	
 	if junk and area.get_parent().name == "Player" and GlobalVariables.junkAmount < GlobalVariables.maxJunk and currency == false:
-		GlobalVariables.junkAmount += itemValue
+		GlobalVariables.junkAmount += randi_range(1, 3)
 		dropFX.stream = junkSound
 		dropFX.play()
 		print("Picked up Junk")
@@ -66,7 +67,7 @@ func _on_pickupbox_area_entered(area):
 		print("Picked up HP")
 		dropFX.stream = bloodSound
 		dropFX.play()
-		area.get_parent().hp.curHP += itemValue
+		area.get_parent().hp.curHP += randi_range(1, 3)
 		self.queue_free()
 
 func DetectItemOverlap(item):

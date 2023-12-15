@@ -15,6 +15,10 @@ func _ready():
 	animationPlayer.play("ArrowMovement")
 
 func _process(_delta):
+	if Input.is_action_just_pressed("A"):
+		_on_play_button_pressed()
+	if Input.is_action_just_pressed("X"):
+		_on_quit_pressed()
 	mouseLight.global_position = get_global_mouse_position()
 	
 

@@ -8,7 +8,7 @@ var maxJunk = maxJunkDefault
 var junkingSpeed : float = 2.5
 var score : int
 var gold : int
-var maxGoldDefault : int = 100
+var maxGoldDefault : int = 35
 var maxGold = maxGoldDefault
 
 var pausedBool = false
@@ -37,8 +37,8 @@ var playerAttackDamage
 #UpgradePriceVariables
 var junkingSpeedUpgradePrice : int = 25
 var attackSpeedUpgradePrice : int = 35
-var walletSizeUpgradePrice : int = 75
-var dashUpgradePrice : int = 125
+var walletSizeUpgradePrice : int = 35
+var dashUpgradePrice : int = 50
 
 #UpgradeStageVariables
 var junkingSpeedUpgradeLevel = 0
@@ -101,7 +101,9 @@ func ResetScore():
 	junkingSpeedUpgradeLevel = 0
 	attackSpeedUpgradePrice = 35
 	attackSpeedUpgradeLevel = 0
-	walletSizeUpgradePrice = 75
+	walletSizeUpgradePrice = 35
 	walletSizeUpgradeLevel = 0
+	dashUpgradePrice = 45
+	playerHasDash = false
 	monstersAggrod = 0
 	playerAttackCD = playerAttackCDDefault
