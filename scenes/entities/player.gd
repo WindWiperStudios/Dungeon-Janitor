@@ -146,7 +146,7 @@ func _physics_process(delta):
 		attackTimer += delta
 		if attackTimer >= (attackCD / 2) and !fxPlayed and !stunned:
 			fxPlayed = true
-			if rightStickDir != null:
+			if rightStickDir != Vector2(0, 0):
 				AimController(rightStickDir)
 			else: Aim(mousePos)
 			soundFXPlayer.volume_db = 0

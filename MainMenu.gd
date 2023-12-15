@@ -1,6 +1,7 @@
 extends Control
 
 @export var BGMWavs : Array[AudioStreamWAV]
+@export var splashPlayed = false
 
 @onready var mouseLight = $PointLight2D
 @onready var animationPlayer = $AnimationPlayer
@@ -9,12 +10,16 @@ extends Control
 var introLength : int = 128
 
 func _ready():
+	splashPlayed = false
 	musicSlider.value = GlobalVariables.musicVolume
 	GlobalVariables.musicPlayer.stream = load("res://sounds/MainMenuBGMLoop.wav")
 	GlobalVariables.musicPlayer.play()
-	animationPlayer.play("ArrowMovement")
 
 func _process(_delta):
+	if splashPlayed == false:
+		animationPlayer.play("splash")
+	if splashPlayed == true:
+		animationPlayer.play("ArrowMovement")
 	if Input.is_action_just_pressed("A"):
 		_on_play_button_pressed()
 	if Input.is_action_just_pressed("X"):
