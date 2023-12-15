@@ -134,6 +134,7 @@ func _physics_process(delta):
 		if attackTimer >= (attackCD / 2) and !fxPlayed and !stunned:
 			fxPlayed = true
 			Aim(mousePos)
+			soundFXPlayer.volume_db = 0
 			fxAnimator.play("slashFX")
 		if attackTimer >= attackCD:
 			fxPlayed = false
@@ -175,5 +176,6 @@ func Dash(delta):
 		global_position += dirLastTraveled * 500 * delta
 		fxAnimator.play("dash")
 		soundFXPlayer.stream = soundFXPlayer.sounds[2]
+		soundFXPlayer.volume_db = -20
 		soundFXPlayer.play()
 		dashTimer = 0.0

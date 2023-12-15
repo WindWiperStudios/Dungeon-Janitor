@@ -9,12 +9,7 @@ class Enemy:
 		self.scene_path = scene_path
 		self.spawn_chance = spawn_chance
 
-var monsters = [
-	#Spider, 30% chance to spawn
-	Enemy.new("res://scenes/entities/spider.tscn", 0.1),
-	#Skeleton, 50% chance to spawn
-	Enemy.new("res://scenes/entities/skeleton.tscn", 0.5),
-]
+
 
 @onready var player = $"../ScreenCanvas/ScreenMargin/PlayerCanvas/Player"
 @onready var enemySpawnsParent = $"../ScreenCanvas/ScreenMargin/EnemyCanvas/EnemyParent"
@@ -28,6 +23,9 @@ var monsters = [
 var distToSpawn : float = 25
 var currentState : State = State.waiting_to_spawn
 var monsterRNG
+var monsters : Array[PackedScene]
+var monsterAPath
+var monsterBPath
 
 enum State {
 	waiting_to_spawn,
@@ -35,6 +33,10 @@ enum State {
 	reseting,
 	waiting
 }
+
+func _ready():
+	monsterAPath = "res://scenes/entities/skeleton.tscn"
+	monsterBPath = "res://scenes/entities/spider.tscn"
 
 func _process(delta):
 	maxMobsAlive = 12 + (GlobalVariables.gameTimer / 5)
@@ -95,29 +97,23 @@ func SpawnEnemy():
 	if spawn_location:
 		var monster = ChooseMonster()
 		if monster:
-			var instance = load(monster.scene_path).instantiate()
+			var instance = load(monster).instantiate()
+			curMobsAlive += 1
 			spawn_location.add_child(instance)
 			instance.global_position = spawn_location.global_position
 			
 func ChooseSpawnLocation():
 	var valid_locations : Array[Node2D]
 	for spawnPoint in enemySpawnsParent.get_children():
-		if abs(spawnPoint.global_position - player.global_position) > Vector2(distToSpawn, distToSpawn):
+		var distanceToPlayer = spawnPoint.global_position - player.global_position
+		if abs(distanceToPlayer) > Vector2(distToSpawn, distToSpawn) and abs(distanceToPlayer) < Vector2(distToSpawn + 150, distToSpawn + 150):
 			valid_locations.append(spawnPoint)
 	if valid_locations.size() > 0:
 		return valid_locations[randi() % valid_locations.size()]
 	return null
 
 func ChooseMonster():
-	var total_chance = 0.0
-	for monster in monsters:
-		total_chance += monster.spawn_chance
-	var rand_value = randf() * total_chance
-	var cumulative_chance = 0.0
-	
-	for monster in monsters:
-		cumulative_chance += monster.spawn_chance
-		if rand_value <= cumulative_chance:
-			curMobsAlive += 1
-			return monster
-		return null
+	var coinFlip = randi_range(0, 18)
+	if coinFlip <= 4:
+		return monsterBPath
+	else: return monsterAPath

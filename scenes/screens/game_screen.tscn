@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cro0rw40rl0mi"]
+[gd_scene load_steps=15 format=3 uid="uid://cro0rw40rl0mi"]
 
 [ext_resource type="PackedScene" uid="uid://b8h8e0lfdoudk" path="res://scenes/screens/world.tscn" id="1_hbb3b"]
 [ext_resource type="Script" path="res://scenes/screens/game_screen.gd" id="1_weuql"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://by8dsmrd3jd2w" path="res://scenes/screens/minimap.tscn" id="3_3ynol"]
 [ext_resource type="PackedScene" uid="uid://c0820gh81h885" path="res://scenes/component/enemy_parent.tscn" id="3_dl5rm"]
 [ext_resource type="PackedScene" uid="uid://bcridvv7e0d83" path="res://scenes/entities/skeleton.tscn" id="4_ptnx8"]
+[ext_resource type="PackedScene" uid="uid://b7fd4bqdovdvx" path="res://scenes/entities/coin.tscn" id="6_kur72"]
 [ext_resource type="Script" path="res://scenes/screens/UIHolder.gd" id="7_3k644"]
 [ext_resource type="FontFile" uid="uid://ciwqyh86cso1l" path="res://art/FFFFORWA.TTF" id="7_pymwp"]
 [ext_resource type="Texture2D" uid="uid://b6dkp28i6mxds" path="res://art/halfBag.png" id="8_b8lla"]
@@ -247,10 +248,17 @@ z_index = 1
 z_as_relative = false
 position = Vector2(39.5882, 406.73)
 
+[node name="SoundFX" parent="ScreenCanvas/ScreenMargin/PlayerCanvas/Player" index="10"]
+volume_db = -10.743
+
 [node name="CanvasModulate" type="CanvasModulate" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
 color = Color(0.482353, 0.482353, 0.482353, 1)
 
 [node name="DropParent" type="Node2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas"]
+
+[node name="Coin" parent="ScreenCanvas/ScreenMargin/PlayerCanvas/DropParent" instance=ExtResource("6_kur72")]
+
+[node name="DropSoundFX" type="AudioStreamPlayer2D" parent="ScreenCanvas/ScreenMargin/PlayerCanvas/DropParent"]
 
 [node name="WorldCanvas" type="CanvasLayer" parent="ScreenCanvas/ScreenMargin"]
 process_mode = 1
@@ -371,7 +379,6 @@ theme_override_font_sizes/font_size = 6
 text = "HIGH"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScreenCanvas/ScreenMargin/DevMenuUI"]
-visible = false
 layout_mode = 2
 
 [node name="HurtButton" type="Button" parent="ScreenCanvas/ScreenMargin/DevMenuUI/HBoxContainer2"]

@@ -3,8 +3,11 @@ class_name ItemDrop
 
 @export var itemValue : int
 @export var currency = false
+@export var junk = false
 @export var healthItem = false
 @onready var pickupBox : Area2D = $PickupBox
+@onready var dropFX = $"../DropSoundFX"
+
 
 var itemsSpawnedWith
 var checkedSpawnedItems = false
@@ -12,9 +15,18 @@ var spawnCheckTimer : float
 var randX = RandomNumberGenerator.new()
 var randY = RandomNumberGenerator.new()
 
+#Initiate sounds
+var bloodSound
+var junkSound
+var goldSound
+
 func _ready():
 	spawnCheckTimer = 0.0
 	pickupBox.area_entered.connect(_on_pickupbox_area_entered)
+	
+	bloodSound = load("res://sounds/pickupJunk.wav")
+	junkSound = load("res://sounds/bloodPickupSound.wav")
+	goldSound = load("res://sounds/pickupCoin.wav")
 	
 func _process(delta):
 	randX = RandomNumberGenerator.new()
@@ -29,19 +41,28 @@ func _process(delta):
 
 func _on_pickupbox_area_entered(area):
 	if currency and area.get_parent().name == "Player" and GlobalVariables.gold < GlobalVariables.maxGold:
+		dropFX.stream = goldSound
+		dropFX.play()
+		print("Picked up Gold")
 		GlobalVariables.gold += itemValue
 		GlobalVariables.goldPickedUp.emit()
 		self.queue_free()
 		
 	
-	if area.get_parent().name == "Player" and GlobalVariables.junkAmount < GlobalVariables.maxJunk and !currency:
+	if junk and area.get_parent().name == "Player" and GlobalVariables.junkAmount < GlobalVariables.maxJunk and currency == false:
 		GlobalVariables.junkAmount += itemValue
+		dropFX.stream = junkSound
+		dropFX.play()
+		print("Picked up Junk")
 		if GlobalVariables.junkAmount > GlobalVariables.maxJunk:
 			GlobalVariables.junkAmount = GlobalVariables.maxJunk
 		GlobalVariables.itemPickedUp.emit()
 		self.queue_free()
 	
 	if healthItem == true and area.get_parent().name == "Player" and GlobalVariables.playerHP < GlobalVariables.playerMaxHP:
+		print("Picked up HP")
+		dropFX.stream = bloodSound
+		dropFX.play()
 		area.get_parent().hp.curHP += itemValue
 		self.queue_free()
 

@@ -16,7 +16,7 @@ var pauseTimer : float = 0.0
 var gameTimer : float
 
 #Option Variables
-var musicVolume : float
+var musicVolume
 var sfxVolume : float
 var musicPosition
 
@@ -59,6 +59,7 @@ signal restarting
 signal upgrading
 
 func _ready():
+	musicVolume = -10.0
 	restarting.connect(ResetScore)
 
 func _process(delta):
