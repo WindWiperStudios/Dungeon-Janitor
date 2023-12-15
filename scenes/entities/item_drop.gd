@@ -7,6 +7,7 @@ class_name ItemDrop
 @export var healthItem = false
 @onready var pickupBox : Area2D = $PickupBox
 @onready var dropFX = $"../DropSoundFX"
+@onready var animationPlayer = $AnimationPlayer
 
 
 var itemsSpawnedWith
@@ -21,6 +22,8 @@ var junkSound
 var goldSound
 
 func _ready():
+	if animationPlayer:
+		animationPlayer.play("hover")
 	spawnCheckTimer = 0.0
 	pickupBox.area_entered.connect(_on_pickupbox_area_entered)
 	

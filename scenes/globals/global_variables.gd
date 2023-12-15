@@ -32,6 +32,7 @@ var playerAttackCD = playerAttackCDDefault
 var playerDashTimer = 0
 var playerDashCD = .7
 var playerHasDash = false
+var playerAttackDamage
 
 #UpgradePriceVariables
 var junkingSpeedUpgradePrice : int = 25

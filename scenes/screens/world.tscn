@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b8h8e0lfdoudk"]
+[gd_scene load_steps=24 format=3 uid="uid://b8h8e0lfdoudk"]
 
 [ext_resource type="Script" path="res://scenes/screens/world.gd" id="1_74rs1"]
 [ext_resource type="Texture2D" uid="uid://cbnakbbgreeqt" path="res://art/TextureAtlas.png" id="1_anbx0"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cpq44kkjqh24k" path="res://scenes/component/junk_zone.tscn" id="8_1gtg5"]
 [ext_resource type="Script" path="res://scenes/screens/tutorialAttack.gd" id="8_3e33m"]
 [ext_resource type="Script" path="res://scenes/screens/TutorialMap.gd" id="12_5qrrp"]
+[ext_resource type="PackedScene" uid="uid://brisjdtk1dcfs" path="res://scenes/entities/bookcase.tscn" id="13_bdu2j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ojxqn"]
 texture = ExtResource("1_anbx0")
@@ -296,7 +297,204 @@ polygon = PackedVector2Array(-7.05714, -5.925, 4.51429, -5.875, 4.4, 6.475, -7.0
 
 [node name="WorldItemsParent" type="Node2D" parent="."]
 
+[node name="Bookcase" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(38, 224)
+
+[node name="Bookcase2" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(51, 224)
+
+[node name="Bookcase3" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(64, 224)
+
+[node name="Bookcase4" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(77, 224)
+
+[node name="Bookcase5" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(90, 224)
+
+[node name="Bookcase6" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(103, 287)
+
+[node name="Bookcase7" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(116, 287)
+
+[node name="Bookcase8" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(129, 287)
+
+[node name="Bookcase9" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(142, 287)
+
+[node name="Bookcase10" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(154, 287)
+
+[node name="Bookcase11" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(198, 271)
+
+[node name="Bookcase12" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(211, 271)
+
+[node name="Bookcase13" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(249, 212)
+
+[node name="Bookcase14" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(279, 212)
+
+[node name="Bookcase15" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(290, 212)
+
+[node name="Bookcase16" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(298, 232)
+
+[node name="Bookcase17" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(344, 208)
+
+[node name="Bookcase18" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(356, 208)
+
+[node name="Bookcase19" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(367, 208)
+
+[node name="Bookcase20" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(378, 208)
+
+[node name="Bookcase21" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(329, 304)
+
+[node name="Bookcase22" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(312, 369)
+
+[node name="Bookcase23" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(323, 369)
+
+[node name="Bookcase24" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(332, 390)
+
+[node name="Bookcase25" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(362, 321)
+
+[node name="Bookcase26" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(278, 336)
+
+[node name="Bookcase27" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(264, 335)
+
+[node name="Bookcase28" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(217, 354)
+
+[node name="Bookcase29" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(231, 352)
+
+[node name="Bookcase30" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(74, 113)
+
+[node name="Bookcase31" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(23, 146)
+
+[node name="Bookcase32" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(37, 146)
+
+[node name="Bookcase33" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(168, 15)
+
+[node name="Bookcase34" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(180, 15)
+
+[node name="Bookcase35" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(192, 15)
+
+[node name="Bookcase36" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(205, 15)
+
+[node name="Bookcase37" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(218, 15)
+
+[node name="Bookcase38" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(233, 15)
+
+[node name="Bookcase39" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(247, 15)
+
+[node name="Bookcase40" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(261, 15)
+
+[node name="Bookcase41" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(274, 15)
+
+[node name="Bookcase42" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(278, 38)
+
+[node name="Bookcase43" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(328, 28)
+
+[node name="Bookcase44" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(340, 28)
+
+[node name="Bookcase45" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(352, 28)
+
+[node name="Bookcase46" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(363, 28)
+
+[node name="Bookcase47" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(378, 62)
+
+[node name="Bookcase48" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(378, 136)
+
+[node name="Bookcase49" parent="WorldItemsParent" instance=ExtResource("13_bdu2j")]
+position = Vector2(379, 159)
+
 [connection signal="area_exited" from="NotShaded/Instructions Box/MoveInstructions/ReadZone" to="NotShaded/Instructions Box/MoveInstructions" method="_on_read_zone_area_exited"]
 [connection signal="area_exited" from="NotShaded/Instructions Box/Map/Area2D" to="NotShaded/Instructions Box/Map" method="_on_area_exited"]
 [connection signal="area_exited" from="NotShaded/Instructions Box/TutorialAttack/Area2D" to="NotShaded/Instructions Box/TutorialAttack" method="_on_area_exited"]
 [connection signal="area_exited" from="MapWalls" to="." method="_on_map_walls_area_exited"]
+
+[editable path="WorldItemsParent/Bookcase"]
+[editable path="WorldItemsParent/Bookcase2"]
+[editable path="WorldItemsParent/Bookcase3"]
+[editable path="WorldItemsParent/Bookcase4"]
+[editable path="WorldItemsParent/Bookcase5"]
+[editable path="WorldItemsParent/Bookcase6"]
+[editable path="WorldItemsParent/Bookcase7"]
+[editable path="WorldItemsParent/Bookcase8"]
+[editable path="WorldItemsParent/Bookcase9"]
+[editable path="WorldItemsParent/Bookcase10"]
+[editable path="WorldItemsParent/Bookcase11"]
+[editable path="WorldItemsParent/Bookcase12"]
+[editable path="WorldItemsParent/Bookcase13"]
+[editable path="WorldItemsParent/Bookcase14"]
+[editable path="WorldItemsParent/Bookcase15"]
+[editable path="WorldItemsParent/Bookcase16"]
+[editable path="WorldItemsParent/Bookcase17"]
+[editable path="WorldItemsParent/Bookcase18"]
+[editable path="WorldItemsParent/Bookcase19"]
+[editable path="WorldItemsParent/Bookcase20"]
+[editable path="WorldItemsParent/Bookcase21"]
+[editable path="WorldItemsParent/Bookcase22"]
+[editable path="WorldItemsParent/Bookcase23"]
+[editable path="WorldItemsParent/Bookcase24"]
+[editable path="WorldItemsParent/Bookcase25"]
+[editable path="WorldItemsParent/Bookcase26"]
+[editable path="WorldItemsParent/Bookcase27"]
+[editable path="WorldItemsParent/Bookcase28"]
+[editable path="WorldItemsParent/Bookcase29"]
+[editable path="WorldItemsParent/Bookcase30"]
+[editable path="WorldItemsParent/Bookcase31"]
+[editable path="WorldItemsParent/Bookcase32"]
+[editable path="WorldItemsParent/Bookcase33"]
+[editable path="WorldItemsParent/Bookcase34"]
+[editable path="WorldItemsParent/Bookcase35"]
+[editable path="WorldItemsParent/Bookcase36"]
+[editable path="WorldItemsParent/Bookcase37"]
+[editable path="WorldItemsParent/Bookcase38"]
+[editable path="WorldItemsParent/Bookcase39"]
+[editable path="WorldItemsParent/Bookcase40"]
+[editable path="WorldItemsParent/Bookcase41"]
+[editable path="WorldItemsParent/Bookcase42"]
+[editable path="WorldItemsParent/Bookcase43"]
+[editable path="WorldItemsParent/Bookcase44"]
+[editable path="WorldItemsParent/Bookcase45"]
+[editable path="WorldItemsParent/Bookcase46"]
+[editable path="WorldItemsParent/Bookcase47"]
+[editable path="WorldItemsParent/Bookcase48"]
+[editable path="WorldItemsParent/Bookcase49"]

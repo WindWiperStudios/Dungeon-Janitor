@@ -5,4 +5,5 @@ extends Sprite2D
 
 func _ready():
 	texture = weaponSprite
+	GlobalVariables.playerAttackDamage = attackDamage
 
